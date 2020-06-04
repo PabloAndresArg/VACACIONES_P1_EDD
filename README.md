@@ -1,2 +1,8 @@
 # VACACIONES_P1_EDD
- Proyecto de estructura de datos , CUBO , arbol  AVL 
+ Proyecto de estructura de datos , CUBO , arbol  AVL
+
+## el lenguaje utilizado en este proyecto es c++
+    || ACTIVOS
+    || TRANSACCIONES
+    || USUARIOS
+ 
