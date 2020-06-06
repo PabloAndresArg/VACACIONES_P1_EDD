@@ -1,2 +1,4 @@
-﻿  Pro1_201800464.cpp
+﻿  Matriz_dispersa.cpp
+C:\Users\Pablo\Documents\GitHub\VACACIONES_P1_EDD\Pro1_201800464\Matriz_dispersa.cpp(78): warning C4715: 'Matriz_dispersa::existeFIla': no todas las rutas de acceso de control devuelven un valor
+C:\Users\Pablo\Documents\GitHub\VACACIONES_P1_EDD\Pro1_201800464\Matriz_dispersa.cpp(58): warning C4715: 'Matriz_dispersa::existeColumna': no todas las rutas de acceso de control devuelven un valor
   Pro1_201800464.vcxproj -> C:\Users\Pablo\Documents\GitHub\VACACIONES_P1_EDD\Pro1_201800464\Debug\Pro1_201800464.exe
