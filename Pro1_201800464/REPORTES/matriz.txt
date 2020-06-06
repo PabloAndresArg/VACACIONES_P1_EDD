@@ -3,32 +3,43 @@ node[pin = true , shape = box, fontcolor = black  , fillcolor = gray  , width=0.
 charset = latin1;
  style = filled ;
 nodesep = 1.0;
-VAL_014C0410->VAL_014C0550 [ dir=both ,color = white]; 
-VAL_014C0410->VAL_014C05F0 [  dir=both,  color = white]; 
-VAL_014C0410[label = "ROOT", group = -1,pos = "-1,1" ];
-VAL_014C0550->VAL_014C20A8 [ dir=both, color = white]; 
-VAL_014C0550->VAL_014C04B0 [ dir=both, color = white]; 
-VAL_014C0550[label="HUEHUETENANGO", group = 0,pos = "0,1" ];
-VAL_014C20A8->VAL_014C1800 [ dir=both, color = white]; 
-VAL_014C20A8[label="JAPALA", group = 1,pos = "1,1" ];
-VAL_014C05F0->VAL_014C04B0 [ dir=both ,color = white]; 
-VAL_014C05F0->VAL_014C1760 [  dir=both,  color = white]; 
-VAL_014C05F0[label="ESTANCIA" , group = -1,pos = "-1,0" ];
-VAL_014C04B0->VAL_014C16C0 [ dir=both, color = white]; 
-VAL_014C04B0[ label = "PABLO" ,dir=both ,fillcolor = chartreuse1, group = 0,pos = "0,0" ];
-VAL_014C1760->VAL_014C16C0 [ dir=both ,color = white]; 
-VAL_014C1760->VAL_014C2148 [  dir=both,  color = white]; 
-VAL_014C1760[label="ADIDAS" , group = -1,pos = "-1,-1" ];
-VAL_014C16C0[ label = "JAVIER" ,dir=both ,fillcolor = chartreuse1, group = 1,pos = "1,0" ];
-VAL_014C2148->VAL_014C1800 [ dir=both ,color = white]; 
-VAL_014C2148[label="NIKE" , group = -1,pos = "-1,-2" ];
-VAL_014C1800[ label = "MESSI" ,dir=both ,fillcolor = chartreuse1, group = 2,pos = "2,-1" ];
-{rank = same; VAL_014C0410 VAL_014C0550 VAL_014C20A8 };
+VAL_00A77C58->VAL_00A803B8 [ dir=both ,color = white]; 
+VAL_00A77C58->VAL_00A80458 [  dir=both,  color = white]; 
+VAL_00A77C58[label = "ROOT", group = -1,pos = "-1,1" ];
+VAL_00A803B8->VAL_00A815C8 [ dir=both, color = white]; 
+VAL_00A803B8->VAL_00A7E088 [ dir=both, color = white]; 
+VAL_00A803B8[label="SOLOLA", group = 0,pos = "0,1" ];
+VAL_00A815C8->VAL_00A81F10 [ dir=both, color = white]; 
+VAL_00A815C8->VAL_00A81528 [ dir=both, color = white]; 
+VAL_00A815C8[label="REU", group = 1,pos = "1,1" ];
+VAL_00A81F10->VAL_00A81E70 [ dir=both, color = white]; 
+VAL_00A81F10[label="HUEHUETENANGO", group = 2,pos = "2,1" ];
+VAL_00A80458->VAL_00A7E088 [ dir=both ,color = white]; 
+VAL_00A80458->VAL_00A82050 [  dir=both,  color = white]; 
+VAL_00A80458[label="adidas" , group = -1,pos = "-1,0" ];
+VAL_00A7E088->VAL_00A81528 [ dir=both, color = white]; 
+VAL_00A7E088->VAL_00A82230 [ dir=both, color = white]; 
+VAL_00A7E088[ label = "peco" ,dir=both ,fillcolor = chartreuse1, group = 0,pos = "0,0" ];
+VAL_00A81528->VAL_00A81E70 [ dir=both, color = white]; 
+VAL_00A81528->VAL_00A820F0 [ dir=both, color = white]; 
+VAL_00A81528[ label = "val" ,dir=both ,fillcolor = chartreuse1, group = 0,pos = "0,-1" ];
+VAL_00A81E70->VAL_00A81FB0 [ dir=both, color = white]; 
+VAL_00A81E70[ label = "Espino" ,dir=both ,fillcolor = chartreuse1, group = 0,pos = "0,-2" ];
+VAL_00A82050->VAL_00A81FB0 [ dir=both ,color = white]; 
+VAL_00A82050->VAL_00A82190 [  dir=both,  color = white]; 
+VAL_00A82050[label="ESTANCIA" , group = -1,pos = "-1,-1" ];
+VAL_00A81FB0[ label = "Rambo" ,dir=both ,fillcolor = chartreuse1, group = 1,pos = "1,-2" ];
+VAL_00A82190->VAL_00A82230 [ dir=both ,color = white]; 
+VAL_00A82190[label="MAX" , group = -1,pos = "-1,-2" ];
+VAL_00A82230->VAL_00A820F0 [ dir=both, color = white]; 
+VAL_00A82230[ label = "pablo" ,dir=both ,fillcolor = chartreuse1, group = 2,pos = "2,0" ];
+VAL_00A820F0[ label = "Espino" ,dir=both ,fillcolor = chartreuse1, group = 2,pos = "2,-1" ];
+{rank = same; VAL_00A77C58 VAL_00A803B8 VAL_00A815C8 VAL_00A81F10 };
 
-{rank = same; VAL_014C05F0 VAL_014C04B0 };
+{rank = same; VAL_00A80458 VAL_00A7E088 VAL_00A81528 VAL_00A81E70 };
 
-{rank = same; VAL_014C1760 VAL_014C16C0 };
+{rank = same; VAL_00A82050 VAL_00A81FB0 };
 
-{rank = same; VAL_014C2148 VAL_014C1800 };
+{rank = same; VAL_00A82190 VAL_00A82230 VAL_00A820F0 };
 
 }

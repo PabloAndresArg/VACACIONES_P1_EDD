@@ -139,17 +139,10 @@ void MatrixDis::add(string emp_fila ,  string dep_col, Usuario* user) {
 	}
 	else if(col_departamento->getDown() != NULL && fil_empresa->getDown() != NULL) {// va en medio de los nodos 
 		nuevo_nodo = ordenarColumna(nuevo_nodo, col_departamento);
-		cout << "--------------------------------------------------------------------" << endl;
+
 	}// fin insercion 
 
 
-
-	cout << "AFUERAAAAAAAAAAAAAAAA " << endl;
-	cout << "NOMBRE DEL NUEVO NODO: " << nuevo_nodo->getUsuario() << endl;
-	cout << "nombre del nodo de abajo " << nuevo_nodo->getDown()->getUsuario() << endl;
-
-
-	cout << "--------------------------------------------------------------------" << endl;
 
 
 
@@ -198,40 +191,39 @@ void MatrixDis::add(string emp_fila ,  string dep_col, Usuario* user) {
 }
 
 NodoMatrix* MatrixDis::ordenarColumna(NodoMatrix* nuevo_nodo, NodoMatrix* aux) {
-	NodoMatrix* ant = new NodoMatrix();
-	aux = aux->getDown();
+	NodoMatrix* ant = new NodoMatrix("", "");
+	aux = aux->getDer();
 	while (aux != NULL)
 	{
 		ant = aux;
-		if (aux->getPos_x() == nuevo_nodo->getPos_x())
+		if (aux->getPos_y() == nuevo_nodo->getPos_y())
 		{// sobreescribe
-			aux->setPos_y(nuevo_nodo->getPos_y());
+			aux->setPos_x(nuevo_nodo->getPos_x());
 			aux->setUsuario(nuevo_nodo->getUsuario());
-			cout << "retorna de una "; 
+			cout << "retorna de una ";
 			return nuevo_nodo;
 		}
-		else if (aux->getPos_x() > nuevo_nodo->getPos_x())
+		else if (aux->getPos_y() > nuevo_nodo->getPos_y())
 		{
 			cout << "sii va antes de un nodo " << endl;
-			nuevo_nodo->setDown(aux);
-			aux->getUp()->setDown(nuevo_nodo);
-			nuevo_nodo->setUp(aux->getUp());
-			aux->setUp(nuevo_nodo);
+			nuevo_nodo->setDer(aux);
+			aux->getIzq()->setDer(nuevo_nodo);
+			nuevo_nodo->setIzq(aux->getIzq());
+			aux->setIzq(nuevo_nodo);
 			cout << "NOMBRE DEL NUEVO NODO: " << nuevo_nodo->getUsuario() << endl;
-			cout << "nombre del nodo de abajo " << nuevo_nodo->getDown()->getUsuario()<< endl;
+			cout << "nombre del nodo de DERECHO " << nuevo_nodo->getDer()->getUsuario() << endl;
 			return nuevo_nodo;
 		}
-		aux = aux->getDown();
+		aux = aux->getDer();
 	}
 
 	if (aux == NULL)
 	{
 		cout << "INSERTA AL FINAL " << endl;
-		ant->setDown(nuevo_nodo);
-		nuevo_nodo->setUp(ant);
+		ant->setDer(nuevo_nodo);
+		nuevo_nodo->setIzq(ant);
 		return nuevo_nodo;
 	}
-
 }
 
 

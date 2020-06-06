@@ -139,6 +139,7 @@ void Matriz_dispersa::add(string empresa_fila, string departamento_col, string u
 		}
 		else if (cabecera_columna_depa->getDown() != NULL && cabeceraFila_empresa->getDown() != NULL) {// va en medio de los nodos 
 			// ESTO ES LO QUE NO FUNCIONA , si intento manipular mi NODO ACA 
+			
 			nMatrix* aux = cabecera_columna_depa;
 			nMatrix* ant = new nMatrix("","");
 			aux = aux->getDown();
@@ -177,7 +178,7 @@ void Matriz_dispersa::add(string empresa_fila, string departamento_col, string u
 		}// fin insercion 
 
 
-
+		
 
 
 
@@ -197,6 +198,40 @@ void Matriz_dispersa::add(string empresa_fila, string departamento_col, string u
 			nuevo_nodo->setIzq(ax);
 		}
 		else {
+			nMatrix* aux = cabeceraFila_empresa;
+			nMatrix* ant = new nMatrix("", "");
+			aux = aux->getDer();
+			while (aux != NULL)
+			{
+				ant = aux;
+				if (aux->getPos_y() == nuevo_nodo->getPos_y())
+				{// sobreescribe
+					aux->setPos_x(nuevo_nodo->getPos_x());
+					aux->setUsuario(nuevo_nodo->getUsuario());
+					cout << "retorna de una ";
+					break;
+				}
+				else if (aux->getPos_y() > nuevo_nodo->getPos_y())
+				{
+					cout << "sii va antes de un nodo " << endl;
+					nuevo_nodo->setDerecha(aux);
+					aux->getIzq()->setDerecha(nuevo_nodo);
+					nuevo_nodo->setIzq(aux->getIzq());
+					aux->setIzq(nuevo_nodo);
+					cout << "NOMBRE DEL NUEVO NODO: " << nuevo_nodo->getUsuario() << endl;
+					cout << "nombre del nodo de DERECHO " << nuevo_nodo->getDer()->getUsuario() << endl;
+					break;
+				}
+				aux = aux->getDer();
+			}
+
+			if (aux == NULL)
+			{
+				cout << "INSERTA AL FINAL " << endl;
+				ant->setDerecha(nuevo_nodo);
+				nuevo_nodo->setIzq(ant);
+			}
+
 
 		}
 
