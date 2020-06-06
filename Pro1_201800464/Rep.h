@@ -6,7 +6,11 @@
 
 #include"nMatrix.h"
 /*
-author: PABLO ARGUETA 
+
+
+											author: PABLO ARGUETA 
+
+
 */
 using namespace std;
 
@@ -57,7 +61,7 @@ public:
 				if (aux->getUp() != NULL) {
 					//w << "VAL_" << &*aux << "->" << "VAL_" << &*aux->getUp() << " [arrowhead = empty, color = white]; " << "\n";
 				}
-				// nomnbre-----------------------------------------------------------
+				// Nomnbre encabezado Vertical ----------------------------------------------------------- :) 
 				if (aux != root && aux->getPos_x() == -1) {
 					w << "VAL_" << &*aux << "[label=\"" << aux->getEmpresa() << "\" , group = " << to_string(aux->getPos_x()) << ",pos = \"" << to_string(aux->getPos_x()) << "," << to_string((-1) * (aux->getPos_y())) << "\" ];\n";
 				}
@@ -81,12 +85,12 @@ public:
 						if (aux2->getUp() != NULL) {
 							//	w << "VAL_" << &*aux2 << "->" << "VAL_" << &*aux2->getUp() << " [arrowhead = empty, color = white]; " << "\n";
 						}
-						//-------------------------------------------- NOMBRES
-						if (aux2->getPos_y() == -1) {// si mi pos en x es negativa en y si voy a tener 
+						//-------------------------------------------- NOMBRES ENCABEZADOS HORIZONTALES :) 
+						if (aux2->getPos_y() == -1) {// si mi pos en x es negativa en y si voy a tener algo 
 							w << "VAL_" << &*aux2 << "[label=\"" << aux2->getDepartamento() << "\", group = " << to_string(aux2->getPos_x()) << ",pos = \"" << to_string(aux2->getPos_x()) << "," << to_string((-1) * (aux2->getPos_y())) << "\" ];\n";
 						}
 						else {
-							w << "VAL_" << &*aux2 << "[ label = \"" << aux2->getUsuario() << "\" ,dir=both ,fillcolor = chartreuse1, group = " << to_string(aux2->getPos_x()) << ",pos = \"" << to_string(aux2->getPos_x()) << "," << to_string((-1) * (aux2->getPos_y())) << "\" ];\n";
+							w << "VAL_" << &*aux2 << "[ label = \"" << aux2->getUsuario()->getNomUser() << "\" ,dir=both ,fillcolor = chartreuse1, group = " << to_string(aux2->getPos_x()) << ",pos = \"" << to_string(aux2->getPos_x()) << "," << to_string((-1) * (aux2->getPos_y())) << "\" ];\n";
 						}
 						aux2 = aux2->getDer();
 					}

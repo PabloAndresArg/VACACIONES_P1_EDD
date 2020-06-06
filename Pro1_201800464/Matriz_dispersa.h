@@ -32,14 +32,18 @@ public:
 
 	//---- update positions 
 	nMatrix* actualizaPosiciones(nMatrix* , nMatrix*, nMatrix*);
-
-	//-------------------------						INSERTA ORDENADO 
-	nMatrix* insertarOrdenadoFila(nMatrix*, nMatrix*);
-	nMatrix* insertarOrdenandoColumna(nMatrix*, nMatrix*);
+	nMatrix* heredarPunteros(nMatrix* , nMatrix*);
+	
+	
+	
+	// ------- buscar en el CUBO :'v 
+	nMatrix * BuscarNodo(string empresa, string dep , string nombreUser);
+	nMatrix* isInsercion3D(string empresa, string dep);
+	void imprimirFondo(nMatrix*);
 
 
 
 	void getGraphviz();
-	void add(string dep_fila, string  emp_col, string usuario);
+	void add(string dep_fila, string  emp_col, Usuario* usuario);
 };
 

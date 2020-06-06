@@ -89,169 +89,198 @@ nMatrix* Matriz_dispersa::existeFIla(string empresa) {
 
 
 
-void Matriz_dispersa::add(string empresa_fila, string departamento_col, string usuario) {
-
+void Matriz_dispersa::add(string empresa_fila, string departamento_col, Usuario* usuario) {
+		nMatrix* decision = this->isInsercion3D(empresa_fila , departamento_col);
 		nMatrix* nuevo_nodo = new nMatrix(empresa_fila, departamento_col, usuario);
-		nMatrix* cabecera_columna_depa = existeColumna(departamento_col);// cabeceras  hacia abajo 
-		nMatrix* cabeceraFila_empresa = existeFIla(empresa_fila);// cabecera hacia derecha
-		int caso = 0;
+		if (decision == NULL) {
+			cout << "insercion en 2D" << endl; 
+			nMatrix* cabecera_columna_depa = existeColumna(departamento_col);
+			nMatrix* cabeceraFila_empresa = existeFIla(empresa_fila);
+			int caso = 0;
 
-		if (cabecera_columna_depa == NULL && cabeceraFila_empresa == NULL) {// caso 1 
-			cabecera_columna_depa = this->generaColumna(departamento_col);
-			cabeceraFila_empresa = this->generaFila(empresa_fila);
-		}
-		else if (cabecera_columna_depa == NULL && cabeceraFila_empresa != NULL) { // caso 2 
-			cabecera_columna_depa = this->generaColumna(departamento_col);
-
-
-		}
-		else if (cabecera_columna_depa != NULL && cabeceraFila_empresa == NULL) { // case3
-			cabeceraFila_empresa = this->generaFila(empresa_fila);
-
-		}
-		else if (cabecera_columna_depa != NULL && cabeceraFila_empresa != NULL) {// case4
-
-		}
-
-		nuevo_nodo = this->actualizaPosiciones(nuevo_nodo, cabeceraFila_empresa, cabecera_columna_depa);
-		// DATOS DEL NODO QUE SE VA  A INSERTAR
-		cout << "nuevo: " << nuevo_nodo->getUsuario() << "(" << nuevo_nodo->getEmpresa() << "," << nuevo_nodo->getDepartamento() << ")" << "POSICION:" << "[" << nuevo_nodo->getPos_x() << "," << nuevo_nodo->getPos_y() << "]" << endl;
-
-
-
-
-
-
-							// LISTA DOBLE DE DEPARTAMENTO - COLUMNA 
-
-		if (cabecera_columna_depa->getDown() == NULL) {//inserta al inicio
-			cabecera_columna_depa->setAbajo(nuevo_nodo);
-			nuevo_nodo->setArriba(cabecera_columna_depa);
-		}
-		else if (cabecera_columna_depa->getDown() != NULL && cabeceraFila_empresa->getDown() == NULL) { // inserto al final  
-			nMatrix* aux = cabecera_columna_depa;
-			while (aux->getDown() != NULL) {
-				aux = aux->getDown();
+			if (cabecera_columna_depa == NULL && cabeceraFila_empresa == NULL) {// caso 1 
+				cabecera_columna_depa = this->generaColumna(departamento_col);
+				cabeceraFila_empresa = this->generaFila(empresa_fila);
 			}
-			// sale le ultimo nodo 
-			aux->setAbajo(nuevo_nodo);
-			nuevo_nodo->setArriba(aux);
-		}
-		else if (cabecera_columna_depa->getDown() != NULL && cabeceraFila_empresa->getDown() != NULL) {// va en medio de los nodos 
-			// ESTO ES LO QUE NO FUNCIONA , si intento manipular mi NODO ACA 
+			else if (cabecera_columna_depa == NULL && cabeceraFila_empresa != NULL) { // caso 2 
+				cabecera_columna_depa = this->generaColumna(departamento_col);
+
+
+			}
+			else if (cabecera_columna_depa != NULL && cabeceraFila_empresa == NULL) { // case3
+				cabeceraFila_empresa = this->generaFila(empresa_fila);
+
+			}
+			else if (cabecera_columna_depa != NULL && cabeceraFila_empresa != NULL) {// case4
+
+			}
+			nuevo_nodo = this->actualizaPosiciones(nuevo_nodo, cabeceraFila_empresa, cabecera_columna_depa);
+
+
 			
-			nMatrix* aux = cabecera_columna_depa;
-			nMatrix* ant = new nMatrix("","");
-			aux = aux->getDown();
-			while (aux != NULL)
-			{
-				ant = aux;
-				if (aux->getPos_x() == nuevo_nodo->getPos_x())
-				{// sobreescribe
-					aux->setPos_y(nuevo_nodo->getPos_y());
-					aux->setUsuario(nuevo_nodo->getUsuario());
-					cout << "retorna de una ";
-					break; 
+			// DATOS DEL NODO QUE SE VA  A INSERTAR
+			cout << "nuevo: " << nuevo_nodo->getUsuario()->getNomUser() << "(" << nuevo_nodo->getEmpresa() << "," << nuevo_nodo->getDepartamento() << ")" << "POSICION:" << "[" << nuevo_nodo->getPos_x() << "," << nuevo_nodo->getPos_y() << "]" << endl;
+
+
+
+
+
+
+			// LISTA DOBLE DE DEPARTAMENTO - COLUMNA 
+
+			if (cabecera_columna_depa->getDown() == NULL) {//inserta al inicio
+				cabecera_columna_depa->setAbajo(nuevo_nodo);
+				nuevo_nodo->setArriba(cabecera_columna_depa);
+			}
+			else if (cabecera_columna_depa->getDown() != NULL && cabeceraFila_empresa->getDown() == NULL) { // inserto al final , solo para un caso
+				nMatrix* aux = cabecera_columna_depa;
+				while (aux->getDown() != NULL) {
+					aux = aux->getDown();
 				}
-				else if (aux->getPos_x() > nuevo_nodo->getPos_x())
-				{
-					cout << "sii va antes de un nodo " << endl;
-					nuevo_nodo->setAbajo(aux);
-					aux->getUp()->setAbajo(nuevo_nodo);
-					nuevo_nodo->setArriba(aux->getUp());
-					aux->setArriba(nuevo_nodo);
-					cout << "NOMBRE DEL NUEVO NODO: " << nuevo_nodo->getUsuario() << endl;
-					cout << "nombre del nodo de abajo " << nuevo_nodo->getDown()->getUsuario() << endl;
-					break; 
-				}
+				aux->setAbajo(nuevo_nodo);
+				nuevo_nodo->setArriba(aux);
+			}
+			else if (cabecera_columna_depa->getDown() != NULL && cabeceraFila_empresa->getDown() != NULL) {// va en medio de los nodos 
+				nMatrix* aux = cabecera_columna_depa;
+				nMatrix* ant = new nMatrix("", "");
 				aux = aux->getDown();
+				while (aux != NULL)
+				{
+					ant = aux;
+					if (aux->getPos_x() == nuevo_nodo->getPos_x())
+					{// sobreescribe
+						aux->setPos_y(nuevo_nodo->getPos_y());
+						aux->setUsuario(nuevo_nodo->getUsuario());
+						//cout << "retorna de una ";
+						break;
+					}
+					else if (aux->getPos_x() > nuevo_nodo->getPos_x())
+					{
+						//insercion antes de un nodo 
+						nuevo_nodo->setAbajo(aux);
+						aux->getUp()->setAbajo(nuevo_nodo);
+						nuevo_nodo->setArriba(aux->getUp());
+						aux->setArriba(nuevo_nodo);
+						//cout << "NOMBRE DEL NUEVO NODO: " << nuevo_nodo->getUsuario() << endl;
+						//cout << "nombre del nodo de abajo " << nuevo_nodo->getDown()->getUsuario() << endl;
+						break;
+					}
+					aux = aux->getDown();
+				}
+
+				if (aux == NULL)
+				{
+					//cout << "INSERTA AL FINAL " << endl;
+					ant->setAbajo(nuevo_nodo);
+					nuevo_nodo->setArriba(ant);
+				}
+			}// fin insercion 
+
+
+
+
+
+
+
+										// LISTA DOBLE DE EMPRESA - FILA 
+
+			if (cabeceraFila_empresa->getDer() == NULL) {// inserta al inicio 
+				cabeceraFila_empresa->setDerecha(nuevo_nodo);
+				nuevo_nodo->setIzq(cabeceraFila_empresa);
+			}
+			else if (cabeceraFila_empresa->getDer() != NULL && cabecera_columna_depa->getDer() == NULL) {// inserta al final 
+				nMatrix* ax = cabeceraFila_empresa;
+				while (ax->getDer() != NULL) {
+					ax = ax->getDer();
+				}
+				ax->setDerecha(nuevo_nodo);
+				nuevo_nodo->setIzq(ax);
+			}
+			else {
+				nMatrix* aux = cabeceraFila_empresa;
+				nMatrix* ant = new nMatrix("", "");
+				aux = aux->getDer();
+				while (aux != NULL)
+				{
+					ant = aux;
+					if (aux->getPos_y() == nuevo_nodo->getPos_y())
+					{// sobreescribe
+						aux->setPos_x(nuevo_nodo->getPos_x());
+						aux->setUsuario(nuevo_nodo->getUsuario());
+						break;
+					}
+					else if (aux->getPos_y() > nuevo_nodo->getPos_y())
+					{//antes de 
+						nuevo_nodo->setDerecha(aux);
+						aux->getIzq()->setDerecha(nuevo_nodo);
+						nuevo_nodo->setIzq(aux->getIzq());
+						aux->setIzq(nuevo_nodo);
+						//	cout << "NOMBRE DEL NUEVO NODO: " << nuevo_nodo->getUsuario() << endl;
+						//	cout << "nombre del nodo de DERECHO " << nuevo_nodo->getDer()->getUsuario() << endl;
+						break;
+					}
+					aux = aux->getDer();
+				}
+
+				if (aux == NULL)
+				{
+					//cout << "INSERTA AL FINAL " << endl;
+					ant->setDerecha(nuevo_nodo);
+					nuevo_nodo->setIzq(ant);
+				}
+
+
 			}
 
-			if (aux == NULL)
-			{
-				cout << "INSERTA AL FINAL " << endl;
-				ant->setAbajo(nuevo_nodo);
-				nuevo_nodo->setArriba(ant);
-			}
-			cout << "--------------------------------------------------------------------" << endl;
-			// aca adentro todo bien no mas sale del if pierde sus punteros :''''( 
-		}// fin insercion 
 
-
-		
+			if (cabeceraFila_empresa == NULL && cabecera_columna_depa == NULL) { cout << "error"; }
+			cout << endl;
 
 
 
-
-									// LISTA DOBLE DE EMPRESA - FILA 
-
-		if (cabeceraFila_empresa->getDer() == NULL) {// inserta al inicio 
-			cabeceraFila_empresa->setDerecha(nuevo_nodo);
-			nuevo_nodo->setIzq(cabeceraFila_empresa);
-		}
-		else if (cabeceraFila_empresa->getDer() != NULL && cabecera_columna_depa->getDer() == NULL) {// inserta al final 
-			nMatrix* ax = cabeceraFila_empresa;
-			while (ax->getDer() != NULL) {
-				ax = ax->getDer();
-			}
-			ax->setDerecha(nuevo_nodo);
-			nuevo_nodo->setIzq(ax);
 		}
 		else {
-			nMatrix* aux = cabeceraFila_empresa;
-			nMatrix* ant = new nMatrix("", "");
-			aux = aux->getDer();
-			while (aux != NULL)
-			{
-				ant = aux;
-				if (aux->getPos_y() == nuevo_nodo->getPos_y())
-				{// sobreescribe
-					aux->setPos_x(nuevo_nodo->getPos_x());
-					aux->setUsuario(nuevo_nodo->getUsuario());
-					cout << "retorna de una ";
-					break;
-				}
-				else if (aux->getPos_y() > nuevo_nodo->getPos_y())
-				{
-					cout << "sii va antes de un nodo " << endl;
-					nuevo_nodo->setDerecha(aux);
-					aux->getIzq()->setDerecha(nuevo_nodo);
-					nuevo_nodo->setIzq(aux->getIzq());
-					aux->setIzq(nuevo_nodo);
-					cout << "NOMBRE DEL NUEVO NODO: " << nuevo_nodo->getUsuario() << endl;
-					cout << "nombre del nodo de DERECHO " << nuevo_nodo->getDer()->getUsuario() << endl;
-					break;
-				}
-				aux = aux->getDer();
-			}
-
-			if (aux == NULL)
-			{
-				cout << "INSERTA AL FINAL " << endl;
-				ant->setDerecha(nuevo_nodo);
-				nuevo_nodo->setIzq(ant);
-			}
-
-
+     		cout << "insercion en 3D  PASA AL FONDO EL USUARIO:"<<decision->getUsuario()->getNomUser() << endl; 
+			// decision puede tener sus 4 punteros entonces esos los va heredar el nuevo nodo 
+			
+			nuevo_nodo = heredarPunteros(nuevo_nodo, decision);// de una inserta en		3D
+			this->imprimirFondo(nuevo_nodo);
+		return;
 		}
 
+}
 
-		if (cabeceraFila_empresa != NULL && cabecera_columna_depa != NULL) {
-			// si siguien NULO algo malo paso :v 
-		}
-		else
+nMatrix* Matriz_dispersa::heredarPunteros(nMatrix* nuevo_nodo , nMatrix* decision) {
+	// puede que sea una esquina  , o de los ultimos solo daria clavo derecha y abajo 
+	decision->getUp()->setAbajo(nuevo_nodo);
+	decision->getIzq()->setDerecha(nuevo_nodo);
+	if (decision->getDer() != NULL) {
+		decision->getDer()->setIzq(nuevo_nodo);
+	}
+	if (decision->getDown() != NULL) {
+		decision->getDown()->setArriba(nuevo_nodo);
+	}
+	
 
-		{
-			cout << "error";
-		}
+	// 0 clavos 
+	nuevo_nodo->setAbajo(decision->getDown());
+	nuevo_nodo->setArriba(decision->getUp());
+	nuevo_nodo->setIzq(decision->getIzq());
+	nuevo_nodo->setDerecha(decision->getDer());
+	// actualiza posiciones
+	nuevo_nodo->setPos_x(decision->getPos_x());
+	nuevo_nodo->setPos_y(decision->getPos_y());
+	// limpieza de mi nodo que antes era la CARA 
+	decision->setAbajo(NULL); 
+	decision->setArriba(NULL);
+	decision->setDerecha(NULL); 
+	decision->setIzq(NULL);
 
-		cout << endl; cout << endl; cout << endl;
+	// insercion :O 
+	nuevo_nodo->setBehind(decision);
+	decision->setFront(nuevo_nodo);
 
-
-
-
-
-
+	return nuevo_nodo;
 }
 
 
@@ -276,98 +305,57 @@ void Matriz_dispersa::getGraphviz() {
 
 
 
+nMatrix* Matriz_dispersa::BuscarNodo(string empresa, string departamento , string nombreUser) {
+	cout << "buscando un nodo " << endl;
+	nMatrix* col_principal = this->root;
+	nMatrix* aux = NULL;
+	while (col_principal != NULL) {
 
-																				// INSERCIONES ORDENADAS 
+		if (col_principal->getDer() != NULL) {
+			aux = col_principal->getDer();
+			while (aux != NULL) {
+				if (aux->getEmpresa().compare(empresa) == 0 && aux->getDepartamento().compare(departamento) == 0) {
+					// OTRO WHILE PARA BUSCAR EN 3D 
+					
+				}
+				aux = aux->getDer();
+			}
 
-nMatrix* Matriz_dispersa::insertarOrdenadoFila(nMatrix* nuevo, nMatrix* Cabecera_fila) {
-	bool bandera = false;
-	nMatrix* temp = new nMatrix("temp", "temp");
-	temp = Cabecera_fila;
-	while (true)
-	{
-		if (temp->getPos_y() == nuevo->getPos_y())
-		{// sobreescribe
-			temp->setPos_x(nuevo->getPos_x());
-			temp->setUsuario(nuevo->getUsuario());
-			return temp;
+
+
+
 		}
-		else if (temp->getPos_y() > nuevo->getPos_y())
-		{
-			//Al nuevo lo inserto antes que temp
-			bandera = true;
-			break;
-		}
-		if (temp->getDown() != NULL) //Me permite mover hasta que no sea nulo
-		{
-			temp = temp->getDown();
-		}
-		else //Quiere decir que el que sigue es nulo, nunca cambió la bandera, entonces inserto después de temp
-		{
-			break;
-		}
+		col_principal = col_principal->getDown();
 	}
-
-	if (bandera)
-	{
-		//Caso antes de un nodo 
-		nuevo->setAbajo(temp);
-		temp->getUp()->setAbajo(nuevo);
-		nuevo->setArriba(temp->getUp());
-		temp->setArriba(nuevo);
-	}
-	else
-	{// after de un node :v 
-		temp->setAbajo(nuevo);
-		nuevo->setArriba(temp);
-	}
-	cout << "nuevo: " << nuevo->getUsuario() << "(" << nuevo->getEmpresa() << "," << nuevo->getDepartamento() << ")" << "POSICION:" << "[" << nuevo->getPos_x() << "," << nuevo->getPos_y() << "]"<< endl;
-	cout << "NODO DE ABAJO: " << nuevo->getDown()->getPos_x() <<"," << nuevo->getDown()->getPos_y()<<endl;
-	return nuevo;
-
+	return NULL;
 }
 
-nMatrix* Matriz_dispersa::insertarOrdenandoColumna(nMatrix* nuevo, nMatrix* cabeza_columna) {
-	bool bandera = false;
-	nMatrix* temp = new nMatrix("temp", "temp");
-	temp = cabeza_columna;
-	while (true)
-	{
-		if (temp->getPos_x() == nuevo->getPos_x()) //Solo sobreescribo el temporal
-		{
-			temp->setPos_y(nuevo->getPos_y());
-			temp->setUsuario(nuevo->getUsuario());
 
-			return temp; //Retorno puntero
-		}
-		else if (nuevo->getPos_x() < temp->getPos_x()) //Al nuevo lo inserto antes que temp
-		{
-			bandera = true;
-			break;
-		}
-		if (temp->getDer() != NULL)
-		{
-			temp = temp->getDer();
-		}
-		else //Quiere decir que el que sigue es nulo, nunca cambió la bandera, entonces inserto después de temp
-		{
-			break;
-		}
-	}
+nMatrix* Matriz_dispersa::isInsercion3D(string empresa, string departamento) {
+	nMatrix* col_principal = this->root;
+	nMatrix* aux = NULL;
+	while (col_principal != NULL) {
 
-	if (bandera)
-	{// inserte antes de..
-		nuevo->setDerecha(temp);
-		temp->getIzq()->setDerecha(nuevo);
-		nuevo->setIzq(temp->getIzq());
-		temp->setIzq(nuevo);
+		if (col_principal->getDer() != NULL) {
+			aux = col_principal->getDer(); 
+			while (aux != NULL) {
+				if (aux->getEmpresa().compare(empresa) == 0 && aux->getDepartamento().compare(departamento) == 0) {
+					return aux;
+				}
+				aux = aux->getDer();
+			}
+		}
+		col_principal = col_principal->getDown();
 	}
-	else
-	{
-		temp->setDerecha(nuevo);
-		nuevo->setIzq(temp);
-	}
-	cout << "nuevo: " << nuevo->getUsuario() << "("<<nuevo->getEmpresa()<<","<<nuevo->getDepartamento()<<")" << "POSICION:" <<"["<<nuevo->getPos_x()<<","<<nuevo->getPos_y()<<"]"<< endl; 
-	cout << "NODO DE DER: " << nuevo->getDer()->getPos_x() << "," << nuevo->getDer()->getPos_y() << endl;
-	return nuevo;
+	return NULL;
+}
 
+
+void Matriz_dispersa::imprimirFondo(nMatrix * cabeza) {
+	cout << " USUARIOS AL FONDO " << endl;
+	nMatrix* aux = cabeza; 
+	while (aux != NULL) {
+		cout << "USUARIO: "<<aux->getUsuario()->getNomUser()<<endl;
+		aux = aux->getBehind(); 
+	}
 }

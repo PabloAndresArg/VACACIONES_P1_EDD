@@ -10,10 +10,10 @@ private:
 	nMatrix* izq, * der, * down, * up , * front, * behind;
 	string empresa; // EJE Y 
 	string departamento; // EJE X 
-	string  user;
+	Usuario* User;
 public:
 
-	nMatrix(string empresa_, string departamento_, string  nombre) {
+	nMatrix(string empresa_, string departamento_, Usuario*  usuario) {
 		this->der = NULL;
 		this->izq = NULL;
 		this->up = NULL;
@@ -24,7 +24,7 @@ public:
 		this->departamento = departamento_;
 		this->pos_x = -1;
 		this->pos_y = -1;
-		this->user = nombre;
+		this->User = usuario;
 	}
 
 	inline nMatrix(string empresa_, string departamento_) {
@@ -38,19 +38,16 @@ public:
 		this->departamento = departamento_;
 		this->pos_x = -1;
 		this->pos_y = -1;
-		this->user = "";
+		this->User = NULL; 
 	}
 
 
 	inline void setFront(nMatrix* Front_) { this->front = Front_; }
 	inline nMatrix* getFront() { return this->front; }
-	//behind
 	inline void setBehind(nMatrix* Behind_) { this->behind = Behind_; }
 	inline nMatrix* getBehind() { return this->behind; }
-	// empresa		X	
 	inline void setEmpresa(string e) { this->empresa = e; }
 	inline string getEmpresa() { return this->empresa; }
-	// departamento		Y 
 	inline void setDepartamento(string d) { this->departamento = d; }
 	inline string getDepartamento() { return this->departamento; }
 
@@ -104,12 +101,12 @@ public:
 		this->pos_y = y_;
 	}
 
-	inline string getUsuario() {
-		return this->user; 
+	inline Usuario* getUsuario() {
+		return this->User;
 	}
-	inline void setUsuario(string user)
+	inline void setUsuario(Usuario* user)
 	{
-		this->user = user; 
+		this->User = user; 
 	}
 
 

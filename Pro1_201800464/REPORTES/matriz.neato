@@ -1,0 +1,81 @@
+digraph G {bgcolor = black; 
+node[pin = true , shape = box, fontcolor = black  , fillcolor = gray  , width=0.7 ,style = filled] ;
+charset = latin1;
+ style = filled ;
+nodesep = 1.0;
+VAL_00DD19F0->VAL_00DD1B00 [ dir=both ,color = white]; 
+VAL_00DD19F0->VAL_00DD1B88 [  dir=both,  color = white]; 
+VAL_00DD19F0[label = "ROOT", group = -1,pos = "-1,1" ];
+VAL_00DD1B00->VAL_00DD34D0 [ dir=both, color = white]; 
+VAL_00DD1B00->VAL_00DD1A78 [ dir=both, color = white]; 
+VAL_00DD1B00[label="SOLOLA", group = 0,pos = "0,1" ];
+VAL_00DD34D0->VAL_00DD35E0 [ dir=both, color = white]; 
+VAL_00DD34D0->VAL_00DD3448 [ dir=both, color = white]; 
+VAL_00DD34D0[label="REU", group = 1,pos = "1,1" ];
+VAL_00DD35E0->VAL_00DD3800 [ dir=both, color = white]; 
+VAL_00DD35E0->VAL_00DD3558 [ dir=both, color = white]; 
+VAL_00DD35E0[label="HUEHUETENANGO", group = 2,pos = "2,1" ];
+VAL_00DD3800->VAL_00DD3778 [ dir=both, color = white]; 
+VAL_00DD3800[label="PETEN", group = 3,pos = "3,1" ];
+VAL_00DD1B88->VAL_00DD1A78 [ dir=both ,color = white]; 
+VAL_00DD1B88->VAL_00DD36F0 [  dir=both,  color = white]; 
+VAL_00DD1B88[label="adidas" , group = -1,pos = "-1,0" ];
+VAL_00DD1A78->VAL_00DD3448 [ dir=both, color = white]; 
+VAL_00DD1A78->VAL_00DD3AD0 [ dir=both, color = white]; 
+VAL_00DD1A78[ label = "peco" ,dir=both ,fillcolor = chartreuse1, group = 0,pos = "0,0" ];
+VAL_00DD3448->VAL_00DD3558 [ dir=both, color = white]; 
+VAL_00DD3448->VAL_00DD40A8 [ dir=both, color = white]; 
+VAL_00DD3448[ label = "val" ,dir=both ,fillcolor = chartreuse1, group = 0,pos = "0,-1" ];
+VAL_00DD3558->VAL_00DD3668 [ dir=both, color = white]; 
+VAL_00DD3558[ label = "Espino" ,dir=both ,fillcolor = chartreuse1, group = 0,pos = "0,-2" ];
+VAL_00DD36F0->VAL_00DD3668 [ dir=both ,color = white]; 
+VAL_00DD36F0->VAL_00DD3888 [  dir=both,  color = white]; 
+VAL_00DD36F0[label="ESTANCIA" , group = -1,pos = "-1,-1" ];
+VAL_00DD3668->VAL_00DD3B58 [ dir=both, color = white]; 
+VAL_00DD3668[ label = "Rambo" ,dir=both ,fillcolor = chartreuse1, group = 1,pos = "1,-2" ];
+VAL_00DD3888->VAL_00DD3B58 [ dir=both ,color = white]; 
+VAL_00DD3888->VAL_00DD3998 [  dir=both,  color = white]; 
+VAL_00DD3888[label="BURGER" , group = -1,pos = "-1,-2" ];
+VAL_00DD3B58->VAL_00DD3778 [ dir=both, color = white]; 
+VAL_00DD3B58->VAL_00DD3CF0 [ dir=both, color = white]; 
+VAL_00DD3B58[ label = "CARLOS" ,dir=both ,fillcolor = chartreuse1, group = 2,pos = "2,-2" ];
+VAL_00DD3778->VAL_00DD3910 [ dir=both, color = white]; 
+VAL_00DD3778[ label = "pio" ,dir=both ,fillcolor = chartreuse1, group = 2,pos = "2,-3" ];
+VAL_00DD3998->VAL_00DD3910 [ dir=both ,color = white]; 
+VAL_00DD3998->VAL_00DD4350 [  dir=both,  color = white]; 
+VAL_00DD3998[label="CAMPERO" , group = -1,pos = "-1,-3" ];
+VAL_00DD3910->VAL_00DD44E8 [ dir=both, color = white]; 
+VAL_00DD3910[ label = "ALI" ,dir=both ,fillcolor = chartreuse1, group = 3,pos = "3,-3" ];
+VAL_00DD4350->VAL_00DD44E8 [ dir=both ,color = white]; 
+VAL_00DD4350->VAL_00DD3F98 [  dir=both,  color = white]; 
+VAL_00DD4350[label="MACDONALS" , group = -1,pos = "-1,-4" ];
+VAL_00DD44E8->VAL_00DD3F10 [ dir=both, color = white]; 
+VAL_00DD44E8[ label = "simon" ,dir=both ,fillcolor = chartreuse1, group = 4,pos = "4,-3" ];
+VAL_00DD3F98->VAL_00DD40A8 [ dir=both ,color = white]; 
+VAL_00DD3F98->VAL_00DD3E88 [  dir=both,  color = white]; 
+VAL_00DD3F98[label="FIFA" , group = -1,pos = "-1,-5" ];
+VAL_00DD40A8[ label = "Ronaldo" ,dir=both ,fillcolor = chartreuse1, group = 5,pos = "5,-1" ];
+VAL_00DD3E88->VAL_00DD3AD0 [ dir=both ,color = white]; 
+VAL_00DD3E88[label="MAX" , group = -1,pos = "-1,-6" ];
+VAL_00DD3AD0->VAL_00DD3CF0 [ dir=both, color = white]; 
+VAL_00DD3AD0[ label = "pablo" ,dir=both ,fillcolor = chartreuse1, group = 6,pos = "6,0" ];
+VAL_00DD3CF0->VAL_00DD3F10 [ dir=both, color = white]; 
+VAL_00DD3CF0[ label = "LIO" ,dir=both ,fillcolor = chartreuse1, group = 6,pos = "6,-2" ];
+VAL_00DD3F10[ label = "JESUS" ,dir=both ,fillcolor = chartreuse1, group = 6,pos = "6,-3" ];
+{rank = same; VAL_00DD19F0 VAL_00DD1B00 VAL_00DD34D0 VAL_00DD35E0 VAL_00DD3800 };
+
+{rank = same; VAL_00DD1B88 VAL_00DD1A78 VAL_00DD3448 VAL_00DD3558 };
+
+{rank = same; VAL_00DD36F0 VAL_00DD3668 };
+
+{rank = same; VAL_00DD3888 VAL_00DD3B58 VAL_00DD3778 };
+
+{rank = same; VAL_00DD3998 VAL_00DD3910 };
+
+{rank = same; VAL_00DD4350 VAL_00DD44E8 };
+
+{rank = same; VAL_00DD3F98 VAL_00DD40A8 };
+
+{rank = same; VAL_00DD3E88 VAL_00DD3AD0 VAL_00DD3CF0 VAL_00DD3F10 };
+
+}

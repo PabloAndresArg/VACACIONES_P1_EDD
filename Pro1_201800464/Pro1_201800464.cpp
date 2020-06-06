@@ -17,22 +17,49 @@ int main()
     //iniciar(); 
 
 
-    
+    Usuario* u1 = new Usuario("peco", "Pablo andres Arguerta Hernandez" , "contra");
+    Usuario* u2 = new Usuario("val", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u3 = new Usuario("Espino", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u4 = new Usuario("Rambo", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u5 = new Usuario("pio", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u6 = new Usuario("ALI", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u7 = new Usuario("simon", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u9 = new Usuario("Ronaldo", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u10 = new Usuario("pablo", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u11 = new Usuario("JESUS", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u12 = new Usuario("CARLOS", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u13 = new Usuario("LIO", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u14 = new Usuario("PEDROO", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u15 = new Usuario("VALERIA", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u16 = new Usuario("ANA", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u17 = new Usuario("JUANA", "Pablo andres Arguerta Hernandez", "contra");
     Matriz_dispersa* matrix = new Matriz_dispersa(); 
-    matrix->add("adidas", "SOLOLA", "peco");
-    matrix->add("adidas", "REU", "val");
-    matrix->add("adidas", "HUEHUETENANGO", "Espino");
-    matrix->add("ESTANCIA", "HUEHUETENANGO", "Rambo");
-    matrix->add("BURGER" , "PETEN" , "pio");
-    matrix->add("CAMPERO" , "PETEN", "ALI");
-    matrix->add("MACDONALS", "PETEN", "simon");
-    matrix->add("FIFA", "REU", "Ronaldo");
-    matrix->add("MAX", "REU", "Espino");
-    matrix->add("MAX", "SOLOLA", "pablo");
-    matrix->add("MAX", "PETEN", "JESUS");
-    matrix->add("BURGER", "HUEHUETENANGO", "CARLOS");
-    matrix->add("MAX", "HUEHUETENANGO", "LIO");
+    matrix->add("adidas", "SOLOLA", u1);
+    matrix->add("adidas", "REU", u2);
+    matrix->add("adidas", "HUEHUETENANGO", u3);
+    matrix->add("ESTANCIA", "HUEHUETENANGO",u4);
+    matrix->add("BURGER" , "PETEN" , u5);
+    matrix->add("CAMPERO" , "PETEN", u6);
+    matrix->add("MACDONALS", "PETEN", u7);
+    matrix->add("FIFA", "REU", u9);
+    matrix->add("MAX", "SOLOLA", u10);
+    matrix->add("MAX", "PETEN", u11);
+    matrix->add("BURGER", "HUEHUETENANGO", u12);
+    matrix->add("MAX", "HUEHUETENANGO", u13);
+    matrix->add("FIFA", "REU", u15);
+    matrix->add("FIFA", "REU", u16);
+    matrix->add("FIFA", "REU", u17);
     matrix->getGraphviz();
+
+    nMatrix* busqueda = new nMatrix("a", "a" , u1);
+    busqueda = matrix->isInsercion3D("MAX","PETEN");
+    if (busqueda != NULL ) {
+        cout << "ENCONTRO A :   " << busqueda->getUsuario()->getNomUser() << endl;
+    }
+    else {
+        cout << "el elemento no se encontro " << endl; 
+    }
+ 
    
 
     system("pause");
