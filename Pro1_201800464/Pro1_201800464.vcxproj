@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Act.cpp" />
-    <ClCompile Include="MatrixDis.cpp" />
     <ClCompile Include="Matriz_dispersa.cpp" />
     <ClCompile Include="Pro1_201800464.cpp" />
     <ClCompile Include="Transa.cpp" />
@@ -150,10 +149,8 @@
     <ClInclude Include="Act.h" />
     <ClInclude Include="AsciiArte.h" />
     <ClInclude Include="Init.h" />
-    <ClInclude Include="MatrixDis.h" />
     <ClInclude Include="Matriz_dispersa.h" />
     <ClInclude Include="nMatrix.h" />
-    <ClInclude Include="NodoMatrix.h" />
     <ClInclude Include="Rep.h" />
     <ClInclude Include="Transa.h" />
     <ClInclude Include="Usuario.h" />

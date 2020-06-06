@@ -27,9 +27,6 @@
     <ClCompile Include="Transa.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="MatrixDis.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Matriz_dispersa.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
@@ -51,12 +48,6 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="AsciiArte.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="NodoMatrix.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="MatrixDis.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="nMatrix.h">
