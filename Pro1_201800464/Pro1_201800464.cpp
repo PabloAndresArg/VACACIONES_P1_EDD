@@ -57,19 +57,44 @@ int main()
     matrix->add("CAMPERO", "PETEN", u19);
     matrix->add("CAMPERO", "PETEN", u20);
     matrix->add("BURGER", "HUEHUETENANGO", u8);
+    matrix->add("BURGER", "HUEHUETENANGO", u8);
 
 
+    matrix->eliminarInterno("MAX", "SOLOLA", "pablo");
+    matrix->eliminarInterno("FIFA", "REU", "Ronaldo");
+    matrix->eliminarInterno("FIFA", "REU", "VALERIA");
+    matrix->eliminarInterno("FIFA", "REU", "ANA");
+    cout << "----" << endl;
+    matrix->eliminarInterno("adidas", "SOLOLA", "peco");
+    matrix->eliminarInterno("adidas", "HUEHUETENANGO", "Espino");
+   // matrix->eliminarInterno("MAX", "HUEHUETENANGO", "LIO");
+    cout << "----" << endl;
+ 
+  //  matrix->eliminarInterno("CAMPERO", "PETEN", "MOLY");
+   
     matrix->getGraphviz();
     matrix->imprimirSolo3D();
 
+
+
+    /*
     nMatrix* busqueda = new nMatrix("a", "a" , u1);
     busqueda = matrix->BuscarNodo("MACDONALS","PETEN" , "simon");
     if (busqueda != NULL ) {
-        cout << "ENCONTRO A :   " << busqueda->getUsuario()->getNomUser() << endl;
+        cout << "ENCONTRO A :   " << busqueda->getUsuario()->getNomUser() << "nombre:"<< busqueda->getUsuario()->getNombreCompleto() << endl;
     }
     else {
         cout << "el elemento no se encontro " << endl; 
     }
+    busqueda->getUsuario()->setNombreCompleto("PANCHO LUIS DOMINGUEZ :V");
+
+    if (busqueda != NULL) {
+        cout << "ENCONTRO A :   " << busqueda->getUsuario()->getNomUser() << "nombre:" << busqueda->getUsuario()->getNombreCompleto() << endl;
+    }
+    else {
+        cout << "el elemento no se encontro " << endl;
+    }
+    */
  
    
 

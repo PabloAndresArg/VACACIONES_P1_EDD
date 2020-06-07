@@ -238,11 +238,26 @@ void Matriz_dispersa::add(string empresa_fila, string departamento_col, Usuario*
 		}
 		else {
 			// decision puede tener sus 4 punteros entonces esos los va heredar el nuevo nodo 
+			if (UsuarioRepetido(decision , nuevo_nodo->getUsuario()->getNomUser())) {
+				cout << "ese usuario ya existe en esa posicion por tanto no sera ingresado.." << endl;
+				return; 
+			}
 			nuevo_nodo = heredarPunteros(nuevo_nodo, decision);// de una inserta en		3D
 			//this->imprimirFondo(nuevo_nodo);
 		return;
 		}
 
+}
+
+bool Matriz_dispersa::UsuarioRepetido(nMatrix* coordenada, string nombre) {
+	nMatrix* aux = coordenada;
+	while (aux != NULL) {
+		if (aux->getUsuario()->getNomUser() == nombre ) {
+			return true;
+		}
+		aux = aux->getBehind();
+	}
+	return false; 
 }
 
 nMatrix* Matriz_dispersa::heredarPunteros(nMatrix* nuevo_nodo , nMatrix* decision) {
@@ -277,6 +292,25 @@ nMatrix* Matriz_dispersa::heredarPunteros(nMatrix* nuevo_nodo , nMatrix* decisio
 
 	return nuevo_nodo;
 }
+nMatrix* Matriz_dispersa::reemplazarCara(nMatrix* cara, nMatrix* nuevaCara) {// muy parecido al de heredar punteros pero en este solo reemplazo NO inserto
+	cara->getUp()->setAbajo(nuevaCara);
+	cara->getIzq()->setDerecha(nuevaCara);
+	if (cara->getDer() != NULL) {
+		cara->getDer()->setIzq(nuevaCara);
+	}
+	if (cara->getDown() != NULL) {
+		cara->getDown()->setArriba(nuevaCara);
+	}
+	// 0 clavos 
+	nuevaCara->setAbajo(cara->getDown());
+	nuevaCara->setArriba(cara->getUp());
+	nuevaCara->setIzq(cara->getIzq());
+	nuevaCara->setDerecha(cara->getDer());
+	nuevaCara->setFront(NULL);
+	// limpieza de mi nodo que antes era la CARA 
+	cara = NULL; 
+	return nuevaCara;
+}
 
 
 
@@ -292,6 +326,8 @@ nMatrix* Matriz_dispersa::actualizaPosiciones(nMatrix*nuevo_nodo , nMatrix* fil_
 
 
 
+
+
 void Matriz_dispersa::getGraphviz() {
 		Rep* llama = new  Rep();
 		llama->graphMatrix(this->root);
@@ -300,6 +336,41 @@ void Matriz_dispersa::getGraphviz() {
 
 
 
+
+
+void Matriz_dispersa::modificarUsuario(string empresa, string departamento , Usuario* usuarioModificado) {
+	nMatrix* col_principal = this->root;
+	nMatrix* aux = NULL;
+	nMatrix* aux3D = NULL;
+	while (col_principal != NULL) {
+
+		if (col_principal->getDer() != NULL) {
+			aux = col_principal->getDer();
+			while (aux != NULL) {
+				if (aux->getEmpresa().compare(empresa) == 0 && aux->getDepartamento().compare(departamento) == 0) {
+					// antes de ir a buscar en 3D vere si este nodo es el que buscaba , tons PREGUNTO 
+					if (aux->getUsuario()->getNomUser().compare(usuarioModificado->getNomUser()) == 0) {
+						aux->setUsuario(usuarioModificado);
+						return;
+					}
+					if (aux->getBehind() != NULL) {// buscando en 3D 
+						aux3D = aux;
+						while (aux3D != NULL) {
+							if (aux3D->getUsuario()->getNomUser().compare(usuarioModificado->getNomUser()) == 0) {
+								aux3D->setUsuario(usuarioModificado);
+								return;
+							}
+							aux3D = aux3D->getBehind();
+						}
+					}
+				}
+				aux = aux->getDer();
+			}
+		}
+		col_principal = col_principal->getDown();
+	}
+
+}
 
 nMatrix* Matriz_dispersa::BuscarNodo(string empresa, string departamento , string nombreUser) {
 	nMatrix* col_principal = this->root;
@@ -386,4 +457,68 @@ void Matriz_dispersa::imprimirSolo3D() {
 		}
 		col_principal = col_principal->getDown();
 	}
+}
+
+
+void Matriz_dispersa::eliminarInterno(string empresa , string departamento , string nombre) {
+	nMatrix* nodo_eliminar = this->BuscarNodo( empresa,  departamento, nombre);
+	if (nodo_eliminar == NULL) {
+		cout << "no se puede eliminar porque no se encontro el nodo" << endl; 
+		return; 
+	}
+
+
+	// ALGO A TENER EN CUENTA GET DERECHO Y GET ABAJO PUEDE QUE SEA NULL 
+
+	// para eliminar uno frontal
+	if (nodo_eliminar->getFront() == NULL) {
+
+		if (nodo_eliminar->getBehind() == NULL) {
+		// se elimina por completo
+			cout << "ELIMINANDO UN POSICION COMPLETA" << endl; 
+			nMatrix* puntero_arriba = nodo_eliminar->getUp(); 
+			nMatrix* puntero_abajo = nodo_eliminar->getDown(); 
+			nMatrix* puntero_der = nodo_eliminar->getDer();
+			nMatrix* puntero_izq = nodo_eliminar->getIzq();
+
+			puntero_arriba->setAbajo(puntero_abajo);
+			puntero_izq->setDerecha(puntero_der);
+			if (puntero_der != NULL) {
+				puntero_der->setIzq(puntero_izq);
+			}
+			if (puntero_abajo != NULL) {
+				puntero_abajo->setArriba(puntero_arriba);
+			}
+			nodo_eliminar = NULL; 
+		}
+		else {
+			cout << "reemplazandoCara" << endl; 
+			nMatrix* nuevaCara = nodo_eliminar->getBehind(); 		// solo es de subir un nodo de los de atras
+			nuevaCara = this->reemplazarCara(nodo_eliminar , nuevaCara);//ya no es necesario revisar las cabeceras 
+			return; 
+
+		}
+
+		//revisar si aun queda algo en la cabecera sino eliminarla 
+
+	}
+	else {
+	// uno de los de 3D
+		if (nodo_eliminar->getBehind() == NULL) { // el ultimo de los 3D 
+			cout << "eliminando el ultimo en 3D" << endl; 
+			nodo_eliminar->getFront()->setBehind(NULL);
+			nodo_eliminar = NULL; 
+		}
+		else {// eliminando en Medio de los 3D 
+			cout << "eliminando uno de en  medio en 3D" << endl; 
+			nMatrix * anterior = nodo_eliminar->getBehind();
+			anterior->setFront(nodo_eliminar->getFront());
+			nodo_eliminar->getFront()->setBehind(anterior);
+			nodo_eliminar = NULL; 
+		}
+
+
+	}
+
+
 }

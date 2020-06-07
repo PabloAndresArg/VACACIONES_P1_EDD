@@ -37,13 +37,23 @@ public:
 	
 	
 	// ------- buscar en el CUBO :'v 
-	nMatrix * BuscarNodo(string empresa, string dep , string nombreUser);
+	void modificarUsuario(string dep_fila, string  emp_col, Usuario* usuario);// enviando 
+	nMatrix* BuscarNodo(string empresa, string dep, string nombreUser);// recibiendo 
 	nMatrix* isInsercion3D(string empresa, string dep);
+	bool UsuarioRepetido(nMatrix* cordenada ,string nombre);
+	void eliminarInterno(string empresa, string dep, string nombreUser);
+	void eliminarColumna(string);
+	void eliminarFila(string);
+	nMatrix* reemplazarCara(nMatrix* adelante, nMatrix* atras);
+
+
+	// aux visuales nada mas 
 	void imprimirFondo(nMatrix*);
 	void imprimirSolo3D();
 
 
-
+	
+	
 	void getGraphviz();
 	void add(string dep_fila, string  emp_col, Usuario* usuario);
 };
