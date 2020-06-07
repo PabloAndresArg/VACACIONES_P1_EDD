@@ -1,0 +1,22 @@
+digraph G {
+rankdir = LR;style = filled; charset = latin1;bgcolor = black; color = aliceblue;
+node[fillcolor = black, fontcolor = white, color = dodgerblue1, style = filled, shape = component];
+subgraph cluster_0{label = "POSICION [ BURGER-HUEHUETENANGO ]";VAL_00AE5AD8[label = "MARTIN" ] ;VAL_00AE5AD8->VAL_00AE5500 [ arrowhead = vee ]; 
+VAL_00AE5500[label = "CARLOS" ] ;VAL_00AE5500->VAL_00AE5AD8 [ arrowhead = vee ]; 
+}
+subgraph cluster_1{label = "POSICION [ CAMPERO-PETEN ]";VAL_00AE5038[label = "MOLY" ] ;VAL_00AE5038->VAL_00AE4EA0 [ arrowhead = vee ]; 
+VAL_00AE4EA0[label = "MILY" ] ;VAL_00AE4EA0->VAL_00AE5038 [ arrowhead = vee ]; 
+VAL_00AE4EA0->VAL_00AE4B48 [ arrowhead = vee ]; 
+VAL_00AE4B48[label = "ALI" ] ;VAL_00AE4B48->VAL_00AE4EA0 [ arrowhead = vee ]; 
+}
+subgraph cluster_2{label = "POSICION [ FIFA-REU ]";VAL_00AE5148[label = "JUANA" ] ;VAL_00AE5148->VAL_00AE5A50 [ arrowhead = vee ]; 
+VAL_00AE5A50[label = "ANA" ] ;VAL_00AE5A50->VAL_00AE5148 [ arrowhead = vee ]; 
+VAL_00AE5A50->VAL_00AE5698 [ arrowhead = vee ]; 
+VAL_00AE5698[label = "VALERIA" ] ;VAL_00AE5698->VAL_00AE5A50 [ arrowhead = vee ]; 
+VAL_00AE5698->VAL_00AE5368 [ arrowhead = vee ]; 
+VAL_00AE5368[label = "Ronaldo" ] ;VAL_00AE5368->VAL_00AE5698 [ arrowhead = vee ]; 
+}
+subgraph cluster_3{label = "POSICION [ MAX-SOLOLA ]";VAL_00AE59C8[label = "DENVER" ] ;VAL_00AE59C8->VAL_00AE53F0 [ arrowhead = vee ]; 
+VAL_00AE53F0[label = "pablo" ] ;VAL_00AE53F0->VAL_00AE59C8 [ arrowhead = vee ]; 
+}
+}

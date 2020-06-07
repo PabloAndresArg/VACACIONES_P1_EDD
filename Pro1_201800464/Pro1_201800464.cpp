@@ -33,6 +33,10 @@ int main()
     Usuario* u15 = new Usuario("VALERIA", "Pablo andres Arguerta Hernandez", "contra");
     Usuario* u16 = new Usuario("ANA", "Pablo andres Arguerta Hernandez", "contra");
     Usuario* u17 = new Usuario("JUANA", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u18 = new Usuario("DENVER", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u19 = new Usuario("MILY", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u20 = new Usuario("MOLY", "Pablo andres Arguerta Hernandez", "contra");
+    Usuario* u8 = new Usuario("MARTIN", "Pablo andres Arguerta Hernandez", "contra");
     Matriz_dispersa* matrix = new Matriz_dispersa(); 
     matrix->add("adidas", "SOLOLA", u1);
     matrix->add("adidas", "REU", u2);
@@ -49,10 +53,17 @@ int main()
     matrix->add("FIFA", "REU", u15);
     matrix->add("FIFA", "REU", u16);
     matrix->add("FIFA", "REU", u17);
+    matrix->add("MAX", "SOLOLA", u18);
+    matrix->add("CAMPERO", "PETEN", u19);
+    matrix->add("CAMPERO", "PETEN", u20);
+    matrix->add("BURGER", "HUEHUETENANGO", u8);
+
+
     matrix->getGraphviz();
+    matrix->imprimirSolo3D();
 
     nMatrix* busqueda = new nMatrix("a", "a" , u1);
-    busqueda = matrix->isInsercion3D("MAX","PETEN");
+    busqueda = matrix->BuscarNodo("MACDONALS","PETEN" , "simon");
     if (busqueda != NULL ) {
         cout << "ENCONTRO A :   " << busqueda->getUsuario()->getNomUser() << endl;
     }

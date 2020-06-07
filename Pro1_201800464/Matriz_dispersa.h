@@ -40,6 +40,7 @@ public:
 	nMatrix * BuscarNodo(string empresa, string dep , string nombreUser);
 	nMatrix* isInsercion3D(string empresa, string dep);
 	void imprimirFondo(nMatrix*);
+	void imprimirSolo3D();
 
 
 

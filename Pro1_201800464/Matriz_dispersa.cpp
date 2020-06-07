@@ -92,8 +92,7 @@ nMatrix* Matriz_dispersa::existeFIla(string empresa) {
 void Matriz_dispersa::add(string empresa_fila, string departamento_col, Usuario* usuario) {
 		nMatrix* decision = this->isInsercion3D(empresa_fila , departamento_col);
 		nMatrix* nuevo_nodo = new nMatrix(empresa_fila, departamento_col, usuario);
-		if (decision == NULL) {
-			cout << "insercion en 2D" << endl; 
+		if (decision == NULL) {//insercion en 2D
 			nMatrix* cabecera_columna_depa = existeColumna(departamento_col);
 			nMatrix* cabeceraFila_empresa = existeFIla(empresa_fila);
 			int caso = 0;
@@ -119,7 +118,7 @@ void Matriz_dispersa::add(string empresa_fila, string departamento_col, Usuario*
 
 			
 			// DATOS DEL NODO QUE SE VA  A INSERTAR
-			cout << "nuevo: " << nuevo_nodo->getUsuario()->getNomUser() << "(" << nuevo_nodo->getEmpresa() << "," << nuevo_nodo->getDepartamento() << ")" << "POSICION:" << "[" << nuevo_nodo->getPos_x() << "," << nuevo_nodo->getPos_y() << "]" << endl;
+			//cout << "nuevo: " << nuevo_nodo->getUsuario()->getNomUser() << "(" << nuevo_nodo->getEmpresa() << "," << nuevo_nodo->getDepartamento() << ")" << "POSICION:" << "[" << nuevo_nodo->getPos_x() << "," << nuevo_nodo->getPos_y() << "]" << endl;
 
 
 
@@ -234,17 +233,13 @@ void Matriz_dispersa::add(string empresa_fila, string departamento_col, Usuario*
 
 
 			if (cabeceraFila_empresa == NULL && cabecera_columna_depa == NULL) { cout << "error"; }
-			cout << endl;
-
 
 
 		}
 		else {
-     		cout << "insercion en 3D  PASA AL FONDO EL USUARIO:"<<decision->getUsuario()->getNomUser() << endl; 
 			// decision puede tener sus 4 punteros entonces esos los va heredar el nuevo nodo 
-			
 			nuevo_nodo = heredarPunteros(nuevo_nodo, decision);// de una inserta en		3D
-			this->imprimirFondo(nuevo_nodo);
+			//this->imprimirFondo(nuevo_nodo);
 		return;
 		}
 
@@ -300,30 +295,38 @@ nMatrix* Matriz_dispersa::actualizaPosiciones(nMatrix*nuevo_nodo , nMatrix* fil_
 void Matriz_dispersa::getGraphviz() {
 		Rep* llama = new  Rep();
 		llama->graphMatrix(this->root);
+		llama->graph3Dmatrix(this->root);
 }
 
 
 
 
 nMatrix* Matriz_dispersa::BuscarNodo(string empresa, string departamento , string nombreUser) {
-	cout << "buscando un nodo " << endl;
 	nMatrix* col_principal = this->root;
 	nMatrix* aux = NULL;
+	nMatrix* aux3D = NULL; 
 	while (col_principal != NULL) {
 
 		if (col_principal->getDer() != NULL) {
 			aux = col_principal->getDer();
 			while (aux != NULL) {
 				if (aux->getEmpresa().compare(empresa) == 0 && aux->getDepartamento().compare(departamento) == 0) {
-					// OTRO WHILE PARA BUSCAR EN 3D 
-					
+					// antes de ir a buscar en 3D vere si este nodo es el que buscaba , tons PREGUNTO 
+					if (aux->getUsuario()->getNomUser().compare(nombreUser) == 0 ) {
+						return aux;
+					}
+					if (aux->getBehind() != NULL) {// buscando en 3D 
+						aux3D = aux; 
+						while (aux3D != NULL) {
+							if (aux3D->getUsuario()->getNomUser().compare(nombreUser) == 0) {
+								return aux3D;
+							}
+							aux3D = aux3D->getBehind(); 
+						}
+					}
 				}
 				aux = aux->getDer();
 			}
-
-
-
-
 		}
 		col_principal = col_principal->getDown();
 	}
@@ -351,11 +354,36 @@ nMatrix* Matriz_dispersa::isInsercion3D(string empresa, string departamento) {
 }
 
 
-void Matriz_dispersa::imprimirFondo(nMatrix * cabeza) {
+void Matriz_dispersa::imprimirFondo(nMatrix * cabeza) {// hacer uno parecido para buscar haber si no hay un nodo ya con el mismo nombre 
 	cout << " USUARIOS AL FONDO " << endl;
 	nMatrix* aux = cabeza; 
 	while (aux != NULL) {
 		cout << "USUARIO: "<<aux->getUsuario()->getNomUser()<<endl;
 		aux = aux->getBehind(); 
+	}
+}
+
+void Matriz_dispersa::imprimirSolo3D() {
+	nMatrix* col_principal = this->root;
+	nMatrix* aux = NULL;
+	nMatrix* aux3D = NULL;
+	while (col_principal != NULL) {
+
+		if (col_principal->getDer() != NULL) {
+			aux = col_principal->getDer();
+			while (aux != NULL) {
+
+					if (aux->getBehind() != NULL) {// OTRO WHILE PARA BUSCAR EN 3D 
+						aux3D = aux;
+						while (aux3D != NULL) {
+							cout << "POS:("<< aux3D->getEmpresa()<<" , "<< aux3D->getDepartamento()<<")"<<" contenido: "<< aux3D->getUsuario()->getNomUser() << endl;
+							aux3D = aux3D->getBehind();
+						}
+					}
+				
+				aux = aux->getDer();
+			}
+		}
+		col_principal = col_principal->getDown();
 	}
 }

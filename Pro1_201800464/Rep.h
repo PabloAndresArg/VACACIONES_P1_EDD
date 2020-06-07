@@ -31,6 +31,66 @@ public:
 
 
 	//OK
+	void graph3Dmatrix(nMatrix*root) {
+		if (root->getDer() == NULL) {
+			cout << "MATRIZ VACIA" << endl;
+		}
+		else {
+			ofstream w;
+			w.open("REPORTES\\parte3D.txt", ios::out);
+			if (w.fail())
+			{
+				cout << "NO SE ABRE :(" << endl;
+				system("pause");
+				exit(1);
+			}
+
+			w <<"digraph G {\n";
+			w <<"rankdir = LR;style = filled; charset = latin1;bgcolor = black; color = aliceblue;\n";
+			w<<"node[fillcolor = black, fontcolor = white, color = dodgerblue1, style = filled, shape = component];\n";
+			nMatrix* col_principal = root;
+			nMatrix* aux = NULL;
+			nMatrix* aux3D = NULL;
+			int ind = 0; 
+			while (col_principal != NULL) {
+
+				if (col_principal->getDer() != NULL) {
+					aux = col_principal->getDer();
+					while (aux != NULL) {
+
+						if (aux->getBehind() != NULL) {// OTRO WHILE PARA BUSCAR EN 3D 
+							aux3D = aux;
+							w << "subgraph cluster_"<<std::to_string(ind)<<"{";
+							w<< "label = "<<"\"POSICION [ "<< aux->getEmpresa() <<"-"<< aux->getDepartamento()<<" ]\";";
+							while (aux3D != NULL) {
+								//nombre
+								w <<"VAL_" << &*aux3D << "[label = \""<< aux3D->getUsuario()->getNomUser()<< "\" ] ;";
+								//enlaces
+								if (aux3D->getFront() != NULL) {
+									w << "VAL_" << &*aux3D << "->" << "VAL_" << &*aux3D->getFront() << " [ arrowhead = vee ]; " << "\n";
+								}
+								if (aux3D->getBehind() != NULL) {
+									w << "VAL_" << &*aux3D << "->" << "VAL_" << &*aux3D->getBehind() << " [ arrowhead = vee ]; " << "\n";
+								}
+								aux3D = aux3D->getBehind();
+							}
+							w << "}\n";
+							ind++;
+						}
+						aux = aux->getDer();
+					}
+				}
+				col_principal = col_principal->getDown();
+			}
+			w << "}\n";
+			w.close();
+			char eje[] = "dot -Tjpg REPORTES\\parte3D.txt -o REPORTES\\parte3D.jpg";
+			system(eje);
+			char abre[] = "REPORTES\\parte3D.jpg";
+			system(abre);
+		
+		}
+	}
 
 	void graphMatrix(nMatrix* root) {
 		if (root->getDer() == NULL) {
@@ -126,5 +186,6 @@ public:
 			system(abre);
 		}
 	}
+
 
 };
