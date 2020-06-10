@@ -1,12 +1,12 @@
 digraph G {
 rankdir = LR;style = filled; charset = latin1;bgcolor = black; color = aliceblue;
 node[fillcolor = black, fontcolor = white, color = dodgerblue1, style = filled, shape = component];
-subgraph cluster_0{label = "POSICION [ BURGER-HUEHUETENANGO ]";VAL_01444870[label = "MARTIN" ] ;VAL_01444870->VAL_01445068 [ arrowhead = vee ]; 
-VAL_01445068[label = "CARLOS" ] ;VAL_01445068->VAL_01444870 [ arrowhead = vee ]; 
+subgraph cluster_0{label = "POSICION [ BURGER-HUEHUETENANGO ]";VAL_012E4930[label = "MARTIN" ] ;VAL_012E4930->VAL_012E4A40 [ arrowhead = vee ]; 
+VAL_012E4A40[label = "CARLOS" ] ;VAL_012E4A40->VAL_012E4930 [ arrowhead = vee ]; 
 }
-subgraph cluster_1{label = "POSICION [ CAMPERO-PETEN ]";VAL_01444C28[label = "MOLY" ] ;VAL_01444C28->VAL_01445288 [ arrowhead = vee ]; 
-VAL_01445288[label = "MILY" ] ;VAL_01445288->VAL_01444C28 [ arrowhead = vee ]; 
-VAL_01445288->VAL_01444270 [ arrowhead = vee ]; 
-VAL_01444270[label = "ALI" ] ;VAL_01444270->VAL_01445288 [ arrowhead = vee ]; 
+subgraph cluster_1{label = "POSICION [ CAMPERO-PETEN ]";VAL_012E48A8[label = "MOLY" ] ;VAL_012E48A8->VAL_012E53D0 [ arrowhead = vee ]; 
+VAL_012E53D0[label = "MILY" ] ;VAL_012E53D0->VAL_012E48A8 [ arrowhead = vee ]; 
+VAL_012E53D0->VAL_012E4550 [ arrowhead = vee ]; 
+VAL_012E4550[label = "ALI" ] ;VAL_012E4550->VAL_012E53D0 [ arrowhead = vee ]; 
 }
 }

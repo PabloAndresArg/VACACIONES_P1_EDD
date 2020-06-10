@@ -42,8 +42,6 @@ public:
 	nMatrix* isInsercion3D(string empresa, string dep);
 	bool UsuarioRepetido(nMatrix* cordenada ,string nombre);
 	void eliminarInterno(string empresa, string dep, string nombreUser);
-	void eliminarColumna(string);
-	void eliminarFila(string);
 	nMatrix* reemplazarCara(nMatrix* adelante, nMatrix* atras);
 
 
@@ -52,7 +50,16 @@ public:
 	void imprimirSolo3D();
 
 
-	
+	// para estandarizar
+	inline string aMinuscula(string cadena) {
+		string nuevoNombre = "";
+		int lon = (int)cadena.size();
+		for (int i = 0; i < lon; i++)
+		{
+			char letra = tolower(cadena[i]);	nuevoNombre += letra;
+		}
+		return nuevoNombre;
+	};
 	
 	void getGraphviz();
 	void add(string dep_fila, string  emp_col, Usuario* usuario);

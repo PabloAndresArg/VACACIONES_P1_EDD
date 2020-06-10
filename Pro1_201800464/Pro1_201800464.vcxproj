@@ -140,6 +140,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Act.cpp" />
+    <ClCompile Include="ArbolBin.cpp" />
+    <ClCompile Include="CircularDobleTransacciones.cpp" />
     <ClCompile Include="Matriz_dispersa.cpp" />
     <ClCompile Include="Pro1_201800464.cpp" />
     <ClCompile Include="Transa.cpp" />
@@ -147,10 +149,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Act.h" />
+    <ClInclude Include="ArbolBin.h" />
     <ClInclude Include="AsciiArte.h" />
+    <ClInclude Include="CircularDobleTransacciones.h" />
     <ClInclude Include="Init.h" />
     <ClInclude Include="Matriz_dispersa.h" />
+    <ClInclude Include="Navl.h" />
     <ClInclude Include="nMatrix.h" />
+    <ClInclude Include="NodoDobleC.h" />
     <ClInclude Include="Rep.h" />
     <ClInclude Include="Transa.h" />
     <ClInclude Include="Usuario.h" />

@@ -3,7 +3,7 @@
 #include<string>
 #include<string.h>
 #include<fstream>
-
+#include"NodoDobleC.h"
 #include"nMatrix.h"
 /*
 
@@ -18,6 +18,61 @@ class Rep {
 
 public: 
 
+
+	// transacciones
+	void DobleCircular(NodoDobleC* inicio, NodoDobleC* ultimo, int tamanio) { // -----------------------para
+		ofstream w;
+		w.open("REPORTES\\DobleEnlazadaCircular.txt", ios::out);//si no existe lo crea  y si ya lo reemplaza
+		if (w.fail()) {
+			cout << "NO SE PUDO ABRIR EL ARCHIVO" << endl;
+			system("pause");
+			exit(1);
+		}
+		if (inicio != NULL) {
+			w << "digraph GraphDOBLE {rankdir = LR;style = filled;charset = latin1;bgcolor = black;color = lightgrey;node[ fillcolor = ghostwhite , fontcolor = black ,style = filled,    color = black   , shape = house];";
+			NodoDobleC* aux = new NodoDobleC();
+			aux = inicio;
+
+			int x = 1; // porque graph no acepta negativos 
+			do {
+				w << "a" << x << "[label = \" " << aux->tra->getId_tra() << "\" ] ;";
+				x++;
+				if (aux->sig != inicio) { // llevo al ultimo nodo 
+					w << "a" << (x - 1) << " -> " << "a" << x << "[ arrowhead = \"vee\"   color = \"green\"]; ";
+				}
+				aux = aux->sig;
+			} while (aux != inicio);
+			x--;
+			w << "a1" << " -> " << "a" << x << "[ arrowhead = \"vee\"   color = \"green\"]; ";
+			w << "a" << x << " -> " << "a1" << "[ arrowhead = \"vee\"   color = \"dodgerblue1\"]; ";
+
+
+			NodoDobleC* aux2 = new NodoDobleC();
+			aux2 = ultimo;
+			for (int i = 0; i < tamanio - 1; i++) // estando en el ultimo nodo recorro para atras 
+			{
+				w << "a" << x << " -> " << "a" << (x - 1) << "[arrowhead = \"vee\" color = \"dodgerblue1\"]; ";
+				x--;
+				aux2 = aux2->ant;
+			}
+
+
+
+			w << "}";
+			w.close();
+			char genera[] = "dot -Tjpg REPORTES\\DobleEnlazadaCircular.txt -o REPORTES\\DobleEnlazadaCircular.jpg";// usando el prueba par mientrasr 
+			system(genera);
+			char ejecuta[] = "REPORTES\\DobleEnlazadaCircular.jpg";
+			system(ejecuta);
+			cout << "----- REPORTE GENERADO  ------ " << endl;
+			cin.get();
+		}
+		else {
+			cout << "NO GENERA NADA PORQUE LA LISTA ESTA VACIA " << endl;
+		}
+		system("pause");
+		system("cls");
+	}
 
 
 
@@ -186,6 +241,37 @@ public:
 			system(abre);
 		}
 	}
+
+
+
+
+
+	void graficaArbol(string cadenaGraph) {
+		ofstream w;
+		w.open("REPORTES\\Arbol201800464_rep.txt", ios::out);//si no existe lo crea  y si ya lo reemplaza
+		if (w.fail()) {
+			cout << "NO SE PUDO ABRIR EL ARCHIVO" << endl;
+
+			system("pause");
+			exit(1);
+		}
+		if (cadenaGraph.compare("") != 0) {
+			w << cadenaGraph;
+			w << "}";
+			w.close();
+			char genera[] = "dot -Tjpg REPORTES\\Arbol201800464_rep.txt -o REPORTES\\Arbol201800464_rep.jpg";// usando el prueba par mientrasr
+			system(genera);
+			char ejecuta[] = "REPORTES\\Arbol201800464_rep.jpg";
+			system(ejecuta);
+			cout << "----- PROCESO TERMINADO CON EXITO ------ " << endl;
+			cin.get();
+		}
+		else {
+			cout << "NO GENERA NADA PORQUE LA LISTA ESTA VACIA " << endl;
+		}
+	}
+
+
 
 
 };

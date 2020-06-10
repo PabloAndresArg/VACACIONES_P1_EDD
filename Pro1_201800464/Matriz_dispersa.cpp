@@ -447,7 +447,7 @@ void Matriz_dispersa::imprimirSolo3D() {
 					if (aux->getBehind() != NULL) {// OTRO WHILE PARA BUSCAR EN 3D 
 						aux3D = aux;
 						while (aux3D != NULL) {
-							cout << "POS:("<< aux3D->getEmpresa()<<" , "<< aux3D->getDepartamento()<<")"<<" contenido: "<< aux3D->getUsuario()->getNomUser() << endl;
+							//cout << "POS:("<< aux3D->getEmpresa()<<" , "<< aux3D->getDepartamento()<<")"<<" contenido: "<< aux3D->getUsuario()->getNomUser() << endl;
 							aux3D = aux3D->getBehind();
 						}
 					}
@@ -463,7 +463,7 @@ void Matriz_dispersa::imprimirSolo3D() {
 void Matriz_dispersa::eliminarInterno(string empresa , string departamento , string nombre) {
 	nMatrix* nodo_eliminar = this->BuscarNodo( empresa,  departamento, nombre);
 	if (nodo_eliminar == NULL) {
-		cout << "no se puede eliminar porque no se encontro el nodo" << endl; 
+		//cout << "no se puede eliminar porque no se encontro el nodo" << endl; 
 		return; 
 	}
 
@@ -475,7 +475,7 @@ void Matriz_dispersa::eliminarInterno(string empresa , string departamento , str
 
 		if (nodo_eliminar->getBehind() == NULL) {
 		// se elimina por completo
-			cout << "ELIMINANDO UN POSICION COMPLETA" << endl; 
+			//cout << "ELIMINANDO UN POSICION COMPLETA" << endl; 
 			nMatrix* puntero_arriba = nodo_eliminar->getUp(); 
 			nMatrix* puntero_abajo = nodo_eliminar->getDown(); 
 			nMatrix* puntero_der = nodo_eliminar->getDer();
@@ -492,7 +492,7 @@ void Matriz_dispersa::eliminarInterno(string empresa , string departamento , str
 			nodo_eliminar = NULL; 
 		}
 		else {
-			cout << "reemplazandoCara" << endl; 
+			//cout << "reemplazandoCara" << endl; 
 			nMatrix* nuevaCara = nodo_eliminar->getBehind(); 		// solo es de subir un nodo de los de atras
 			nuevaCara = this->reemplazarCara(nodo_eliminar , nuevaCara);//ya no es necesario revisar las cabeceras 
 			return; 
@@ -501,16 +501,28 @@ void Matriz_dispersa::eliminarInterno(string empresa , string departamento , str
 
 		//revisar si aun queda algo en la cabecera sino eliminarla 
 
+		nMatrix* cabecera_columna_depa = existeColumna(departamento);
+		nMatrix* cabeceraFila_empresa = existeFIla(empresa);
+		if (cabeceraFila_empresa->getDer() == NULL) {
+			//cout << "SE ELIMINA UNA FILA CABECERA" << endl;
+			//cout << cabeceraFila_empresa->getPos_x() << "," << cabeceraFila_empresa->getPos_y() <<" "<< cabeceraFila_empresa->getEmpresa() <<endl;
+			cabeceraFila_empresa->getUp()->setAbajo(NULL);
+		}
+		if (cabecera_columna_depa->getDown() == NULL) {
+			//cout << "SE ELIMINA UNA COLUMNA CABECERA" << endl;
+			cabecera_columna_depa->getIzq()->setDerecha(NULL);
+		}
+
 	}
 	else {
 	// uno de los de 3D
 		if (nodo_eliminar->getBehind() == NULL) { // el ultimo de los 3D 
-			cout << "eliminando el ultimo en 3D" << endl; 
+			//cout << "eliminando el ultimo en 3D" << endl; 
 			nodo_eliminar->getFront()->setBehind(NULL);
 			nodo_eliminar = NULL; 
 		}
 		else {// eliminando en Medio de los 3D 
-			cout << "eliminando uno de en  medio en 3D" << endl; 
+			//cout << "eliminando uno de en  medio en 3D" << endl; 
 			nMatrix * anterior = nodo_eliminar->getBehind();
 			anterior->setFront(nodo_eliminar->getFront());
 			nodo_eliminar->getFront()->setBehind(anterior);
@@ -522,3 +534,7 @@ void Matriz_dispersa::eliminarInterno(string empresa , string departamento , str
 
 
 }
+
+
+
+
