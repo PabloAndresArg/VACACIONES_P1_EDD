@@ -22,11 +22,41 @@ using namespace std;
 
 int main()
 {
+
+    CircularDobleTransacciones* cir = new CircularDobleTransacciones();
+    Transa* n55 = new Transa("55");
+    Transa* n11 = new Transa("11");
+    Transa* n14 = new Transa("14");
+    Transa* n22 = new Transa("22");
+    Transa* n21 = new Transa("21");
+    Transa* n13 = new Transa("13");
+    Transa* n15 = new Transa("15");
+    Transa* n10 = new Transa("10");
+   // cir->add_transaccion("45d", "pablo", "chichi", "MAX", "2020-05-09", "60 dias");
   
+    cir->add(n55);
+    cir->add(n11);
+    cir->add(n14);
+    cir->add(n22);
+    cir->add(n21);
+   /* cir->add(n13);
+    cir->add(n15);
+    cir->add(n10);*/
+
+   
+  
+    cout << "Descendente:" << endl;
+    cir->OrdenarDescen();
+    cir->imprimeparaAdelnate();
+    cout << "Ascendente:" << endl;
+    cir->OrdenarAsc();
+    cir->imprimeparaAdelnate();
+
+    cir->getGraphviz();
 
     
 
-    
+    /*
     ArbolBin* arb = new ArbolBin();
 
     Navl* n1 = new Navl(new Act("1")); 
@@ -46,7 +76,7 @@ int main()
     arb->add_Activo("MOTO", "PA JUAGAR HOT WHEELS", true);
     arb->add_Activo("AVION", "PA JUAGAR HOT WHEELS", true);*/
 
-    arb->getGraphviz();
+  //  arb->getGraphviz();
 
 
 
@@ -66,16 +96,7 @@ int main()
     
     //iniciar(); 
     /*
-    CircularDobleTransacciones* cir = new CircularDobleTransacciones(); 
-    Transa* n1 = new Transa();
-    Transa* n2 = new Transa();
-    Transa* n3 = new Transa();
-    cir->add(n1);
-    cir->add(n2);
-    cir->add(n3);
-    cir->imprimeparaAdelnate(); 
-    cir->imprimeparaAtras();
-    cir->getGraphviz(); 
+
     
     
 

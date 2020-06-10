@@ -8,9 +8,16 @@
 #include<Windows.h>
 using namespace std; 
 
+void CircularDobleTransacciones::add_transaccion(string id_activo, string nombreUsuario, string dep, string emp, string fecha, string ti) {
+	string  id_transaccion_nueva= this->generarId();
+	while (yaExisteEl_id(id_transaccion_nueva)) {
+		id_transaccion_nueva = this->generarId();
+	}
+	cout << "ID GENERADO: " + id_transaccion_nueva << endl;
+	this->add(new Transa(id_transaccion_nueva ,id_activo , nombreUsuario, dep, emp , fecha , ti));
+}
 
-
-void CircularDobleTransacciones::add(Transa * nuevaTr) {
+void CircularDobleTransacciones::add(Transa * nuevaTr ) {
 	NodoDobleC* nuevo = new NodoDobleC();
 	nuevo->tra = nuevaTr;
 	if (this->inicio == NULL) {
@@ -35,19 +42,19 @@ void CircularDobleTransacciones::add(Transa * nuevaTr) {
 void CircularDobleTransacciones::imprimeparaAdelnate() {
 	cout << "XXXXXXXXXXXXXXXXXXXX TRANSACCIONES XXXXXXXXXXXXXXXXXXXXXXXXXXX" << endl;
 	if (this->inicio != NULL) {
-		NodoDobleC* aux = this->ultimo;
+		NodoDobleC* aux = this->inicio;
 		int numeral = 1;
 		int formato = 0;
 		for (int i = this->tamanio; i > 0; i--)
 		{
-			cout << numeral << "."  << aux->tra->getId_tra()<< "     ";
+			cout << " = "  << aux->tra->getId_tra()<< "     ";
 			numeral++;
 			formato++;
 			if (formato == 5) {
 				cout << endl;
 				formato = 0;
 			}
-			aux = aux->ant;
+			aux = aux->sig;
 		}
 		cout << endl;
 	}
@@ -121,7 +128,7 @@ int CircularDobleTransacciones::compararAlfabeticamente(string p1, string p2) {
 			return 0;
 		}
 
-		return 1;// analizar este paso
+		return 1;
 	}
 }
 
@@ -148,13 +155,21 @@ string CircularDobleTransacciones:: generarId() {
 }
 
 bool CircularDobleTransacciones:: yaExisteEl_id(string id_alfanumerico) {
-	return true;
+	if (this->inicio == NULL) return false; 
+	NodoDobleC* navegador = this->inicio; 
+	for (int x = 0; x < this->tamanio; x++) {
+		if (id_alfanumerico.compare(navegador->tra->getId_tra()) == 0 ) {
+			return true; 
+		}
+		navegador = navegador->sig;
+	}
+	return false;
 }
 
 string CircularDobleTransacciones::getLetra(int n ) {
 	string letra = "";
 	if (n == 10) {
-		letra = "a";
+		letra = "v";
 	}
 	else if (n == 11) {
 		letra = "x";
@@ -204,9 +219,166 @@ string CircularDobleTransacciones::getLetra(int n ) {
 		letra = "s";
 	}
 	else {
-		letra = "v"; 
+		letra = "a"; 
 	}
 	
 
 	return letra;
+}
+
+
+
+
+
+
+
+
+
+/*
+
+									 PA ORDENAR :D
+*/
+
+
+
+
+
+void CircularDobleTransacciones :: setMenor_como_primero() {
+	if (this->tamanio > 1) {
+		NodoDobleC* navegador = this->inicio;
+		NodoDobleC* menor = this->inicio;
+		do {
+			if (compararAlfabeticamente(navegador->tra->getId_tra(), menor->tra->getId_tra()) == 0) menor = navegador;
+			navegador = navegador->sig;
+		} while (navegador != this->inicio && navegador != NULL);
+		this->inicio = menor;
+		//cout << "ahora el inicio es: "<<this->inicio->tra->getId_tra()<< endl;
+	}
+}
+void CircularDobleTransacciones::setMayor_como_ultimo() {
+	if (this->tamanio > 1) {
+		NodoDobleC* navegador = this->ultimo;
+		NodoDobleC* mayor = this->ultimo;
+		do {
+			if (compararAlfabeticamente(navegador->tra->getId_tra(), mayor->tra->getId_tra()) == 1) mayor = navegador;
+			navegador = navegador->ant;
+		} while (navegador != this->ultimo && navegador != NULL);
+		this->ultimo = mayor;
+		//cout << "ahora el ultimo es: " << this->ultimo->tra->getId_tra() << endl;
+	}
+}
+
+
+void CircularDobleTransacciones::OrdenarAsc() {
+	if (this->tamanio == 2) {
+		this->setMenor_como_primero();
+		this->setMayor_como_ultimo();
+		return; 
+	}
+	else {
+		this->setMenor_como_primero();
+		this->setMayor_como_ultimo();
+		NodoDobleC* puntero1 = this->inicio; // como mi inicio siempre es el menor es el unico nodo que no podria intercambiarse 
+		NodoDobleC* puntero2 = NULL;
+		puntero2 = puntero1->sig;
+	
+		for (int i = 0; i < this->tamanio; i++) {
+
+		
+			for (int j = 0; j < this->tamanio -1; j++) {
+
+				if (compararAlfabeticamente(puntero2->tra->getId_tra(), puntero2->sig->tra->getId_tra()) == 1 && puntero2->sig != this->inicio) {
+					/*cout << "entra a ordenar: " << puntero2->tra->getId_tra() << ">" << puntero2->sig->tra->getId_tra() << endl;
+					system("pause");
+					this->imprimeparaAdelnate();*/
+					this->cambiarPosiciones(puntero2, puntero2->sig);
+				}
+				puntero2 = puntero2->sig;
+			}
+
+			puntero1 = puntero1->sig;
+		}
+	}
+	
+}
+
+void CircularDobleTransacciones:: cambiarPosiciones(NodoDobleC * pos1, NodoDobleC * reemplazo) { // mientras no este ordenado el this->ultimo no me sirve
+
+	NodoDobleC* anterior = pos1->ant;
+	NodoDobleC* re_next = reemplazo->sig;
+
+
+	pos1->sig = re_next;
+	pos1->ant = reemplazo;
+	reemplazo->sig = pos1;
+	reemplazo->ant = anterior;
+	anterior->sig = reemplazo;
+	re_next->ant = pos1;
+	//cout << "change" << endl;
+}
+
+
+
+void CircularDobleTransacciones::setMayor_como_inicio() {
+	if (this->tamanio > 1) {
+		NodoDobleC* navegador = this->ultimo;
+		NodoDobleC* mayor = this->ultimo;
+		do {
+			if (compararAlfabeticamente(navegador->tra->getId_tra(), mayor->tra->getId_tra()) == 1) mayor = navegador;
+			navegador = navegador->ant;
+		} while (navegador != this->ultimo && navegador != NULL);
+		this->inicio = mayor;
+		//cout << "ahora el INICIO es: " << this->inicio->tra->getId_tra() << endl;
+	}
+}
+void CircularDobleTransacciones::setMenor_como_ultimo() {
+	if (this->tamanio > 1) {
+		NodoDobleC* navegador = this->inicio;
+		NodoDobleC* menor = this->inicio;// no importa con cula comience a navegar porque es circular igual 
+		do {
+			if (compararAlfabeticamente(navegador->tra->getId_tra(), menor->tra->getId_tra()) == 0) menor = navegador;
+			navegador = navegador->sig;
+		} while (navegador != this->inicio && navegador != NULL);
+		this->ultimo = menor;
+		//cout << "ahora el ULTIMO es: " << this->ultimo->tra->getId_tra() << endl;
+	}
+}
+
+
+
+
+void CircularDobleTransacciones::OrdenarDescen() {
+	if (this->tamanio == 2) {
+		this->setMayor_como_inicio();
+		this->setMenor_como_ultimo();
+		return;
+	}
+	else {
+		this->setMayor_como_inicio();
+		this->setMenor_como_ultimo();
+
+		NodoDobleC* puntero1 = this->inicio; // como mi inicio siempre es el menor es el unico nodo que no podria intercambiarse , ya que lo cambie un paso atras
+		NodoDobleC* puntero2 = NULL;
+		puntero2 = puntero1->sig;
+
+		for (int i = 0; i < this->tamanio; i++) {
+
+
+			for (int j = 0; j < this->tamanio - 1; j++) {
+
+				if (compararAlfabeticamente(puntero2->tra->getId_tra(), puntero2->sig->tra->getId_tra()) == 0 && puntero2->sig != this->inicio) {
+					/*cout << "entra a ordenar ASc: " << puntero2->tra->getId_tra() << "<" << puntero2->sig->tra->getId_tra() << endl;
+					this->imprimeparaAdelnate();
+					system("pause");*/
+					
+					this->cambiarPosiciones(puntero2, puntero2->sig);
+					
+				}
+				puntero2 = puntero2->sig;
+			}
+
+			puntero1 = puntero1->sig;
+		}
+	}
+
 }

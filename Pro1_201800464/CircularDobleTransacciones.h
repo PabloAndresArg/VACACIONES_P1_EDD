@@ -16,7 +16,7 @@ public:
 	inline NodoDobleC* getInicio() { return this->inicio; }
 	inline NodoDobleC* getUltimo() { return this->ultimo; }
 	inline void vaciar() {this->inicio = NULL;this->ultimo = NULL;this->tamanio = 0;}
-	
+	void add_transaccion(string id_activo, string nombreU, string dep, string emp, string fecha, string ti);
 	void add(Transa * nuevaTr);
 	// para verificar si mis enlaces estan bien 
 	void getGraphviz();
@@ -30,6 +30,14 @@ public:
 	bool yaExisteEl_id(string id_alfanumerico);
 	string getLetra(int);
 
+	void OrdenarAsc();
+	void setMenor_como_primero(); 
+	void setMayor_como_ultimo();
 
+	void setMayor_como_inicio(); 
+	void setMenor_como_ultimo();
+	void OrdenarDescen();
+
+	void cambiarPosiciones(NodoDobleC* , NodoDobleC*);
 };
 

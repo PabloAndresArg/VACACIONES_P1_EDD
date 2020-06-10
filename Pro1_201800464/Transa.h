@@ -13,6 +13,16 @@ private:
 	string tiempo; 
 
 public: 
+	Transa(string id_) {
+		this->id_transaccion = id_;
+		this->id_activo = "vacio";
+		this->nombreUsuario = "vacio";
+		this->departamento = "vacio";
+		this->empresa = "vacio";
+		this->fecha = "vacio";
+		this->tiempo = "vacio";
+	}
+
 	Transa() {
 		this->id_transaccion = "vacio";
 		this->id_activo = "vacio";
