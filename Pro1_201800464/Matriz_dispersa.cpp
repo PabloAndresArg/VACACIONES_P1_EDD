@@ -538,3 +538,71 @@ void Matriz_dispersa::eliminarInterno(string empresa , string departamento , str
 
 
 
+void Matriz_dispersa :: reporteEmpresa(string empresa_fila) {
+	nMatrix* FILA_ = existeFIla(empresa_fila);
+	nMatrix * aux3D = NULL;
+	if (FILA_ != NULL) {
+		cout << "TRABAJANDO EN EL REPORTE DE EMPRESA...." << endl; 
+		FILA_ = FILA_->getDer();// comienza desde el primer usuario 
+		while (FILA_ != NULL) {
+			if (FILA_->getBehind() != NULL) {// buscando en 3D 
+				aux3D = FILA_;
+				while (aux3D != NULL) {
+					cout << "Usuario: " << aux3D->getUsuario()->getNomUser() << endl;
+					aux3D->getUsuario()->getArbol_activos()->getGraphvizRepUsuarios(aux3D->getUsuario()->getNomUser());
+					aux3D = aux3D->getBehind();
+				}
+			}
+			else {
+				cout << "Usuario: " << FILA_->getUsuario()->getNomUser()<<endl;
+				FILA_->getUsuario()->getArbol_activos()->getGraphvizRepUsuarios(FILA_->getUsuario()->getNomUser());
+			}
+		FILA_ = FILA_->getDer();
+		}
+		
+	}
+	else {
+		cout << "NO SE ENCONTRO ESA EMPRESA" << endl; 
+	}
+}
+
+void Matriz_dispersa :: reporteDepartamento(string departamento_colum) {
+	nMatrix* COL_ = existeColumna(departamento_colum);
+	nMatrix* aux3D = NULL;
+	if (COL_ != NULL) {
+		COL_ = COL_->getDown();// comienza desde el primer usuario 
+		cout << "TRABAJANDO EN EL REPORTE DE ACTIVOS EN UN DEPARTAMENTOS...." << endl;
+		while (COL_ != NULL) {
+			if (COL_->getBehind() != NULL) {// buscando en 3D 
+				aux3D = COL_;
+				while (aux3D != NULL) {
+					cout << "Usuario: " << aux3D->getUsuario()->getNomUser() << endl;
+					aux3D->getUsuario()->getArbol_activos()->getGraphvizRepUsuarios(aux3D->getUsuario()->getNomUser());
+					aux3D = aux3D->getBehind();
+				}
+			}
+			else {
+				cout << "Usuario: " << COL_->getUsuario()->getNomUser() << endl;
+				COL_->getUsuario()->getArbol_activos()->getGraphvizRepUsuarios(COL_->getUsuario()->getNomUser());
+			}
+			COL_ = COL_->getDown();
+		}
+	}
+	else {
+		cout << "NO SE ENCONTRO ESE DEPARTAMENTO" << endl;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+CatalogoLsimple* Matriz_dispersa::recolectaProductos(CatalogoLsimple* CATALOGO = new CatalogoLsimple()) {// punto de inicio
+
+}

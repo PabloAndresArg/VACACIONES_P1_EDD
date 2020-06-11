@@ -37,7 +37,7 @@ public:
 	//+++++++++++++++++++++++++ GRAFICAR MI ARBOL ALV 
 	void getGraphviz();
 	void getGraphviz(Navl*); // recolecto en preorder       raiz izq derecha 
-
+	void getGraphvizRepUsuarios(string nombreUsuario);
 
 	//++++++++++++++++++++++++++ BUSCAR 
 	Navl* buscar(string);

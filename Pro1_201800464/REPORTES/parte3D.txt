@@ -1,4 +1,7 @@
 digraph G {
 rankdir = LR;style = filled; charset = latin1;bgcolor = black; color = aliceblue;
 node[fillcolor = black, fontcolor = white, color = dodgerblue1, style = filled, shape = component];
+subgraph cluster_0{label = "POSICION [ p-p ]";VAL_01257018[label = "a" ] ;VAL_01257018->VAL_01251380 [ arrowhead = vee ]; 
+VAL_01251380[label = "p" ] ;VAL_01251380->VAL_01257018 [ arrowhead = vee ]; 
+}
 }

@@ -8,13 +8,13 @@
 #include<Windows.h>
 using namespace std; 
 
-void CircularDobleTransacciones::add_transaccion(string id_activo, string nombreUsuario, string dep, string emp, string fecha, string ti) {
+void CircularDobleTransacciones::add_transaccion(string id_activo, string nombreUsuario, string emp, string dep, string fecha, string ti) {
 	string  id_transaccion_nueva= this->generarId();
 	while (yaExisteEl_id(id_transaccion_nueva)) {
 		id_transaccion_nueva = this->generarId();
 	}
 	cout << "ID GENERADO: " + id_transaccion_nueva << endl;
-	this->add(new Transa(id_transaccion_nueva ,id_activo , nombreUsuario, dep, emp , fecha , ti));
+	this->add(new Transa(id_transaccion_nueva ,id_activo , nombreUsuario, emp, dep, fecha , ti));
 }
 
 void CircularDobleTransacciones::add(Transa * nuevaTr ) {
@@ -270,6 +270,9 @@ void CircularDobleTransacciones::setMayor_como_ultimo() {
 
 
 void CircularDobleTransacciones::OrdenarAsc() {
+	if (this->tamanio == 0) {
+		return;
+	}
 	if (this->tamanio == 2) {
 		this->setMenor_como_primero();
 		this->setMayor_como_ultimo();
@@ -348,6 +351,9 @@ void CircularDobleTransacciones::setMenor_como_ultimo() {
 
 
 void CircularDobleTransacciones::OrdenarDescen() {
+	if (this->tamanio == 0 ) {
+		return; 
+	}
 	if (this->tamanio == 2) {
 		this->setMayor_como_inicio();
 		this->setMenor_como_ultimo();
@@ -380,5 +386,21 @@ void CircularDobleTransacciones::OrdenarDescen() {
 			puntero1 = puntero1->sig;
 		}
 	}
+
+}
+
+
+CircularDobleTransacciones* CircularDobleTransacciones :: reporteTransaccionesPorUsuario(string usuario, string empresa, string  depar) {
+	CircularDobleTransacciones* reporte = new CircularDobleTransacciones(); 
+
+	if (this->inicio == NULL) return reporte;
+	NodoDobleC* navegador = this->inicio;
+	for (int x = 0; x < this->tamanio; x++) {
+		if (compararAlfabeticamente(navegador->tra->getNombreUsuario(), usuario) == 2 && navegador->tra->getDepa().compare(depar) == 0 && navegador->tra->getEmpresa().compare(empresa) == 0) {
+			reporte->add(navegador->tra); 
+		}
+		navegador = navegador->sig;
+	}
+	return reporte;
 
 }

@@ -1,6 +1,10 @@
 #pragma once
 #include"ArbolBin.h"
+#include"CatalogoLsimple.h"
 #ifndef Estatica
 #define Estatica
-static ArbolBin* CATALOGO = new ArbolBin();
+static ArbolBin* CONTROL_IDS = new ArbolBin();
 #endif
+
+
+

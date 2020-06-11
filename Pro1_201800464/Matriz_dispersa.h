@@ -2,6 +2,7 @@
 #include<iostream>
 #include<string>
 #include"nMatrix.h"
+#include"CatalogoLsimple.h"
 using namespace std;
 class Matriz_dispersa
 {
@@ -60,8 +61,22 @@ public:
 		}
 		return nuevoNombre;
 	};
-	
+
+	// grafo
 	void getGraphviz();
+
+
+	// agregar 
 	void add(string empresa_fila, string  dep, Usuario* usuario);
+
+
+	// reportes 
+	void reporteEmpresa(string empresa_fila);
+	void reporteDepartamento(string departamento_colum);
+
+	// para mostrar el catalogo 
+
+	CatalogoLsimple* recolectaProductos(CatalogoLsimple* CATALOGO);
+
 };
 

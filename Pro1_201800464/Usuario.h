@@ -11,7 +11,6 @@ private:
 	string nombreCompleto; 
 	string pass;
 	ArbolBin* Arbol_activos;
-	ArbolBin* Arbol_rentados; 
 	
 public: 
 	Usuario(string nom_ , string nombreCOm_ , string pass_ ) {
@@ -32,9 +31,6 @@ public:
 	}
 	ArbolBin* getArbol_activos() {
 		return this->Arbol_activos;
-	}
-	ArbolBin* getArbol_Rentados() {
-		return this->Arbol_rentados;
 	}
 	void setNomUser(string algo) {
 		this->nomUser = algo; 

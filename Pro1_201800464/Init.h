@@ -25,18 +25,36 @@ void agregar__Activo();
 void eliminar__Activo(); 
 void modificar__Activo();
 void rentar__Activo(); 
-
+void reporte_activos_empresa();
+void reporte_activos_departamento(); 
+void reporte_activos_rentados_porUsuario(); 
 // ESTRUCTURAS ESTATICAS 
 Matriz_dispersa* MATRIX = new Matriz_dispersa(); 
 CircularDobleTransacciones* CIRCULAR = new CircularDobleTransacciones(); 
 nMatrix* NODO_ACTUAL; 
+CatalogoLsimple* CATALOGO = new CatalogoLsimple();
 
 
 void cargarPrueba() {
+	/*
+	CIRCULAR->add_transaccion("id_activo","p", "p","p","2018-20-05","30 dias"); 
+	CIRCULAR->add_transaccion("id_act555", "p", "p", "p", "2018-20-05", "30 dias");
+	CIRCULAR->add_transaccion("id_act120", "p", "p", "p", "2018-20-05", "30 dias");
+	CIRCULAR->add_transaccion("id_act130", "v", "v", "v", "2020-20-05", "27 dias");
+	CIRCULAR->add_transaccion("id_act138", "ar", "emp", "dep", "2020-20-05", "21 dias");
+	*/
 	Usuario* pablo = new Usuario("p","p", "p");
+	pablo->getArbol_activos()->add_Activo("de_pablo","nel",true);
 	MATRIX->add("p", "p", pablo);
 	Usuario* valeria = new Usuario("v", "v", "v");
+	valeria->getArbol_activos()->add_Activo("de_val", "nel", true);
 	MATRIX->add("v", "v", valeria);
+	Usuario* andres = new Usuario("a", "a", "a");
+	andres->getArbol_activos()->add_Activo("de_andres", "nel", true);
+	MATRIX->add("p", "p", andres);
+	Usuario* argueta = new Usuario("ar", "ar", "ar");
+	MATRIX->add("emp", "dep", argueta);
+	
 }
 
 void iniciar() {
@@ -99,6 +117,7 @@ void menu_admin() {
 		cout << "5: Reporte Transacciones" << endl;
 		// activos de usuario , arboles 
 		cout << "6: Reporte de Activos de un Usuario"<< endl;
+		// circular 
 		cout << "7: Reporte Activos Rentados de un Usuario" << endl;
 
 		cout << "8: Ordenar Transacciones Ascendentemente" << endl; 
@@ -116,10 +135,10 @@ void menu_admin() {
 			MATRIX->getGraphviz(); 
 		}
 		else if (seleccion == '3') {
-
+			reporte_activos_empresa();
 		}
 		else if (seleccion == '4') {
-
+			reporte_activos_departamento(); 
 		}
 		else if (seleccion == '5') {
 			CIRCULAR->getGraphviz(); 
@@ -128,8 +147,7 @@ void menu_admin() {
 			reporte_de_activos_de_un_usuario();
 		}
 		else if (seleccion == '7') {
-
-
+			reporte_activos_rentados_porUsuario(); 
 		}
 		else if (seleccion == '8') {
 			CIRCULAR->OrdenarAsc(); 
@@ -150,7 +168,20 @@ void menu_admin() {
 	}
 }
 
-
+void reporte_activos_rentados_porUsuario() {
+	system("cls");
+	ascii_admin();
+	cout << "Ingresa Nombre de Usuario: " << endl;
+	string us; cin >> us;
+	cout << "Ingresa la Empresa" << endl;
+	string emp; cin >> emp;
+	cout << "Ingresa el departamento" << endl;
+	string depar; cin >> depar;
+	CircularDobleTransacciones* temporal = CIRCULAR->reporteTransaccionesPorUsuario(us,emp,depar);
+	temporal->OrdenarDescen(); 
+	temporal->getGraphviz(); 
+	system("pause");
+}
 
 void crear_usurio() {
 	system("cls");
@@ -307,4 +338,19 @@ void rentar__Activo() {
 
 	system("pause");
 
+}
+
+void reporte_activos_empresa() {
+	system("cls");
+	ascii_admin();
+	string emp = ""; cout << "Ingrese la empresa:" << endl; cin >> emp; 
+	MATRIX->reporteEmpresa(emp);
+	system("pause"); 
+}
+void reporte_activos_departamento() {
+	system("cls");
+	ascii_admin();
+	string depar = ""; cout << "Ingrese el departamento:" << endl; cin >> depar;
+	MATRIX->reporteDepartamento(depar);
+	system("pause");
 }

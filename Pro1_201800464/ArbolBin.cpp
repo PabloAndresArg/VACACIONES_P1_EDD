@@ -13,12 +13,12 @@ using namespace std;
 
 void ArbolBin:: add_Activo(string nom_, string descripcion_, bool disp) {
     string  id_act = this->generarId(); 
-    while (yaExisteEl_id(id_act) || Estatica::CATALOGO->yaExisteEl_id(id_act)) {
+    while (yaExisteEl_id(id_act) || Estatica::CONTROL_IDS->yaExisteEl_id(id_act)) {
         id_act = this->generarId();;
     }
     cout << "ID GENERADO: " + id_act << endl;
-    Estatica::CATALOGO->add(new Navl(new Act(id_act, nom_, descripcion_, disp)));
-    Estatica::CATALOGO->getGraphviz(); 
+    Estatica::CONTROL_IDS->add(new Navl(new Act(id_act, nom_, descripcion_, disp)));
+   // Estatica::CATALOGO->getGraphviz(); 
     this->add(new Navl(new Act(id_act , nom_ , descripcion_ , disp))); 
 }
 
@@ -198,7 +198,7 @@ Navl* ArbolBin::getNodoMinimo(Navl* node) { //le mando un nodo que va ser recorr
 
 void ArbolBin::eliminar(string id) {
     this->raiz = eliminarRecursivo(this->raiz, id);
-    Estatica::CATALOGO->eliminar(id);
+    Estatica::CONTROL_IDS->eliminar(id);
 }
 
 
@@ -310,6 +310,20 @@ void  ArbolBin::getGraphviz() {
     }
 
     
+}
+void ArbolBin:: getGraphvizRepUsuarios(string nombreUsuario) {
+    if (this->getRoot() != NULL) {
+        this->Graph = "";
+        this->indice = 0;
+        this->Graph += "digraph ARBOL_201800464 { rankdir=TB;\n label = \" "+ nombreUsuario +" \"charset = latin1; style = filled;bgcolor = white;color = lightgrey; \n ";
+        this->Graph += "node[fillcolor = black , fontcolor = white , color = chartreuse1 ,style = filled,  shape = record];\n";
+        getGraphviz(this->raiz);
+        Rep* llama = new Rep();
+        llama->graficaArbol(Graph);
+    }
+    else {
+        cout << "arbol vacio :( " << endl;
+    }
 }
 
 void ArbolBin::getGraphviz(Navl* R_actual) {

@@ -33,7 +33,7 @@ public:
 		this->tiempo = "vacio";
 	}
 
-	Transa(string id_transaccion , string id_activo , string nombreU , string dep , string emp , string fecha, string ti) {
+	Transa(string id_transaccion , string id_activo , string nombreU , string emp , string dep , string fecha, string ti) {
 		this->id_transaccion = id_transaccion; 
 		this->id_activo = id_activo; 
 		this->nombreUsuario = nombreU;
@@ -43,7 +43,7 @@ public:
 		this->tiempo = ti; 
 	}
 
-	Transa( string id_activo, string nombreU, string dep, string emp, string fecha, string ti) { // tendria que settar su ide desde fuera 
+	Transa( string id_activo, string nombreU, string emp, string dep, string fecha, string ti) { // tendria que settar su ide desde fuera 
 		this->id_activo = id_activo;
 		this->nombreUsuario = nombreU;
 		this->departamento = dep;

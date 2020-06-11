@@ -11,6 +11,8 @@
 #include"Navl.h"
 #include"ArbolBin.h"
 #include"Act.h"
+#include"Producto.h"
+#include"CatalogoLsimple.h"
 
 using namespace std;
 
@@ -22,82 +24,13 @@ using namespace std;
 
 int main()
 {
-    system("color a");
+    /*system("color a");
     cargarPrueba(); 
-    iniciar(); 
-    /*
-
-    CircularDobleTransacciones* cir = new CircularDobleTransacciones();
-    Transa* n55 = new Transa("55");
-    Transa* n11 = new Transa("11");
-    Transa* n14 = new Transa("14");
-    Transa* n22 = new Transa("22");
-    Transa* n21 = new Transa("21");
-    Transa* n13 = new Transa("13");
-    Transa* n15 = new Transa("15");
-    Transa* n10 = new Transa("10");
-   // cir->add_transaccion("45d", "pablo", "chichi", "MAX", "2020-05-09", "60 dias");
-  
-    cir->add(n55);
-    cir->add(n11);
-    cir->add(n14);
-    cir->add(n22);
-    cir->add(n21);
-   /* cir->add(n13);
-    cir->add(n15);
-    cir->add(n10);*/
-
-   /*
-  
-    cout << "Descendente:" << endl;
-    cir->OrdenarDescen();
-    cir->imprimeparaAdelnate();
-    cout << "Ascendente:" << endl;
-    cir->OrdenarAsc();
-    cir->imprimeparaAdelnate();
-
-    cir->getGraphviz();
-
-    */
-
-    /*
-    ArbolBin* arb = new ArbolBin();
-
-    Navl* n1 = new Navl(new Act("1")); 
-    Navl* n2 = new Navl(new Act("2"));
-    Navl* n3 = new Navl(new Act("3"));
-    Navl* n4 = new Navl(new Act("4"));
-    Navl* n5 = new Navl(new Act("5"));
-    Navl* n9 = new Navl(new Act("9"));
-    arb->add(n2);
-    arb->add(n1);
-    system("cls");
-    arb->add(n3);
-    arb->add(n5);
-    arb->eliminar("1");
-
-    /*arb->add_Activo("CARRO", "PA JUAGAR HOT WHEELS", true);
-    arb->add_Activo("MOTO", "PA JUAGAR HOT WHEELS", true);
-    arb->add_Activo("AVION", "PA JUAGAR HOT WHEELS", true);*/
-
-  //  arb->getGraphviz();
-
-
-
-    /*
-    arb->recorrido_inOrder();
-
-    Navl* buscar = arb->buscar("B301B");
-    if (buscar != NULL) {
-        cout << "lo encontro" << endl; 
-        buscar->acti->id_activ = "A301X";
-    }
-    
-
-
-
-    */
-    
+    iniciar(); */
+   
+    CatalogoLsimple* catalogo = new CatalogoLsimple(); 
+    catalogo->agregaProducto("user","emp","dep","id_activo", "nombre","descripcion");
+    catalogo->MostrarCATALOGO(); 
 
 
 
@@ -166,10 +99,6 @@ int main()
  
   //  matrix->eliminarInterno("CAMPERO", "PETEN", "MOLY");
    
-  
-
-  
-
     /*
     nMatrix* busqueda = new nMatrix("a", "a" , u1);
     busqueda = matrix->BuscarNodo("MACDONALS","PETEN" , "simon");

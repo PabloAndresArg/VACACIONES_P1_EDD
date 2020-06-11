@@ -16,7 +16,7 @@ public:
 	inline NodoDobleC* getInicio() { return this->inicio; }
 	inline NodoDobleC* getUltimo() { return this->ultimo; }
 	inline void vaciar() {this->inicio = NULL;this->ultimo = NULL;this->tamanio = 0;}
-	void add_transaccion(string id_activo, string nombreU, string dep, string emp, string fecha, string ti);
+	void add_transaccion(string id_activo, string nombreU, string emp, string dep, string fecha, string ti);
 	void add(Transa * nuevaTr);
 	// para verificar si mis enlaces estan bien 
 	void getGraphviz();
@@ -39,5 +39,7 @@ public:
 	void OrdenarDescen();
 
 	void cambiarPosiciones(NodoDobleC* , NodoDobleC*);
+
+	CircularDobleTransacciones* reporteTransaccionesPorUsuario(string usuario , string empresa, string  depar);
 };
 

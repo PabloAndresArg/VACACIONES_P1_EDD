@@ -266,7 +266,7 @@ public:
 			char ejecuta[] = "REPORTES\\Arbol201800464_rep.jpg";
 			system(ejecuta);
 			cout << "----- PROCESO TERMINADO CON EXITO ------ " << endl;
-			cin.get();
+			system("pause");
 		}
 		else {
 			cout << "NO GENERA NADA PORQUE LA LISTA ESTA VACIA " << endl;

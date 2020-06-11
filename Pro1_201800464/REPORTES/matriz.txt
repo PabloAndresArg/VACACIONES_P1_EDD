@@ -3,16 +3,28 @@ node[pin = true , shape = box, fontcolor = black  , fillcolor = gray  , width=0.
 charset = latin1;
  style = filled ;
 nodesep = 1.0;
-VAL_00A1BEC8->VAL_00A27490 [ dir=both ,color = white]; 
-VAL_00A1BEC8->VAL_00A27C88 [  dir=both,  color = white]; 
-VAL_00A1BEC8[label = "ROOT", group = -1,pos = "-1,1" ];
-VAL_00A27490->VAL_00A27408 [ dir=both, color = white]; 
-VAL_00A27490[label="jalapa", group = 0,pos = "0,1" ];
-VAL_00A27C88->VAL_00A27408 [ dir=both ,color = white]; 
-VAL_00A27C88[label="max" , group = -1,pos = "-1,0" ];
-VAL_00A27408[ label = "pablo" ,dir=both ,fillcolor = chartreuse1, group = 0,pos = "0,0" ];
-{rank = same; VAL_00A1BEC8 VAL_00A27490 };
+VAL_0124EC28->VAL_01251408 [ dir=both ,color = white]; 
+VAL_0124EC28->VAL_01251490 [  dir=both,  color = white]; 
+VAL_0124EC28[label = "ROOT", group = -1,pos = "-1,1" ];
+VAL_01251408->VAL_01256F68 [ dir=both, color = white]; 
+VAL_01251408->VAL_01257018 [ dir=both, color = white]; 
+VAL_01251408[label="p", group = 0,pos = "0,1" ];
+VAL_01256F68->VAL_01257810 [ dir=both, color = white]; 
+VAL_01256F68[label="v", group = 1,pos = "1,1" ];
+VAL_01251490->VAL_01257018 [ dir=both ,color = white]; 
+VAL_01251490->VAL_012537E8 [  dir=both,  color = white]; 
+VAL_01251490[label="p" , group = -1,pos = "-1,0" ];
+VAL_01257018->VAL_01257810 [ dir=both, color = white]; 
+VAL_01257018[ label = "a" ,dir=both ,fillcolor = chartreuse1, group = 0,pos = "0,0" ];
+VAL_01257810->VAL_01256EE0 [ dir=both, color = white]; 
+VAL_01257810[ label = "ar" ,dir=both ,fillcolor = chartreuse1, group = 0,pos = "0,-1" ];
+VAL_012537E8->VAL_01256EE0 [ dir=both ,color = white]; 
+VAL_012537E8[label="v" , group = -1,pos = "-1,-1" ];
+VAL_01256EE0[ label = "v" ,dir=both ,fillcolor = chartreuse1, group = 1,pos = "1,-1" ];
+{rank = same; VAL_0124EC28 VAL_01251408 VAL_01256F68 };
 
-{rank = same; VAL_00A27C88 VAL_00A27408 };
+{rank = same; VAL_01251490 VAL_01257018 VAL_01257810 };
+
+{rank = same; VAL_012537E8 VAL_01256EE0 };
 
 }
