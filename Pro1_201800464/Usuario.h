@@ -3,6 +3,7 @@
 #include<iostream>
 #include"ArbolBin.h"
 #include"Act.h"
+#include"CatalogoLsimple.h"
 using namespace std; 
 class Usuario
 {
@@ -11,6 +12,8 @@ private:
 	string nombreCompleto; 
 	string pass;
 	ArbolBin* Arbol_activos;
+
+	
 	
 public: 
 	Usuario(string nom_ , string nombreCOm_ , string pass_ ) {

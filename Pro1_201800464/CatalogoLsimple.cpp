@@ -12,10 +12,24 @@ void CatalogoLsimple::agregaProducto(string user, string empresa_, string depart
 	this->ul = n; // voy corriendo el puntero ultimo 
 }
 
-void CatalogoLsimple:: MostrarCATALOGO() {
+void CatalogoLsimple:: MostrarCATALOGO(string us, string empresa_, string dep) {
 	NodoProducto* nav = this->cab; 
 	while (nav != NULL) {
-		cout << "°°° ID: "<<nav->producto->id_activo <<" Nombre: " <<nav->producto->nombre <<" Descripcion: "<<nav->producto->descripcion<<endl; 
+		
+		if ((us.compare(nav->producto->usuario) == 0) && (empresa_.compare(nav->producto->empresa) == 0) && (  dep.compare(nav->producto->departamento) == 0) ) {
+
+		}
+		else {
+		cout << "°°° ID: " << nav->producto->id_activo << " Nombre: " << nav->producto->nombre << " Descripcion: " << nav->producto->descripcion << endl;
+		}
 		nav = nav->next;
 	}
+}
+NodoProducto* CatalogoLsimple:: buscar_del_catalogo(string id_) {
+	NodoProducto* nav = this->cab;
+	while (nav != NULL) {
+		if (nav->producto->id_activo == id_) return nav;
+		nav = nav->next;
+	}
+	return NULL; 
 }

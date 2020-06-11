@@ -1,10 +1,2 @@
-﻿  ArbolBin.cpp
-C:\Users\Pablo\Documents\GitHub\VACACIONES_P1_EDD\Pro1_201800464\ArbolBin.cpp(369,15): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-  Pro1_201800464.cpp
-  Generando código...
-C:\Users\Pablo\Documents\GitHub\VACACIONES_P1_EDD\Pro1_201800464\ArbolBin.cpp(202): warning C4717: 'ArbolBin::eliminar': recursiva para todas las rutas de acceso de control; la función provocará el desbordamiento de la pila en tiempo de ejecución
-C:\Users\Pablo\Documents\GitHub\VACACIONES_P1_EDD\Pro1_201800464\ArbolBin.cpp(351): warning C4715: 'ArbolBin::buscar': no todas las rutas de acceso de control devuelven un valor
-C:\Users\Pablo\Documents\GitHub\VACACIONES_P1_EDD\Pro1_201800464\ArbolBin.cpp(361): warning C4715: 'ArbolBin::buscarRecursivo': no todas las rutas de acceso de control devuelven un valor
-  LINK : no se encontró C:\Users\Pablo\Documents\GitHub\VACACIONES_P1_EDD\Pro1_201800464\Debug\Pro1_201800464.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
-Pro1_201800464.obj : error LNK2005: ya se definió "class CatalogoLsimple * CATALOGO" (?CATALOGO@@3PAVCatalogoLsimple@@A) en ArbolBin.obj
-C:\Users\Pablo\Documents\GitHub\VACACIONES_P1_EDD\Pro1_201800464\Debug\Pro1_201800464.exe : fatal error LNK1169: se encontraron uno o más símbolos definidos simultáneamente
+﻿  CatalogoLsimple.cpp
+  Pro1_201800464.vcxproj -> C:\Users\Pablo\Documents\GitHub\VACACIONES_P1_EDD\Pro1_201800464\Debug\Pro1_201800464.exe

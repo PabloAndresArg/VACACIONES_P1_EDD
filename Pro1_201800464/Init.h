@@ -54,7 +54,11 @@ void cargarPrueba() {
 	MATRIX->add("p", "p", andres);
 	Usuario* argueta = new Usuario("ar", "ar", "ar");
 	MATRIX->add("emp", "dep", argueta);
-	
+
+	CATALOGO = MATRIX->recolectaProductos(CATALOGO);
+	CATALOGO->agregaProducto("userAfuera", "emp", "dep", "id_activoAfuera", "nombre", "descripcion");
+	CATALOGO->MostrarCATALOGO("Nom","EMP","DEP");
+	system("pause");
 }
 
 void iniciar() {
@@ -331,10 +335,27 @@ void rentar__Activo() {
 	system("cls");
 	ascii_user();
 	cout << "CATALOGO PARA RENTAR:" << endl;
-	cout << "				1. Rentar Activo" << endl; 
-	cout << "				2. Regresar     " << endl;
+	CATALOGO = MATRIX->recolectaProductos(CATALOGO);
+	CATALOGO->MostrarCATALOGO(NODO_ACTUAL->getUsuario()->getNomUser() , NODO_ACTUAL->getEmpresa() , NODO_ACTUAL->getDepartamento());
+	cout << "				1. Presiona 1 Rentar Activo" << endl; 
+	cout << "				2. Regresar Con otra tecla al Menu Principal" << endl;
 	char seleccion = ' ';
 	cin >> seleccion;
+	if (seleccion == '1') {
+		string id_a_RENTAR = ""; cout << "Introduzca el id: " << endl; cin >> id_a_RENTAR; 
+		NodoProducto* busq = CATALOGO->buscar_del_catalogo(id_a_RENTAR);
+		if (busq != NULL) {
+			nMatrix* Nodo_del_que_Renta = MATRIX->BuscarNodo(busq->producto->empresa , busq->producto->departamento , busq->producto->usuario);// USUARIO PROPIETARIO 
+			Navl* nArbol = Nodo_del_que_Renta->getUsuario()->getArbol_activos()->buscar(id_a_RENTAR); 
+			nArbol->acti->dispo = false; 
+		}
+		else {
+			cout << "no se encontro el id que ingreso :(" << endl; 
+		}
+	}
+	else {
+	
+	}
 
 	system("pause");
 

@@ -2,6 +2,7 @@
 #include<iostream>
 #include"Navl.h"
 #include"Act.h"
+#include"CatalogoLsimple.h"
 using namespace std;
 class ArbolBin
 {
@@ -9,15 +10,16 @@ private:
 	string Graph;
 	int indice;
 	Navl* raiz;
-	bool yaId;
+//	bool yaId;
 	void mostrar_activos(Navl*);
+	CatalogoLsimple* recolectaProRecursivo(Navl* ,CatalogoLsimple* CATALOGO , string nombreUser, string empresa, string departamento);
 public:
 
 	ArbolBin() {
 		    this->raiz = NULL;
 			this->Graph = "";
 			this->indice = 0;
-			this->yaId = false; 
+			//this->yaId = false; 
 	}
 	inline Navl* getRoot() { return this->raiz; };
 	void add(Navl*);// le reservo memoria de un nodo antes de meterlo al arbol 
@@ -62,6 +64,9 @@ public:
 
 
 	void mostrar_activos();
+
+	// recolecar productos 
+	CatalogoLsimple* recolectaPro(CatalogoLsimple* CATALOGO , string nombreUser , string empresa , string departamento);
 
 };
 

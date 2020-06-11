@@ -16,10 +16,8 @@ public:
 	}
 	void agregaProducto(string user, string empresa_, string departamento_, string id_activo_, string nombre_, string descripcion_);
 	inline void vaciarCatalogo() { this->cab = NULL; this->ul = NULL; }
-	void MostrarCATALOGO();
-	// IMPLEMENTARA EL ACTUALIZAR DESDE ACA
-	//solo necesito insertar desde aca puedo cambiar los atributos bool de ya no disponible de los arboles de los diferentes Usuarios
-
+	void MostrarCATALOGO(string nombre , string empresa_ , string dep);
+	NodoProducto* buscar_del_catalogo(string id_); 
 
 };
 

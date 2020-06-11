@@ -24,17 +24,30 @@ using namespace std;
 
 int main()
 {
-    /*system("color a");
+    system("color a");
     cargarPrueba(); 
-    iniciar(); */
+    iniciar(); 
    
+    /*
     CatalogoLsimple* catalogo = new CatalogoLsimple(); 
-    catalogo->agregaProducto("user","emp","dep","id_activo", "nombre","descripcion");
-    catalogo->MostrarCATALOGO(); 
-
-
-
+    Matriz_dispersa* matrix = new Matriz_dispersa();
     
+    Usuario* pablo = new Usuario("p", "p", "p");
+    pablo->getArbol_activos()->add_Activo("de_pablo", "nel", true);
+    matrix->add("p", "p", pablo);
+    Usuario* valeria = new Usuario("v", "v", "v");
+    valeria->getArbol_activos()->add_Activo("de_val", "nel", true);
+    matrix->add("v", "v", valeria);
+    Usuario* andres = new Usuario("a", "a", "a");
+    andres->getArbol_activos()->add_Activo("de_andres", "nel", true);
+    matrix->add("p", "p", andres);
+    Usuario* argueta = new Usuario("ar", "ar", "ar");
+    matrix->add("emp", "dep", argueta);
+
+
+    catalogo = matrix->recolectaProductos(catalogo);
+    catalogo->agregaProducto("userAfuera", "emp", "dep", "afuera", "afuera", "descripcion");
+    catalogo->MostrarCATALOGO();*/
     
 
 

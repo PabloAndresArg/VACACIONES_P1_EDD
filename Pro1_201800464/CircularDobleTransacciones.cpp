@@ -40,20 +40,13 @@ void CircularDobleTransacciones::add(Transa * nuevaTr ) {
 
 
 void CircularDobleTransacciones::imprimeparaAdelnate() {
-	cout << "XXXXXXXXXXXXXXXXXXXX TRANSACCIONES XXXXXXXXXXXXXXXXXXXXXXXXXXX" << endl;
+	cout << "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" << endl;
+	
 	if (this->inicio != NULL) {
 		NodoDobleC* aux = this->inicio;
-		int numeral = 1;
-		int formato = 0;
 		for (int i = this->tamanio; i > 0; i--)
 		{
 			cout << " = "  << aux->tra->getId_tra()<< "     ";
-			numeral++;
-			formato++;
-			if (formato == 5) {
-				cout << endl;
-				formato = 0;
-			}
 			aux = aux->sig;
 		}
 		cout << endl;
@@ -392,7 +385,6 @@ void CircularDobleTransacciones::OrdenarDescen() {
 
 CircularDobleTransacciones* CircularDobleTransacciones :: reporteTransaccionesPorUsuario(string usuario, string empresa, string  depar) {
 	CircularDobleTransacciones* reporte = new CircularDobleTransacciones(); 
-
 	if (this->inicio == NULL) return reporte;
 	NodoDobleC* navegador = this->inicio;
 	for (int x = 0; x < this->tamanio; x++) {
@@ -402,5 +394,4 @@ CircularDobleTransacciones* CircularDobleTransacciones :: reporteTransaccionesPo
 		navegador = navegador->sig;
 	}
 	return reporte;
-
 }

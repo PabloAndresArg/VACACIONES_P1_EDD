@@ -504,7 +504,8 @@ Navl* ArbolBin:: rot_s_derecha(Navl* pivote_menos_2) { // OJO SIEMPRE VA TENER H
     antes_hijo_izquierdo->set_Mayor_Altura(GET_Al(antes_hijo_izquierdo->de), GET_Al(antes_hijo_izquierdo->iz));
     /*
     dame_la_altura_y_balance(pivote_menos_2);
-    dame_la_altura_y_balance(antes_hijo_izquierdo);*/
+    dame_la_altura_y_balance(antes_hijo_izquierdo);
+    */
     
     return antes_hijo_izquierdo; // retorno la nueva root 
 }
@@ -560,4 +561,28 @@ void ArbolBin ::  mostrar_activos(Navl* actual) {
     if (actual->de != NULL) {
         mostrar_activos(actual->de);
     }
+}
+
+
+
+CatalogoLsimple* ArbolBin:: recolectaPro(CatalogoLsimple* CATALOGO, string nombreUser, string empresa, string departamento) {
+    if (this->raiz != NULL) {
+        CATALOGO = recolectaProRecursivo(this->raiz, CATALOGO,  nombreUser,  empresa,  departamento);
+    }
+    return CATALOGO;
+}
+
+CatalogoLsimple* ArbolBin :: recolectaProRecursivo(Navl* actual, CatalogoLsimple* CATALOGO, string nombreUser, string empresa, string departamento) {
+    if (actual->iz != NULL) {
+       CATALOGO = recolectaProRecursivo(actual->iz, CATALOGO, nombreUser, empresa, departamento);
+    }
+
+    if (actual->acti->dispo == true) {
+        CATALOGO->agregaProducto(nombreUser, empresa, departamento, actual->acti->id_activ, actual->acti->nombre, actual->acti->descripcion);
+    }
+  
+    if (actual->de != NULL) {
+        CATALOGO = recolectaProRecursivo(actual->de, CATALOGO, nombreUser, empresa, departamento);
+    }
+    return CATALOGO; 
 }

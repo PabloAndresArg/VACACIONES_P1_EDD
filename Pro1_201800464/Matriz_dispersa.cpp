@@ -605,4 +605,33 @@ void Matriz_dispersa :: reporteDepartamento(string departamento_colum) {
 
 CatalogoLsimple* Matriz_dispersa::recolectaProductos(CatalogoLsimple* CATALOGO = new CatalogoLsimple()) {// punto de inicio
 
+
+	nMatrix* col_principal = this->root->getDown();// que comience desde los usuarios 
+	nMatrix* aux = NULL;
+	nMatrix* aux3D = NULL;
+	while (col_principal != NULL) {
+		if (col_principal->getDer() != NULL) {
+			aux = col_principal->getDer();
+			while (aux != NULL) {
+					if (aux->getBehind() != NULL) {// buscando en 3D 
+						aux3D = aux;
+						while (aux3D != NULL) {
+							//cout << "Usuario: " << aux3D->getUsuario()->getNomUser() << endl;
+							aux3D->getUsuario()->getArbol_activos()->recolectaPro(CATALOGO , aux3D->getUsuario()->getNomUser() , aux3D->getEmpresa() , aux3D->getDepartamento() ); // entro al arbol de cada usuario 
+							aux3D = aux3D->getBehind(); 
+						}
+					}
+					else {
+						 //cout << "Usuario: " << aux->getUsuario()->getNomUser() << endl;
+						 aux->getUsuario()->getArbol_activos()->recolectaPro(CATALOGO, aux->getUsuario()->getNomUser(), aux->getEmpresa(), aux->getDepartamento()); // entro al arbol de cada usuario 
+					}
+				aux = aux->getDer();
+			}
+		}
+		col_principal = col_principal->getDown();
+	}
+
+
+
+	return CATALOGO;
 }
