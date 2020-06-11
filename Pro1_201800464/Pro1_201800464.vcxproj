@@ -152,6 +152,7 @@
     <ClInclude Include="ArbolBin.h" />
     <ClInclude Include="AsciiArte.h" />
     <ClInclude Include="CircularDobleTransacciones.h" />
+    <ClInclude Include="Estatic.h" />
     <ClInclude Include="Init.h" />
     <ClInclude Include="Matriz_dispersa.h" />
     <ClInclude Include="Navl.h" />

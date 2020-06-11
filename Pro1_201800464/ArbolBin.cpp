@@ -1,5 +1,5 @@
 #include "ArbolBin.h"
-
+#include"Estatic.h"
 #include"Navl.h"
 #include<iostream>
 #include<stdlib.h>
@@ -9,12 +9,16 @@
 #include<Windows.h>
 using namespace std;
 
+
+
 void ArbolBin:: add_Activo(string nom_, string descripcion_, bool disp) {
     string  id_act = this->generarId(); 
-    while (yaExisteEl_id(id_act)) {
+    while (yaExisteEl_id(id_act) || Estatica::CATALOGO->yaExisteEl_id(id_act)) {
         id_act = this->generarId();;
     }
     cout << "ID GENERADO: " + id_act << endl;
+    Estatica::CATALOGO->add(new Navl(new Act(id_act, nom_, descripcion_, disp)));
+    Estatica::CATALOGO->getGraphviz(); 
     this->add(new Navl(new Act(id_act , nom_ , descripcion_ , disp))); 
 }
 
@@ -57,17 +61,17 @@ Navl* ArbolBin::recursive_add(Navl* actual, Navl* nuevo) {
 
 
     int fact = GET_MI_FE(actual);
-    this->dame_la_altura_y_balance(actual);// solo imprime mis datos de informacion 
+   // this->dame_la_altura_y_balance(actual);// solo imprime mis datos de informacion 
     if (fact == -2 && GET_MI_FE(actual->iz) == -1) {// si es -2 fijo tengo hijo izquierdo entonces pregunto 
-        cout << "rotacion simple a la derecha :)" << endl;
+       // cout << "rotacion simple a la derecha :)" << endl;
         actual = rot_s_derecha(actual);
     }
     else if (fact == 2 && GET_MI_FE(actual->de) == 1) {
-        cout << "rotacion simple a la izquierda :)" << endl;
+        //cout << "rotacion simple a la izquierda :)" << endl;
         actual = rot_s_izquierda(actual);
     }
     else if (fact == 2 && GET_MI_FE(actual->de) == -1) {
-        cout << "rotacion doble a la derecha , izquierda :)" << endl;
+       // cout << "rotacion doble a la derecha , izquierda :)" << endl;
         /*      X fe == 2
                         X fe == -1
                     X
@@ -81,7 +85,7 @@ Navl* ArbolBin::recursive_add(Navl* actual, Navl* nuevo) {
         */
     }
     else if (fact == -2 && GET_MI_FE(actual->iz) == 1) {
-        cout << "rotacion doble izquierda , derecha :)" << endl;
+       // cout << "rotacion doble izquierda , derecha :)" << endl;
         /*     9 fe == -2
         2 fe == +1
               5 fe == 0 
@@ -194,6 +198,7 @@ Navl* ArbolBin::getNodoMinimo(Navl* node) { //le mando un nodo que va ser recorr
 
 void ArbolBin::eliminar(string id) {
     this->raiz = eliminarRecursivo(this->raiz, id);
+    Estatica::CATALOGO->eliminar(id);
 }
 
 
@@ -228,6 +233,7 @@ Navl* ArbolBin::eliminarRecursivo(Navl* raiz, string id) {
             else {
                 raiz = revisar;//reemplaza 
             }
+            cout << "Activo eliminado :D" << endl;// si llega aca se que se va eliminar  
         }
         else {
             Navl* revisar = this->getNodoMinimo(raiz->de); // menor de lOs mayores 
@@ -244,17 +250,17 @@ Navl* ArbolBin::eliminarRecursivo(Navl* raiz, string id) {
 
 
     int fact = GET_MI_FE(raiz);
-    this->dame_la_altura_y_balance(raiz);// solo imprime mis datos de informacion 
+
     if (fact == -2 && GET_MI_FE(raiz->iz) == -1) {// si es -2 fijo tengo hijo izquierdo entonces pregunto 
-        cout << "rotacion simple a la derecha :)" << endl;
+       // cout << "rotacion simple a la derecha :)" << endl;
         raiz = rot_s_derecha(raiz);
     }
     else if (fact == 2 && GET_MI_FE(raiz->de) == 1) {
-        cout << "rotacion simple a la izquierda :)" << endl;
+      //  cout << "rotacion simple a la izquierda :)" << endl;
         raiz = rot_s_izquierda(raiz);
     }
     else if (fact == 2 && GET_MI_FE(raiz->de) == -1) {
-        cout << "rotacion doble a la derecha , izquierda :)" << endl;
+      //  cout << "rotacion doble a la derecha , izquierda :)" << endl;
         /*      X fe == 2
                         X fe == -1
                     X
@@ -268,7 +274,7 @@ Navl* ArbolBin::eliminarRecursivo(Navl* raiz, string id) {
         */
     }
     else if (fact == -2 && GET_MI_FE(raiz->iz) == 1) {
-        cout << "rotacion doble izquierda , derecha :)" << endl;
+       // cout << "rotacion doble izquierda , derecha :)" << endl;
         /*     9 fe == -2
         2 fe == +1
               5 fe == 0
@@ -482,7 +488,7 @@ Navl* ArbolBin:: rot_s_derecha(Navl* pivote_menos_2) { // OJO SIEMPRE VA TENER H
     // actualiza las  alturas de mi pivote y del que antes era su hijo izquierdo  
     pivote_menos_2->set_Mayor_Altura(  GET_Al(pivote_menos_2->de), GET_Al(pivote_menos_2->iz)  );// indiferente el orden en que mande las alturas igual  le asigna el mayor
     antes_hijo_izquierdo->set_Mayor_Altura(GET_Al(antes_hijo_izquierdo->de), GET_Al(antes_hijo_izquierdo->iz));
-    /*cout << "despues de rotacion: " << endl; 
+    /*
     dame_la_altura_y_balance(pivote_menos_2);
     dame_la_altura_y_balance(antes_hijo_izquierdo);*/
     
@@ -498,8 +504,46 @@ Navl* ArbolBin::rot_s_izquierda(Navl* pivote_menos_2) {// siempre tendre hijo de
    
     pivote_menos_2->set_Mayor_Altura(GET_Al(pivote_menos_2->de), GET_Al(pivote_menos_2->iz));// indiferente el orden en que mande las alturas igual  le asigna el mayor
     antes_hijo_derecho->set_Mayor_Altura(GET_Al(antes_hijo_derecho->de), GET_Al(antes_hijo_derecho->iz));
-    cout << "despues de rotacion: " << endl;
-    dame_la_altura_y_balance(pivote_menos_2);
-    dame_la_altura_y_balance(antes_hijo_derecho);
+
+  /*  dame_la_altura_y_balance(pivote_menos_2);
+    dame_la_altura_y_balance(antes_hijo_derecho);*/
     return antes_hijo_derecho;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
+                         PARA LA LOGICA 
+
+*/
+
+void ArbolBin::mostrar_activos() {
+    cout << "********************* LISTADO DE ACTIVOS ******************************" << endl;
+    if (this->getRoot() == NULL ) {
+        cout << "POR EL MOMENTO NO HAY ACTIVOS" << endl; 
+    }
+    else {
+        mostrar_activos(this->raiz);
+    } 
+    cout << endl; 
+    cout << "***********************************************************************" << endl;
+}
+void ArbolBin ::  mostrar_activos(Navl* actual) {
+    if (actual->iz != NULL) {
+        mostrar_activos(actual->iz);
+    }
+
+    cout <<"ID: "<<actual->acti->id_activ << "  NOMBRE: "<<actual->acti->nombre;
+
+    if (actual->de != NULL) {
+        mostrar_activos(actual->de);
+    }
 }

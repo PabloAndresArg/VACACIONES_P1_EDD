@@ -239,6 +239,8 @@ public:
 			system(eje);
 			char abre[] = "REPORTES\\matriz.jpg";
 			system(abre);
+			cout << "----- GRAFO GENERADO ------ " << endl;
+			cin.get();
 		}
 	}
 

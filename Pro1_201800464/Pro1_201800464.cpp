@@ -22,6 +22,10 @@ using namespace std;
 
 int main()
 {
+    system("color a");
+    cargarPrueba(); 
+    iniciar(); 
+    /*
 
     CircularDobleTransacciones* cir = new CircularDobleTransacciones();
     Transa* n55 = new Transa("55");
@@ -43,7 +47,7 @@ int main()
     cir->add(n15);
     cir->add(n10);*/
 
-   
+   /*
   
     cout << "Descendente:" << endl;
     cir->OrdenarDescen();
@@ -54,7 +58,7 @@ int main()
 
     cir->getGraphviz();
 
-    
+    */
 
     /*
     ArbolBin* arb = new ArbolBin();
@@ -94,8 +98,8 @@ int main()
 
     */
     
-    //iniciar(); 
-    /*
+
+
 
     
     
@@ -106,7 +110,7 @@ int main()
 
 
    
-
+    /*
     Usuario* u1 = new Usuario("peco", "Pablo andres Arguerta Hernandez" , "contra");
     Usuario* u2 = new Usuario("val", "Pablo andres Arguerta Hernandez", "contra");
     Usuario* u3 = new Usuario("Espino", "Pablo andres Arguerta Hernandez", "contra");
@@ -187,7 +191,12 @@ int main()
     matrix->imprimirSolo3D();
     */
   
-  
+
+
+
+
+
+
 
     system("pause");
 }

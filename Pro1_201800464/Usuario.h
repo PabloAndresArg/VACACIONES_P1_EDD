@@ -1,7 +1,7 @@
 #pragma once
 #include<string>
 #include<iostream>
-#include<vector>
+#include"ArbolBin.h"
 #include"Act.h"
 using namespace std; 
 class Usuario
@@ -10,14 +10,15 @@ private:
 	string nomUser; 
 	string nombreCompleto; 
 	string pass;
-	vector<Act> vector_de_nodos;
+	ArbolBin* Arbol_activos;
+	ArbolBin* Arbol_rentados; 
 	
 public: 
 	Usuario(string nom_ , string nombreCOm_ , string pass_ ) {
 		this->nomUser = nom_;
 		this->nombreCompleto = nombreCOm_;
 		this->pass = pass_;
-
+		this->Arbol_activos = new ArbolBin();
 	}
 
 	string getNomUser() {
@@ -29,7 +30,12 @@ public:
 	string getNombreCompleto() {
 		return this->nombreCompleto; 
 	}
-
+	ArbolBin* getArbol_activos() {
+		return this->Arbol_activos;
+	}
+	ArbolBin* getArbol_Rentados() {
+		return this->Arbol_rentados;
+	}
 	void setNomUser(string algo) {
 		this->nomUser = algo; 
 	}

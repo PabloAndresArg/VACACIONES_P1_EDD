@@ -62,6 +62,6 @@ public:
 	};
 	
 	void getGraphviz();
-	void add(string dep_fila, string  emp_col, Usuario* usuario);
+	void add(string empresa_fila, string  dep, Usuario* usuario);
 };
 

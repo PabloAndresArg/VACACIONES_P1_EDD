@@ -6,15 +6,15 @@ using namespace std;
 void ascii_inicio() {
     cout << "                                                                                     " << endl;
     cout << "            XXXXXXXXXXXXXX XXXXXXXXXXXXXX XXXXXXXXXXXXXX XXXXXXXXXXXXXXXX   XXXXXXXXXXXXXX " << endl;
-    cout << "            XX**********XX XX**********XX XX**********XX XX************XX   XX**********XX " << endl;
-    cout << "            XX**XXXXXXXXXX XXXXXX**XXXXXX XX**XXXXXX**XX XX**XXXXXXXX**XX   XXXXXX**XXXXXX " << endl;
-    cout << "            XX**XX             XX**XX     XX**XX  XX**XX XX**XX    XX**XX       XX**XX     " << endl;
-    cout << "            XX**XXXXXXXXXX     XX**XX     XX**XXXXXX**XX XX**XXXXXXXX**XX       XX**XX     " << endl;
-    cout << "            XX**********XX     XX**XX     XX**********XX XX************XX       XX**XX     " << endl;
-    cout << "            XXXXXXXXXX**XX     XX**XX     XX**XXXXXX**XX XX**XXXXXX**XXXX       XX**XX     " << endl;
-    cout << "                    XX**XX     XX**XX     XX**XX  XX**XX XX**XX  XX**XX         XX**XX     " << endl;
-    cout << "            XXXXXXXXXX**XX     XX**XX     XX**XX  XX**XX XX**XX  XX**XXXXXX     XX**XX     " << endl;
-    cout << "            XX**********XX     XX**XX     XX**XX  XX**XX XX**XX  XX******XX     XX**XX     " << endl;
+    cout << "            XX          XX XX          XX XX          XX XX            XX   XX          XX " << endl;
+    cout << "            XX  XXXXXXXXXX XXXXXX  XXXXXX XX  XXXXXX  XX XX  XXXXXXXX  XX   XXXXXX  XXXXXX " << endl;
+    cout << "            XX  XX             XX  XX     XX  XX  XX  XX XX  XX    XX  XX       XX  XX     " << endl;
+    cout << "            XX  XXXXXXXXXX     XX  XX     XX  XXXXXX  XX XX  XXXXXXXX  XX       XX  XX     " << endl;
+    cout << "            XX          XX     XX  XX     XX          XX XX            XX       XX  XX     " << endl;
+    cout << "            XXXXXXXXXX  XX     XX  XX     XX  XXXXXX  XX XX  XXXXXX  XXXX       XX  XX     " << endl;
+    cout << "                    XX  XX     XX  XX     XX  XX  XX  XX XX  XX  XX  XX         XX  XX     " << endl;
+    cout << "            XXXXXXXXXX  XX     XX  XX     XX  XX  XX  XX XX  XX  XX  XXXXXX     XX  XX     " << endl;
+    cout << "            XX          XX     XX  XX     XX  XX  XX  XX XX  XX  XX      XX     XX  XX     " << endl;
     cout << "            XXXXXXXXXXXXXX     XXXXXX     XXXXXX  XXXXXX XXXXXX  XXXXXXXXXX     XXXXXX     " << endl;
     cout << "                                                                                     " << endl;
     cout << endl;
@@ -38,6 +38,27 @@ void ascii_login() {
     cout << "                                                                                            " << endl;
     cout << endl;
 }
+
+
+void ascii_admin() {
+
+
+    cout << "                                                                                           " << endl;
+    cout << "    XXXXXXXXXXXXXX XXXXXXXXXXXX   XXXXXX          XXXXXX XXXXXXXXXX XXXXXX          XXXXXX " << endl;
+    cout << "    XX          XX XX        XXXX XX  XXXXXXXXXXXXXX  XX XX      XX XX  XXXXXXXXXX  XX  XX " << endl;
+    cout << "    XX  XXXXXX  XX XX  XXXX    XX XX                  XX XXXX  XXXX XX          XX  XX  XX " << endl;
+    cout << "    XX  XX  XX  XX XX  XX  XX  XX XX  XXXXXX  XXXXXX  XX   XX  XX   XX  XXXXXX  XX  XX  XX " << endl;
+    cout << "    XX  XXXXXX  XX XX  XX  XX  XX XX  XX  XX  XX  XX  XX   XX  XX   XX  XX  XX  XX  XX  XX " << endl;
+    cout << "    XX          XX XX  XX  XX  XX XX  XX  XX  XX  XX  XX   XX  XX   XX  XX  XX  XX  XX  XX " << endl;
+    cout << "    XX  XXXXXX  XX XX  XX  XX  XX XX  XX  XXXXXX  XX  XX   XX  XX   XX  XX  XX  XX  XX  XX " << endl;
+    cout << "    XX  XX  XX  XX XX  XX  XX  XX XX  XX          XX  XX   XX  XX   XX  XX  XX  XXXXXX  XX " << endl;
+    cout << "    XX  XX  XX  XX XX  XXXX    XX XX  XX          XX  XX XXXX  XXXX XX  XX  XX          XX " << endl;
+    cout << "    XX  XX  XX  XX XX        XXXX XX  XX          XX  XX XX      XX XX  XX  XXXXXXXXXX  XX " << endl;
+    cout << "    XXXXXX  XXXXXX XXXXXXXXXXXX   XXXXXX          XXXXXX XXXXXXXXXX XXXXXX          XXXXXX " << endl;
+    cout << "                                                                                           " << endl;
+    cout << endl;
+}
+
 
 void ascii_carnet() {
 
@@ -69,4 +90,23 @@ void ascii_carnet() {
     cout << "� OOOOOOOOOOOOOO같같같같캯OOOOO캯OOOOOOOOOOOOO같같같같캯OOOOO�" << endl;
     cout << "같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같같" << endl;
     cout << endl;
+}
+
+
+void ascii_user() {
+
+    cout << "                                                                       " << endl;
+    cout << "       XXXXXX  XXXXXX XXXXXXXXXXXXXX XXXXXXXXXXXXXX XXXXXXXXXXXXXXXX   " << endl;
+    cout << "       XX  XX  XX  XX XX          XX XX          XX XX            XX   " << endl;
+    cout << "       XX  XX  XX  XX XX  XXXXXXXXXX XX  XXXXXXXXXX XX  XXXXXXXX  XX   " << endl;
+    cout << "       XX  XX  XX  XX XX  XX         XX  XX         XX  XX    XX  XX   " << endl;
+    cout << "       XX  XX  XX  XX XX  XXXXXXXXXX XX  XXXXXXXXXX XX  XXXXXXXX  XX   " << endl;
+    cout << "       XX  XX  XX  XX XX          XX XX          XX XX            XX   " << endl;
+    cout << "       XX  XX  XX  XX XXXXXXXXXX  XX XX  XXXXXXXXXX XX  XXXXXX  XXXX   " << endl;
+    cout << "       XX  XX  XX  XX         XX  XX XX  XX         XX  XX  XX  XX     " << endl;
+    cout << "       XX  XXXXXX  XX XXXXXXXXXX  XX XX  XXXXXXXXXX XX  XX  XX  XXXXXX " << endl;
+    cout << "       XX          XX XX          XX XX          XX XX  XX  XX      XX " << endl;
+    cout << "       XXXXXXXXXXXXXX XXXXXXXXXXXXXX XXXXXXXXXXXXXX XXXXXX  XXXXXXXXXX " << endl;
+    cout << "                                                                       " << endl;
+    cout << endl; 
 }

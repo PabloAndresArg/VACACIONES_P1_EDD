@@ -10,7 +10,7 @@ private:
 	int indice;
 	Navl* raiz;
 	bool yaId;
-	
+	void mostrar_activos(Navl*);
 public:
 
 	ArbolBin() {
@@ -60,6 +60,8 @@ public:
 	Navl* rot_s_derecha(Navl*);
 	Navl* rot_s_izquierda(Navl*); 
 
+
+	void mostrar_activos();
 
 };
 

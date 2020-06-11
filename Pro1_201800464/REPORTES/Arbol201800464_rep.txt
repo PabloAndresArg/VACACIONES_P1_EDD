@@ -1,9 +1,7 @@
 digraph ARBOL_201800464 { rankdir=TB;
  label = " ARBOL AVL "charset = latin1; style = filled;bgcolor = white;color = lightgrey; 
  node[fillcolor = black , fontcolor = white , color = chartreuse1 ,style = filled,  shape = record];
-3[label = " <C0>|ID:  3\nNombre:  PRUEBA|<C1>" ];   
- 3:C0->2 [arrowhead = none color = black];   
- 2[label = " <C0>|ID:  2\nNombre:  PRUEBA|<C1>" ];   
- 3:C1->5 [arrowhead = none color = black];   
- 5[label = " <C0>|ID:  5\nNombre:  PRUEBA|<C1>" ];   
+vey94q33ed0t12v[label = " <C0>|ID:  vey94q33ed0t12v\nNombre:  a|<C1>" ];   
+ vey94q33ed0t12v:C0->v8jtbi3vwjqq33v [arrowhead = none color = black];   
+ v8jtbi3vwjqq33v[label = " <C0>|ID:  v8jtbi3vwjqq33v\nNombre:  jiji|<C1>" ];   
  }
