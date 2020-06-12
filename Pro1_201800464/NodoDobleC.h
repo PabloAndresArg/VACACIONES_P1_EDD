@@ -8,6 +8,6 @@ public:
 	Transa* tra;
 	NodoDobleC* ant;
 	NodoDobleC* sig;
-	NodoDobleC() { this->ant = NULL; this->sig = NULL; }
-	NodoDobleC(Transa* transaccion_) { this->tra = transaccion_; }
+	inline NodoDobleC() { this->tra = NULL; this->ant = NULL; this->sig = NULL; }
+	inline NodoDobleC(Transa* transaccion_) { this->tra = transaccion_; this->ant = NULL; this->sig = NULL;}
 };

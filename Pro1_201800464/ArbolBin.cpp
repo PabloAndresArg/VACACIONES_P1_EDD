@@ -198,7 +198,7 @@ Navl* ArbolBin::getNodoMinimo(Navl* node) { //le mando un nodo que va ser recorr
 
 void ArbolBin::eliminar(string id) {
     this->raiz = eliminarRecursivo(this->raiz, id);
-    Estatica::CONTROL_IDS->eliminar(id);
+    Estatica::CONTROL_IDS->eliminarRecursivo(CONTROL_IDS->getRoot(), id);
 }
 
 
@@ -233,7 +233,7 @@ Navl* ArbolBin::eliminarRecursivo(Navl* raiz, string id) {
             else {
                 raiz = revisar;//reemplaza 
             }
-            cout << "Activo eliminado :D" << endl;// si llega aca se que se va eliminar  
+          //  cout << "Activo eliminado :D" << endl;// si llega aca se que se va eliminar  
         }
         else {
             Navl* revisar = this->getNodoMinimo(raiz->de); // menor de lOs mayores 
@@ -556,7 +556,7 @@ void ArbolBin ::  mostrar_activos(Navl* actual) {
         mostrar_activos(actual->iz);
     }
 
-    cout <<"ID: "<<actual->acti->id_activ << "  NOMBRE: "<<actual->acti->nombre;
+    cout <<"ID: "<<actual->acti->id_activ << "  NOMBRE: "<<actual->acti->nombre << " Descripcion: "<< actual->acti->descripcion << endl;
 
     if (actual->de != NULL) {
         mostrar_activos(actual->de);

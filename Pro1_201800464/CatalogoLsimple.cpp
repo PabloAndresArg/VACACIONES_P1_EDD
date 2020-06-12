@@ -41,7 +41,11 @@ void CatalogoLsimple::mostrarMisRentas() {
 NodoProducto* CatalogoLsimple:: buscar_del_catalogo(string id_) {
 	NodoProducto* nav = this->cab;
 	while (nav != NULL) {
-		if (nav->producto->id_activo == id_) return nav;
+		//cout << nav->producto->id_activo << " == " << id_ <<endl; 
+		if (nav->producto->id_activo.compare(id_) == 0) {
+			//cout << "lo encontro:" << endl; 
+			return nav;
+		}
 		nav = nav->next;
 	}
 	return NULL; 
@@ -57,7 +61,7 @@ void CatalogoLsimple::devolverProducto(string id_) {
 			if (this->cab->producto->id_activo.compare(id_) == 0)
 			{
 
-				cout << "\neliminando la cabeza se la simple" << endl;
+			//	cout << "\neliminando la cabeza se la simple" << endl;
 				if (this->cab->next == NULL) this->cab = NULL;
 				else this->cab = this->cab->next;
 
@@ -66,12 +70,12 @@ void CatalogoLsimple::devolverProducto(string id_) {
 			else {
 				if (nav->next != NULL)
 				{
-					cout << "\neliminando en medio " << endl;
+				//	cout << "\neliminando en medio " << endl;
 					ant->next = nav->next;
 					nav = NULL;
 				}
 				else {
-					cout << "\neliminando el ultimo" << endl;
+				//	cout << "\neliminando el ultimo" << endl;
 					ant->next = NULL;
 					nav = NULL;
 				}

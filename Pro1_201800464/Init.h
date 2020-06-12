@@ -48,17 +48,18 @@ void cargarPrueba() {
 	*/
 	Usuario* pablo = new Usuario("p","p", "p");
 	pablo->getArbol_activos()->add_Activo("de_pablo","nel",true);
+
 	MATRIX->add("p", "p", pablo);
 	Usuario* valeria = new Usuario("v", "v", "v");
 	valeria->getArbol_activos()->add_Activo("de_val", "nel", true);
+	valeria->getArbol_activos()->add_Activo("de_valeria", "jeje", true);
+	valeria->getArbol_activos()->add_Activo("Muebles", "pa_tares_mueblerias_val", true);
 	MATRIX->add("v", "v", valeria);
 	Usuario* andres = new Usuario("a", "a", "a");
 	andres->getArbol_activos()->add_Activo("de_andres", "nel", true);
 	MATRIX->add("p", "p", andres);
 	Usuario* argueta = new Usuario("ar", "ar", "ar");
 	MATRIX->add("emp", "dep", argueta);
-
-
 	system("pause");
 }
 
@@ -81,6 +82,8 @@ void iniciar() {
 		}
 	}
 }
+
+
 void menu_login() {
 	system("cls");
 	ascii_login();
@@ -104,7 +107,9 @@ void menu_login() {
 	system("pause");
 }
 
-void menu_admin() { // HACER MODIFICAR USUARIO ??? 
+//------------------------------------------------------ LOGICA DE ADMINISTRADOR  
+
+void menu_admin() {  
 	bool estoy_en_menu = true; 
 	while (estoy_en_menu) {
 		system("cls");
@@ -156,12 +161,12 @@ void menu_admin() { // HACER MODIFICAR USUARIO ???
 		}
 		else if (seleccion == '8') {
 			CIRCULAR->OrdenarAsc(); 
-			cout << "Ordenada Ascendentemente correctamente" << endl; 
+			cout << "Ordenada Ascendentemente con Exito" << endl; 
 			system("pause");
 		}
 		else if (seleccion == '9') {
 			CIRCULAR->OrdenarDescen();
-			cout << "Ordenada Descendentemente correctamente" << endl;
+			cout << "Ordenada Descendentemente con Exito" << endl;
 			system("pause");
 		}
 		else {
@@ -171,6 +176,23 @@ void menu_admin() { // HACER MODIFICAR USUARIO ???
 		}
 		
 	}
+}
+
+void reporte_activos_empresa() {
+	system("cls");
+	ascii_admin();
+	string emp = ""; cout << "Ingrese la empresa:" << endl; cin >> emp;
+	MATRIX->reporteEmpresa(emp);
+	cout << endl;
+	system("pause");
+}
+void reporte_activos_departamento() {
+	system("cls");
+	ascii_admin();
+	string depar = ""; cout << "Ingrese el departamento:" << endl; cin >> depar;
+	MATRIX->reporteDepartamento(depar);
+	cout << endl;
+	system("pause");
 }
 
 void reporte_activos_rentados_porUsuario() {
@@ -188,6 +210,33 @@ void reporte_activos_rentados_porUsuario() {
 	system("pause");
 }
 
+void reporte_de_activos_de_un_usuario() {
+	system("cls");
+	ascii_admin();
+	cout << "REPORTE ACTIVOS DE UN USUARIO:" << endl;
+	cout << "Ingresa Nombre de Usuario: " << endl;
+	string us; cin >> us;
+	cout << "Ingresa la Empresa" << endl;
+	string emp; cin >> emp;
+	cout << "Ingresa el departamento" << endl;
+	string depar; cin >> depar;
+	NODO_ACTUAL = MATRIX->BuscarNodo(emp, depar, us);
+	if (NODO_ACTUAL != NULL) {
+		NODO_ACTUAL->getUsuario()->getArbol_activos()->getGraphviz();
+	}
+	else {
+		cout << endl;
+		cout << "********************************************************" << endl;
+		cout << "** usuario no encontrado :( " << endl;
+		cout << "********************************************************" << endl;
+		cout << endl;
+		system("pause");
+	}
+}
+
+
+
+//------------------------------------------------------ LOGICA DE USUARIOS 
 void crear_usurio() {
 	system("cls");
 	ascii_admin();
@@ -195,8 +244,9 @@ void crear_usurio() {
 	string us; cin >> us;
 	cout << "Ingresa un Password: " << endl;
 	string contra; cin >> contra; 
-	cout << "ingrese nombre Completo" << endl; 
-	string nombreCOm; cin >> nombreCOm;
+	cout << "ingrese Nombre Completo" << endl;
+	cin.ignore();// siempre hay un cin previo por eso limpio el buffer 
+	string nombreCOm; getline(cin, nombreCOm);
 	cout << "Ingresa Empresa" << endl;
 	string emp; cin >> emp;
 	cout << "Ingresa Departamento" << endl;
@@ -269,7 +319,10 @@ void agregar__Activo() {
 	ascii_user();
 	cout << "CREACION DE UN ACTIVO: " << endl;
 	string nom;cout << "Ingresa un nombre: "<<endl;cin>>nom;
-	string des; cout << "Ingresa una descripcion" << endl; cin >> des;
+
+	cin.ignore();// siempre hay un cin previo por eso limpio el buffer 
+	string des; cout << "Ingresa una descripcion" << endl; getline(cin, des);
+
 	NODO_ACTUAL->getUsuario()->getArbol_activos()->add_Activo(nom,des,true); 
 	system("pause");
 }
@@ -284,33 +337,23 @@ void eliminar__Activo() {
 		cin >> id_a;
 		Navl* busq = NODO_ACTUAL->getUsuario()->getArbol_activos()->buscar(id_a);
 		if (busq != NULL) {
+			cout << "" << endl;
+			cout << "Activo a eliminar: " << endl;
+			cout << "******************************************************** " << endl;
 			cout << "ID: " << busq->acti->id_activ << endl;
 			cout << "Nombre: " << busq->acti->nombre << endl;;
 			cout << "descripcion: " << busq->acti->descripcion << endl;
+			cout << "******************************************************** " << endl;
+			cout << "" << endl;
 			NODO_ACTUAL->getUsuario()->getArbol_activos()->eliminar(id_a);
 		}
 	}
 	system("pause");
 }
-void reporte_de_activos_de_un_usuario() {
-	system("cls");
-	ascii_admin();
-	cout << "REPORTE ACTIVOS DE UN USUARIO:" << endl;
-	cout << "Ingresa Nombre de Usuario: " << endl;
-	string us; cin >> us;
-	cout << "Ingresa la Empresa" << endl;
-	string emp; cin >> emp;
-	cout << "Ingresa el departamento" << endl;
-	string depar; cin >> depar;
-	NODO_ACTUAL = MATRIX->BuscarNodo(emp, depar, us);
-	if (NODO_ACTUAL != NULL) {
-		NODO_ACTUAL->getUsuario()->getArbol_activos()->getGraphviz(); 
-	}
-	else {
-		cout << "usuario no encontrado :(" << endl; 
-		system("pause");
-	}
-}
+
+
+
+
 void modificar__Activo() {
 	system("cls");
 	ascii_user();
@@ -319,14 +362,23 @@ void modificar__Activo() {
 	cout << "Ingresa el Id del activo: " << endl;
 	string id_a = "";
 	cin >> id_a;
-	string nueva_des; cout << "Ingrese la nueva descripcion" << endl; cin >> nueva_des;
+	string nuevo_nom; cout << "Ingrese un Nuevo Nombre " << endl; cin >> nuevo_nom;
+	cin.ignore();// siempre hay un cin previo por eso limpio el buffer 
+	string nueva_des; cout << "Ingrese la Nueva descripcion" << endl; getline(cin, nueva_des);
 	Navl* busq = NODO_ACTUAL->getUsuario()->getArbol_activos()->buscar(id_a);
 	if (busq != NULL) {
 		busq->acti->descripcion = nueva_des;
-		cout << "ID: " << busq->acti->id_activ << endl;
-		cout << "Nombre: " << busq->acti->nombre << endl;;
-		cout << "descripcion: " << busq->acti->descripcion << endl;
+		busq->acti->nombre = nuevo_nom;
+		cout << "" << endl;
+		cout << "Datos Actualizados: " << endl;
+		cout << "********************************************************" << endl;
+		cout << "** ID: " << busq->acti->id_activ << endl;
+		cout << "** Nombre: " << busq->acti->nombre << endl;;
+		cout << "** descripcion: " << busq->acti->descripcion << endl;
+		cout << "********************************************************" << endl;
+		cout << "" << endl;
 	}
+	cout << endl;
 	system("pause");
 }
 
@@ -335,6 +387,7 @@ void clientes__que_tengo() {
 	ascii_user();
 	cout << "||| CLIENTES QUE HAN RENTADO MIS ACTIVOS: " << endl;
 	NODO_ACTUAL->getUsuario()->getLista_de_los_que_me_rentan()->mostrarMisClientes(); 
+	cout << "" << endl;
 	system("pause"); 
 }
 
@@ -350,12 +403,17 @@ void activos_que_yo_rento() {
 	cin >> seleccion; 
 	if (seleccion.compare("1")==0) {
 		string id_a_Devolver = ""; cout << "Introduzca el id a devolver: " << endl; cin >> id_a_Devolver;
-		NodoProducto* busq = CATALOGO->buscar_del_catalogo(id_a_Devolver);
+		NodoProducto* busq = NODO_ACTUAL->getUsuario()->getMis_rentas()->buscar_del_catalogo(id_a_Devolver);
+		cout << endl;
 		if (busq != NULL) {
 			nMatrix* Nodo_del_PROPIETARIO = MATRIX->BuscarNodo(busq->producto->empresa, busq->producto->departamento, busq->producto->usuario);// USUARIO PROPIETARIO 
 			Navl* nArbol = Nodo_del_PROPIETARIO->getUsuario()->getArbol_activos()->buscar(id_a_Devolver);
 			nArbol->acti->dispo = true;
-			cout << "Activo devuelto con exito" << endl;
+			cout << "" << endl;
+			cout << "********************************************************" << endl;
+			cout << "** Activo devuelto con exito" << endl;
+			cout << "********************************************************" << endl;
+			cout << "" << endl;
 			NODO_ACTUAL->getUsuario()->getMis_rentas()->devolverProducto(id_a_Devolver);// elimina de la lista simple 
 			Nodo_del_PROPIETARIO->getUsuario()->getLista_de_los_que_me_rentan()->devolverProducto(id_a_Devolver);
 		}
@@ -364,6 +422,7 @@ void activos_que_yo_rento() {
 		}
 		
 	}
+	cout << endl; 
 	system("pause");
 }
 
@@ -382,47 +441,46 @@ void rentar__Activo() {
 	if (seleccion.compare("1") == 0) {
 		string id_a_RENTAR = ""; cout << "Introduzca el id: " << endl; cin >> id_a_RENTAR; 
 		NodoProducto* busq = CATALOGO->buscar_del_catalogo(id_a_RENTAR);
+		cout << endl;
 		if (busq != NULL) {
 			nMatrix* Nodo_del_que_Renta = MATRIX->BuscarNodo(busq->producto->empresa , busq->producto->departamento , busq->producto->usuario);// USUARIO PROPIETARIO 
 			Navl* nArbol = Nodo_del_que_Renta->getUsuario()->getArbol_activos()->buscar(id_a_RENTAR); 
-			cout << "Activo seleccionado::>  " <<"ID: "<< nArbol->acti->id_activ<<"  Nombre: "<< nArbol->acti->nombre <<" Descripcion: "<<nArbol->acti->descripcion <<endl;
+			cout << "-----------------------" << endl;
+			cout << "Activo seleccionado::>>  " <<"ID: "<< nArbol->acti->id_activ<<"  Nombre: "<< nArbol->acti->nombre <<" Descripcion: "<<nArbol->acti->descripcion <<endl;
+			cout << "-----------------------" << endl;
 			//preguntar cuanto tiempo
-			string tiemp = "";  cout << "ingrese los dias por rentar" << endl; cin >> tiemp;
+			string tiemp = "";  cout << "ingrese los dias por rentar: "; cin >> tiemp;
 			nArbol->acti->dispo = false;
 			NODO_ACTUAL->getUsuario()->getMis_rentas()->agregaProducto(Nodo_del_que_Renta->getUsuario()->getNomUser() , Nodo_del_que_Renta->getEmpresa() , Nodo_del_que_Renta->getDepartamento() , nArbol->acti->id_activ , nArbol->acti->nombre , nArbol->acti->descripcion);
 			NODO_ACTUAL->getUsuario()->getMis_rentas()->getUltimo()->producto->timepoRenta = tiemp +" dias";
-			cout << "OK renta realizada :D" << endl;
+			string fecha = ""; cout << "ingresa la fecha: "; cin >> fecha; cout<< endl;
+			cout << "" << endl;
 			// registrando la transaccion 
-			CIRCULAR->add_transaccion(nArbol->acti->id_activ , NODO_ACTUAL->getUsuario()->getNomUser() , NODO_ACTUAL->getEmpresa() , NODO_ACTUAL->getDepartamento()  ,"17-06-2020",( tiemp+" dias"));
+			CIRCULAR->add_transaccion(nArbol->acti->id_activ, NODO_ACTUAL->getUsuario()->getNomUser(), NODO_ACTUAL->getEmpresa(), NODO_ACTUAL->getDepartamento(), fecha, (tiemp + " dias"));
+			cout << "********************************************************" << endl;
+			cout << "** OK renta realizada :D" << endl;
+			cout << "********************************************************" << endl;
+			cout << "" << endl;
 			// adjunto a el propietario ahora que un persona le rento un activo 
 			Nodo_del_que_Renta->getUsuario()->getLista_de_los_que_me_rentan()->agregaProducto(NODO_ACTUAL->getUsuario()->getNomUser(), NODO_ACTUAL->getEmpresa(), NODO_ACTUAL->getDepartamento(), nArbol->acti->id_activ, nArbol->acti->nombre, nArbol->acti->descripcion);
-			Nodo_del_que_Renta->getUsuario()->getMis_rentas()->getUltimo()->producto->timepoRenta = tiemp + " dias";
+			Nodo_del_que_Renta->getUsuario()->getLista_de_los_que_me_rentan()->getUltimo()->producto->timepoRenta = tiemp + " dias";
 		}
 		else {
+			cout << "" << endl;
+			cout << "********************************************************" << endl;
 			cout << "no se encontro el id que ingreso :(" << endl; 
+			cout << "********************************************************" << endl;
+			cout << "" << endl;
 		}
 	}
 	else {
 	
 	}
-
+	cout << endl;
 	system("pause");
 
 }
 
-void reporte_activos_empresa() {
-	system("cls");
-	ascii_admin();
-	string emp = ""; cout << "Ingrese la empresa:" << endl; cin >> emp; 
-	MATRIX->reporteEmpresa(emp);
-	system("pause"); 
-}
-void reporte_activos_departamento() {
-	system("cls");
-	ascii_admin();
-	string depar = ""; cout << "Ingrese el departamento:" << endl; cin >> depar;
-	MATRIX->reporteDepartamento(depar);
-	system("pause");
-}
+
 
 

@@ -11,5 +11,6 @@ public:
 	}
 	inline NodoProducto() {
 		next = NULL;
+		this->producto =NULL;
 	}
 };
