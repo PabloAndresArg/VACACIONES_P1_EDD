@@ -21,13 +21,16 @@ void crear_usurio();
 void eliminar_usuario();
 void reporte_de_activos_de_un_usuario();
 //usuarios-------------------
+void activos_que_yo_rento();
 void agregar__Activo(); 
 void eliminar__Activo(); 
 void modificar__Activo();
 void rentar__Activo(); 
+void clientes__que_tengo(); 
 void reporte_activos_empresa();
 void reporte_activos_departamento(); 
 void reporte_activos_rentados_porUsuario(); 
+ 
 // ESTRUCTURAS ESTATICAS 
 Matriz_dispersa* MATRIX = new Matriz_dispersa(); 
 CircularDobleTransacciones* CIRCULAR = new CircularDobleTransacciones(); 
@@ -55,9 +58,7 @@ void cargarPrueba() {
 	Usuario* argueta = new Usuario("ar", "ar", "ar");
 	MATRIX->add("emp", "dep", argueta);
 
-	CATALOGO = MATRIX->recolectaProductos(CATALOGO);
-	CATALOGO->agregaProducto("userAfuera", "emp", "dep", "id_activoAfuera", "nombre", "descripcion");
-	CATALOGO->MostrarCATALOGO("Nom","EMP","DEP");
+
 	system("pause");
 }
 
@@ -103,7 +104,7 @@ void menu_login() {
 	system("pause");
 }
 
-void menu_admin() {
+void menu_admin() { // HACER MODIFICAR USUARIO ??? 
 	bool estoy_en_menu = true; 
 	while (estoy_en_menu) {
 		system("cls");
@@ -230,7 +231,7 @@ void menu_usuario() {
 		cout << "2: Eliminar    Activo" << endl;
 		cout << "3: Modificar   Activo" << endl;
 		cout << "4: Rentar      Activo" << endl;
-		cout << "5: Activos que yo tengo rentados" << endl;
+		cout << "5: Activos que yo he rentado" << endl;
 		cout << "6: Activos que Otros usuarios me han rentado" << endl;
 		cout << "7: cerrar sesion" << endl;
 		char seleccion = ' ';
@@ -249,10 +250,10 @@ void menu_usuario() {
 			rentar__Activo(); 
 		}
 		else if (seleccion == '5') {
-
+			activos_que_yo_rento(); 
 		}
 		else if (seleccion == '6') {
-
+			clientes__que_tengo(); 
 		}
 		else if (seleccion == '7') {// exit :v
 			break;
@@ -329,25 +330,73 @@ void modificar__Activo() {
 	system("pause");
 }
 
+void clientes__que_tengo() {
+	system("cls");
+	ascii_user();
+	cout << "||| CLIENTES QUE HAN RENTADO MIS ACTIVOS: " << endl;
+	NODO_ACTUAL->getUsuario()->getLista_de_los_que_me_rentan()->mostrarMisClientes(); 
+	system("pause"); 
+}
 
+void activos_que_yo_rento() {
+	system("cls");
+	ascii_user();
+	cout << "||| RENTAS QUE POSEO ACTUALMENTE:" << endl;
+	NODO_ACTUAL->getUsuario()->getMis_rentas()->mostrarMisRentas(); 
+	cout << "" << endl;
+	cout << "				1. Presiona 1 para Devolver un  Activo" << endl;
+	cout << "				2. Regresar Con otra tecla al Menu Principal" << endl;
+	string seleccion = "";
+	cin >> seleccion; 
+	if (seleccion.compare("1")==0) {
+		string id_a_Devolver = ""; cout << "Introduzca el id a devolver: " << endl; cin >> id_a_Devolver;
+		NodoProducto* busq = CATALOGO->buscar_del_catalogo(id_a_Devolver);
+		if (busq != NULL) {
+			nMatrix* Nodo_del_PROPIETARIO = MATRIX->BuscarNodo(busq->producto->empresa, busq->producto->departamento, busq->producto->usuario);// USUARIO PROPIETARIO 
+			Navl* nArbol = Nodo_del_PROPIETARIO->getUsuario()->getArbol_activos()->buscar(id_a_Devolver);
+			nArbol->acti->dispo = true;
+			cout << "Activo devuelto con exito" << endl;
+			NODO_ACTUAL->getUsuario()->getMis_rentas()->devolverProducto(id_a_Devolver);// elimina de la lista simple 
+			Nodo_del_PROPIETARIO->getUsuario()->getLista_de_los_que_me_rentan()->devolverProducto(id_a_Devolver);
+		}
+		else {
+			cout << "no se encontro el id que ingreso :(" << endl;
+		}
+		
+	}
+	system("pause");
+}
 
 void rentar__Activo() {
 	system("cls");
 	ascii_user();
-	cout << "CATALOGO PARA RENTAR:" << endl;
+	cout << "°°CATALOGO PARA RENTAR:" << endl;
+	CATALOGO = new CatalogoLsimple();
 	CATALOGO = MATRIX->recolectaProductos(CATALOGO);
 	CATALOGO->MostrarCATALOGO(NODO_ACTUAL->getUsuario()->getNomUser() , NODO_ACTUAL->getEmpresa() , NODO_ACTUAL->getDepartamento());
+	cout << "" << endl;
 	cout << "				1. Presiona 1 Rentar Activo" << endl; 
 	cout << "				2. Regresar Con otra tecla al Menu Principal" << endl;
-	char seleccion = ' ';
+	string seleccion = "";
 	cin >> seleccion;
-	if (seleccion == '1') {
+	if (seleccion.compare("1") == 0) {
 		string id_a_RENTAR = ""; cout << "Introduzca el id: " << endl; cin >> id_a_RENTAR; 
 		NodoProducto* busq = CATALOGO->buscar_del_catalogo(id_a_RENTAR);
 		if (busq != NULL) {
 			nMatrix* Nodo_del_que_Renta = MATRIX->BuscarNodo(busq->producto->empresa , busq->producto->departamento , busq->producto->usuario);// USUARIO PROPIETARIO 
 			Navl* nArbol = Nodo_del_que_Renta->getUsuario()->getArbol_activos()->buscar(id_a_RENTAR); 
-			nArbol->acti->dispo = false; 
+			cout << "Activo seleccionado::>  " <<"ID: "<< nArbol->acti->id_activ<<"  Nombre: "<< nArbol->acti->nombre <<" Descripcion: "<<nArbol->acti->descripcion <<endl;
+			//preguntar cuanto tiempo
+			string tiemp = "";  cout << "ingrese los dias por rentar" << endl; cin >> tiemp;
+			nArbol->acti->dispo = false;
+			NODO_ACTUAL->getUsuario()->getMis_rentas()->agregaProducto(Nodo_del_que_Renta->getUsuario()->getNomUser() , Nodo_del_que_Renta->getEmpresa() , Nodo_del_que_Renta->getDepartamento() , nArbol->acti->id_activ , nArbol->acti->nombre , nArbol->acti->descripcion);
+			NODO_ACTUAL->getUsuario()->getMis_rentas()->getUltimo()->producto->timepoRenta = tiemp +" dias";
+			cout << "OK renta realizada :D" << endl;
+			// registrando la transaccion 
+			CIRCULAR->add_transaccion(nArbol->acti->id_activ , NODO_ACTUAL->getUsuario()->getNomUser() , NODO_ACTUAL->getEmpresa() , NODO_ACTUAL->getDepartamento()  ,"17-06-2020",( tiemp+" dias"));
+			// adjunto a el propietario ahora que un persona le rento un activo 
+			Nodo_del_que_Renta->getUsuario()->getLista_de_los_que_me_rentan()->agregaProducto(NODO_ACTUAL->getUsuario()->getNomUser(), NODO_ACTUAL->getEmpresa(), NODO_ACTUAL->getDepartamento(), nArbol->acti->id_activ, nArbol->acti->nombre, nArbol->acti->descripcion);
+			Nodo_del_que_Renta->getUsuario()->getMis_rentas()->getUltimo()->producto->timepoRenta = tiemp + " dias";
 		}
 		else {
 			cout << "no se encontro el id que ingreso :(" << endl; 
@@ -375,3 +424,5 @@ void reporte_activos_departamento() {
 	MATRIX->reporteDepartamento(depar);
 	system("pause");
 }
+
+

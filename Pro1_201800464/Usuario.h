@@ -12,8 +12,8 @@ private:
 	string nombreCompleto; 
 	string pass;
 	ArbolBin* Arbol_activos;
-
-	
+	CatalogoLsimple* Lista_rentados;
+	CatalogoLsimple* Lista_de_los_que_me_rentan;
 	
 public: 
 	Usuario(string nom_ , string nombreCOm_ , string pass_ ) {
@@ -21,6 +21,8 @@ public:
 		this->nombreCompleto = nombreCOm_;
 		this->pass = pass_;
 		this->Arbol_activos = new ArbolBin();
+		this->Lista_rentados = new CatalogoLsimple(); 
+		this->Lista_de_los_que_me_rentan = new CatalogoLsimple(); 
 	}
 
 	string getNomUser() {
@@ -44,7 +46,12 @@ public:
 	void setNombreCompleto(string algo) {
 		this->nombreCompleto = algo;
 	}
-
+	CatalogoLsimple* getMis_rentas() {
+		return this->Lista_rentados;
+	}
+	CatalogoLsimple* getLista_de_los_que_me_rentan() {
+		return this->Lista_de_los_que_me_rentan;
+	}
 
 
 };

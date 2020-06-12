@@ -5,7 +5,7 @@ using namespace std;
 class Producto
 {
 public:
-	// usuario
+	// PROPIETARIO...
 	string usuario;
 	string empresa;
 	string departamento;
@@ -14,6 +14,8 @@ public:
 	string nombre;
 	string descripcion; 
 	// SOLO METER AL CATALOGO LOS DISPONIBLES.. :D 
+
+	string timepoRenta; 
 	inline Producto(string user, string empresa_ , string departamento_ , string id_activo_, string nombre_ , string descripcion_) {
 		this->usuario = user; 
 		this->empresa = empresa_; 
@@ -21,6 +23,7 @@ public:
 		this->id_activo = id_activo_; 
 		this->nombre = nombre_; 
 		this->descripcion = descripcion_; 
+		this->timepoRenta = ""; 
 	}
 };
 

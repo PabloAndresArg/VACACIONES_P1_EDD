@@ -9,4 +9,7 @@ public:
 		this->producto = pr;
 		next = NULL;
 	}
+	inline NodoProducto() {
+		next = NULL;
+	}
 };

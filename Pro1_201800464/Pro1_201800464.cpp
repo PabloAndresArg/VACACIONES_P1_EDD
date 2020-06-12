@@ -22,8 +22,10 @@ using namespace std;
 
 */
 
+
 int main()
 {
+ 
     system("color a");
     cargarPrueba(); 
     iniciar(); 

@@ -19,5 +19,8 @@ public:
 	void MostrarCATALOGO(string nombre , string empresa_ , string dep);
 	NodoProducto* buscar_del_catalogo(string id_); 
 
+	void mostrarMisRentas();
+	void devolverProducto(string id_);
+	void mostrarMisClientes(); 
 };
 

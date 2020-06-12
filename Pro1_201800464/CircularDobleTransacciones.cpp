@@ -13,7 +13,7 @@ void CircularDobleTransacciones::add_transaccion(string id_activo, string nombre
 	while (yaExisteEl_id(id_transaccion_nueva)) {
 		id_transaccion_nueva = this->generarId();
 	}
-	cout << "ID GENERADO: " + id_transaccion_nueva << endl;
+	cout << "ID de Transaccion GENERADO: " + id_transaccion_nueva << endl;
 	this->add(new Transa(id_transaccion_nueva ,id_activo , nombreUsuario, emp, dep, fecha , ti));
 }
 
