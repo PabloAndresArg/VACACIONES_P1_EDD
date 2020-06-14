@@ -35,7 +35,7 @@ public:
 
 			int x = 1; // porque graph no acepta negativos 
 			do {
-				w << "a" << x << "[label = \"ID: " << aux->tra->getId_tra()<<"\\nUser: "<<aux->tra->getNombreUsuario()<<" \\nEmp: " <<aux->tra->getEmpresa()<<"\\nDep: "<<aux->tra->getDepa()<<" \\nTiempo: "<<aux->tra->getTiempo() <<" \" ] ;";
+				w << "a" << x << "[label = \"ID: " << aux->tra->getId_tra()<<"\\nUser: "<<aux->tra->getNombreUsuario()<<" \\nEmp: " <<aux->tra->getEmpresa()<<"\\nDep: "<<aux->tra->getDepa()<<" \\nTiempo: "<<aux->tra->getTiempo() << " \\nFecha: "<<aux->tra->getFecha() <<" \" ] ;";
 				x++;
 				if (aux->sig != inicio) { // llevo al ultimo nodo 
 					w << "a" << (x - 1) << " -> " << "a" << x << "[ arrowhead = \"vee\"   color = \"green\"]; ";

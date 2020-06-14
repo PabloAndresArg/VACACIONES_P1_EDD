@@ -466,10 +466,7 @@ void Matriz_dispersa::eliminarInterno(string empresa , string departamento , str
 		//cout << "no se puede eliminar porque no se encontro el nodo" << endl; 
 		return; 
 	}
-
-
 	// ALGO A TENER EN CUENTA GET DERECHO Y GET ABAJO PUEDE QUE SEA NULL 
-
 	// para eliminar uno frontal
 	if (nodo_eliminar->getFront() == NULL) {
 

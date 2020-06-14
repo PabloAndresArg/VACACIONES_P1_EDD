@@ -101,7 +101,11 @@ void CatalogoLsimple::mostrarMisClientes() {
 		}
 	}
 	else {
-		cout << "No has rentado ningun Activo..." << endl;
+		cout << endl; 
+		cout << "******************************************" << endl;
+		cout << "** No Te han rentado ningun Activo...  :( " << endl;
+		cout << "******************************************" << endl;
+		cout << endl;
 	}
 
 }

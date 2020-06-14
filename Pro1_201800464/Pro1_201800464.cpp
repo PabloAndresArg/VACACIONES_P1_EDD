@@ -25,10 +25,11 @@ using namespace std;
 
 int main()
 {
+    
     system("color a");
     intro_de_pelicula_antigua(); 
     cargarPrueba(); 
-    iniciar(); 
-    
+    iniciar();
+
     system("pause");
 }

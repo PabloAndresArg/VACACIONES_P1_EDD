@@ -226,28 +226,21 @@ Navl* ArbolBin::eliminarRecursivo(Navl* raiz, string id) {
             if (revisar == raiz->iz) revisar = raiz->de;
             else  revisar = raiz->iz;
 
-            if (revisar == NULL) {// HoJa , solo la borrar directo 
-                revisar = raiz;
-                raiz = NULL;
-            }
-            else {
-                raiz = revisar;//reemplaza 
-            }
+            if (revisar == NULL) raiz = NULL;// HoJa , solo la borrar directo 
+            else raiz = revisar;//reemplaza 
+            
           //  cout << "Activo eliminado :D" << endl;// si llega aca se que se va eliminar  
         }
         else {
-            Navl* revisar = this->getNodoMinimo(raiz->de); // menor de lOs mayores 
-            raiz->acti->setTodoEl_objeto(revisar->acti->id_activ, revisar->acti->nombre, revisar->acti->descripcion , revisar->acti->dispo);// reemplazo el objeto o llave depende de que necesite  porque esta subiendo el MENOR DE LOS MAYORES 
-            raiz->de = eliminarRecursivo(raiz->de, revisar->acti->id_activ);// le mando la parte derecha porque ahora en mi arbol hay simultaneamente dos nodos con el mimso Identificador y mando a eliminar el menor de los mayores que es una simple HOJA
+            Navl* DATOS_MENOR = this->getNodoMinimo(raiz->de); // menor de lOs mayores 
+            raiz->acti->setTodoEl_objeto(DATOS_MENOR->acti->id_activ, DATOS_MENOR->acti->nombre, DATOS_MENOR->acti->descripcion , DATOS_MENOR->acti->dispo);// reemplazo el objeto o llave depende de que necesite  porque esta subiendo el MENOR DE LOS MAYORES 
+            raiz->de = eliminarRecursivo(raiz->de, DATOS_MENOR->acti->id_activ);// le mando la parte derecha porque ahora en mi arbol hay simultaneamente dos nodos con el mimso Identificador y mando a eliminar el menor de los mayores que es una simple HOJA
         }
         break;
     }
 
 
-    if (raiz == NULL) return raiz;
-
-
-
+    if (raiz == NULL) return raiz;// cuando se elimina la hoja puede dar null pointer si baja por eso se retorna de una vez 
 
     int fact = GET_MI_FE(raiz);
 

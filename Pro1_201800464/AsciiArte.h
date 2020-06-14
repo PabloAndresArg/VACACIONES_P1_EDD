@@ -114,60 +114,65 @@ void ascii_user() {
 
 void intro_de_pelicula_antigua() {
 
-    cout << "||||||||||||||||||||||||||||||" << endl;
-    cout << "                                 " << endl;
-    cout << "         XXXXXXXX   " << endl;
-    cout << "         XX    XX   " << endl;
-    cout << "         XXXX  XX   " << endl;
-    cout << "           XX  XX   " << endl;
-    cout << "           XX  XX   " << endl;
-    cout << "           XX  XX   " << endl;
-    cout << "           XX  XX   " << endl;
-    cout << "           XX  XX   " << endl;
-    cout << "         XXXX  XXXX " << endl;
-    cout << "         XX      XX " << endl;
-    cout << "         XXXXXXXXXX " << endl;
-    cout << "                                " << endl;
-    cout << "||||||||||||||||||||||||||||||" << endl;
-    Sleep(1000);
+
+    cout << endl; cout << endl; cout << endl; cout << endl; cout << endl; cout << endl; cout << endl;
+    cout << "                                               ||||||||||||||||||||||||||||||" << endl;
+    cout << "                                                                                " << endl;
+    cout << "                                                        XXXXXXXXXXXXXX " << endl;
+    cout << "                                                        XX          XX " << endl;
+    cout << "                                                        XXXXXXXXXX  XX " << endl;
+    cout << "                                                                XX  XX " << endl;
+    cout << "                                                        XXXXXXXXXX  XX " << endl;
+    cout << "                                                        XX          XX " << endl;
+    cout << "                                                        XXXXXXXXXX  XX " << endl;
+    cout << "                                                                XX  XX " << endl;
+    cout << "                                                        XXXXXXXXXX  XX " << endl;
+    cout << "                                                        XX          XX " << endl;
+    cout << "                                                        XXXXXXXXXXXXXX " << endl;
+    cout << "                                                                                " << endl;
+    cout << "                                               ||||||||||||||||||||||||||||||" << endl;
+
+    Sleep(850);
     system("cls");
 
 
-
-        cout << "||||||||||||||||||||||||||||||" << endl;
-        cout << "                                 " << endl;
-        cout << "         XXXXXXXXXXXXXX " << endl;
-        cout << "         XX          XX " << endl;
-        cout << "         XXXXXXXXXX  XX " << endl;
-        cout << "                 XX  XX " << endl;
-        cout << "         XXXXXXXXXX  XX " << endl;
-        cout << "         XX          XX " << endl;
-        cout << "         XX  XXXXXXXXXX " << endl;
-        cout << "         XX  XX         " << endl;
-        cout << "         XX  XXXXXXXXXX " << endl;
-        cout << "         XX          XX " << endl;
-        cout << "         XXXXXXXXXXXXXX " << endl;
-        cout << "                                " << endl;
-        cout << "||||||||||||||||||||||||||||||" << endl;
-        Sleep(1000);
+    cout << endl; cout << endl; cout << endl; cout << endl; cout << endl; cout << endl; cout << endl;
+        cout << "                                               ||||||||||||||||||||||||||||||" << endl;
+        cout << "                                                                                " << endl;
+        cout << "                                                        XXXXXXXXXXXXXX " << endl;
+        cout << "                                                        XX          XX " << endl;
+        cout << "                                                        XXXXXXXXXX  XX " << endl;
+        cout << "                                                                XX  XX " << endl;
+        cout << "                                                        XXXXXXXXXX  XX " << endl;
+        cout << "                                                        XX          XX " << endl;
+        cout << "                                                        XX  XXXXXXXXXX " << endl;
+        cout << "                                                        XX  XX         " << endl;
+        cout << "                                                        XX  XXXXXXXXXX " << endl;
+        cout << "                                                        XX          XX " << endl;
+        cout << "                                                        XXXXXXXXXXXXXX " << endl;
+        cout << "                                                                            " << endl;
+        cout << "                                               ||||||||||||||||||||||||||||||" << endl;
+        Sleep(850);
         system("cls");
-        cout << "||||||||||||||||||||||||||||||" << endl;
-        cout << "                                 " << endl;
-        cout << "         XXXXXXXXXXXXXX " << endl;
-        cout << "         XX          XX " << endl;
-        cout << "         XXXXXXXXXX  XX " << endl;
-        cout << "                 XX  XX " << endl;
-        cout << "         XXXXXXXXXX  XX " << endl;
-        cout << "         XX          XX " << endl;
-        cout << "         XXXXXXXXXX  XX " << endl;
-        cout << "                 XX  XX " << endl;
-        cout << "         XXXXXXXXXX  XX " << endl;
-        cout << "         XX          XX " << endl;
-        cout << "         XXXXXXXXXXXXXX " << endl;
-        cout << "                                 " << endl;
-        cout << "||||||||||||||||||||||||||||||" << endl;
 
-        Sleep(1000);
+
+        cout << endl; cout << endl; cout << endl; cout << endl; cout << endl; cout << endl; cout << endl;
+        cout << "                                               ||||||||||||||||||||||||||||||" << endl;
+        cout << "                                                                                    " << endl;
+        cout << "                                                        XXXXXXXX   " << endl;
+        cout << "                                                        XX    XX   " << endl;
+        cout << "                                                        XXXX  XX   " << endl;
+        cout << "                                                          XX  XX   " << endl;
+        cout << "                                                          XX  XX   " << endl;
+        cout << "                                                          XX  XX   " << endl;
+        cout << "                                                          XX  XX   " << endl;
+        cout << "                                                          XX  XX   " << endl;
+        cout << "                                                        XXXX  XXXX " << endl;
+        cout << "                                                        XX      XX " << endl;
+        cout << "                                                        XXXXXXXXXX " << endl;
+        cout << "                                                                                     " << endl;
+        cout << "                                               ||||||||||||||||||||||||||||||" << endl;
+        Sleep(850);
         system("cls");
 
 

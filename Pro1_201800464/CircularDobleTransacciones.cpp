@@ -27,7 +27,7 @@ void CircularDobleTransacciones::add(Transa * nuevaTr ) {
 		this->ultimo->sig = nuevo;
 		this->tamanio++;
 	}
-	else { // insercion al final 
+	else { // insercion al final  de toda la lista doble circular enlazada 
 		nuevo->ant = this->ultimo;
 		this->ultimo->sig = nuevo;
 		this->ultimo = nuevo; // refrescamos cual es el ultimo ahora 

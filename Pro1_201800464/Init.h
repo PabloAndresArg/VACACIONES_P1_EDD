@@ -8,7 +8,7 @@
 #include"CircularDobleTransacciones.h"
 #include"Estatic.h"
 
-// en el catalofo solo se muestran los que estan disponibles  , asegurarme que los ids no se repitan en todos los arboles 
+
 
 using namespace std;
 // PROTOTIPOS PARA QUE EL ORDEN EN QUE LOS LLAME NO IMPORTE 
@@ -39,13 +39,13 @@ CatalogoLsimple* CATALOGO = new CatalogoLsimple();
 
 
 void cargarPrueba() {
-	/*
+	
 	CIRCULAR->add_transaccion("id_activo","p", "p","p","2018-20-05","30 dias"); 
 	CIRCULAR->add_transaccion("id_act555", "p", "p", "p", "2018-20-05", "30 dias");
 	CIRCULAR->add_transaccion("id_act120", "p", "p", "p", "2018-20-05", "30 dias");
-	CIRCULAR->add_transaccion("id_act130", "v", "v", "v", "2020-20-05", "27 dias");
+	CIRCULAR->add_transaccion("id_act130", "v", "v", "v", "2020-20-05", "22 dias");
 	CIRCULAR->add_transaccion("id_act138", "ar", "emp", "dep", "2020-20-05", "21 dias");
-	*/
+	
 	Usuario* pablo = new Usuario("p","p", "p");
 	pablo->getArbol_activos()->add_Activo("de_pablo","nel",true);
 
@@ -60,6 +60,12 @@ void cargarPrueba() {
 	MATRIX->add("p", "p", andres);
 	Usuario* argueta = new Usuario("ar", "ar", "ar");
 	MATRIX->add("emp", "dep", argueta);
+	Usuario* x = new Usuario("Tokio", "ar", "ar");
+	MATRIX->add("SONY", "SOLOLA", x);
+	Usuario* x2 = new Usuario("Berlin", "ar", "ar");
+	MATRIX->add("SONY", "p", x2);
+	Usuario* x3 = new Usuario("Denver", "ar", "ar");
+	MATRIX->add("INTEL", "SOLOLA", x3);
 	system("pause");
 }
 
@@ -107,7 +113,7 @@ void menu_login() {
 	system("pause");
 }
 
-//------------------------------------------------------ LOGICA DE ADMINISTRADOR  
+
 
 void menu_admin() {  
 	bool estoy_en_menu = true; 
@@ -133,38 +139,38 @@ void menu_admin() {
 		cout << "8: Ordenar Transacciones Ascendentemente" << endl; 
 		cout << "9: Ordenar Transacciones Descendentemente" << endl;
 		cout << "- salir con una letra" << endl;
-		char seleccion = ' ';
+		string seleccion = "";
 		cin >> seleccion;
-		if (seleccion == '0') {
+		if (seleccion.compare("0") == 0) {
 			crear_usurio(); 
 		}
-		else if (seleccion == '1') {
+		else if (seleccion.compare("1") == 0) {
 			eliminar_usuario(); 
 		}
-		else if (seleccion == '2') {
+		else if (seleccion.compare("2") == 0) {
 			MATRIX->getGraphviz(); 
 		}
-		else if (seleccion == '3') {
+		else if (seleccion.compare("3") == 0) {
 			reporte_activos_empresa();
 		}
-		else if (seleccion == '4') {
+		else if (seleccion.compare("4") == 0) {
 			reporte_activos_departamento(); 
 		}
-		else if (seleccion == '5') {
+		else if (seleccion.compare("5") == 0) {
 			CIRCULAR->getGraphviz(); 
 		}
-		else if (seleccion == '6') {
+		else if (seleccion.compare("6") == 0) {
 			reporte_de_activos_de_un_usuario();
 		}
-		else if (seleccion == '7') {
+		else if (seleccion.compare("7") == 0) {
 			reporte_activos_rentados_porUsuario(); 
 		}
-		else if (seleccion == '8') {
+		else if (seleccion.compare("8") == 0) {
 			CIRCULAR->OrdenarAsc(); 
 			cout << "Ordenada Ascendentemente con Exito" << endl; 
 			system("pause");
 		}
-		else if (seleccion == '9') {
+		else if (seleccion.compare("9") == 0) {
 			CIRCULAR->OrdenarDescen();
 			cout << "Ordenada Descendentemente con Exito" << endl;
 			system("pause");
@@ -236,10 +242,12 @@ void reporte_de_activos_de_un_usuario() {
 
 
 
-//------------------------------------------------------ LOGICA DE USUARIOS 
 void crear_usurio() {
 	system("cls");
 	ascii_admin();
+	cout << "||| CREACION DE UN NUEVO USUARIO: " << endl;
+
+
 	cout << "Ingresa Nombre de Usuario: " << endl; 
 	string us; cin >> us;
 	cout << "Ingresa un Password: " << endl;
@@ -255,11 +263,18 @@ void crear_usurio() {
 
 	Usuario* nuevo_USuario = new Usuario(us , nombreCOm, contra);
 	MATRIX->add(  emp ,  depar , nuevo_USuario);
+
+	cout << "*******************************" << endl; 
+	cout << "** Usuario Creado" << endl; 
+	cout << "*******************************" << endl;
+	system("pause");
 }
 
 void eliminar_usuario() {
 	system("cls");
 	ascii_admin();
+	cout << "||| ELIMINACION DE UN  USUARIO: " << endl;
+
 	cout << "Ingresa Nombre de Usuario que desea eliminar: " << endl;
 	string us; cin >> us;
 	cout << "Ingresa la Empresa" << endl;
@@ -268,6 +283,10 @@ void eliminar_usuario() {
 	string depar; cin >> depar;
 
 	MATRIX->eliminarInterno(emp , depar , us); 
+	cout << "*******************************" << endl;
+	cout << "** Usuario Eliminado" << endl;
+	cout << "*******************************" << endl;
+	system("pause");
 }
 
 
@@ -318,14 +337,18 @@ void agregar__Activo() {
 	system("cls");
 	ascii_user();
 	cout << "CREACION DE UN ACTIVO: " << endl;
-	string nom;cout << "Ingresa un nombre: "<<endl;cin>>nom;
-
 	cin.ignore();// siempre hay un cin previo por eso limpio el buffer 
-	string des; cout << "Ingresa una descripcion" << endl; getline(cin, des);
-
+	string nom; cout << "Ingresa un nombre: "; getline(cin, nom); cout << endl;
+	string des; cout << "Ingresa una descripcion: "; getline(cin, des); cout<< endl;
+	cout << "" << endl;
 	NODO_ACTUAL->getUsuario()->getArbol_activos()->add_Activo(nom,des,true); 
+	cout << "*******************************************" << endl; 
+	cout << "** Activo Generado " << endl;
+	cout << "*******************************************" << endl;
+	cout << endl; 
 	system("pause");
 }
+
 void eliminar__Activo() {
 	system("cls");
 	ascii_user();
@@ -362,8 +385,8 @@ void modificar__Activo() {
 	cout << "Ingresa el Id del activo: " << endl;
 	string id_a = "";
 	cin >> id_a;
-	string nuevo_nom; cout << "Ingrese un Nuevo Nombre " << endl; cin >> nuevo_nom;
 	cin.ignore();// siempre hay un cin previo por eso limpio el buffer 
+	string nuevo_nom; cout << "Ingrese un Nuevo Nombre " << endl; getline(cin, nuevo_nom);
 	string nueva_des; cout << "Ingrese la Nueva descripcion" << endl; getline(cin, nueva_des);
 	Navl* busq = NODO_ACTUAL->getUsuario()->getArbol_activos()->buscar(id_a);
 	if (busq != NULL) {
