@@ -63,9 +63,18 @@ void cargarPrueba() {
 	Usuario* x = new Usuario("Tokio", "ar", "ar");
 	MATRIX->add("SONY", "SOLOLA", x);
 	Usuario* x2 = new Usuario("Berlin", "ar", "ar");
+	Usuario* x6 = new Usuario("Arcely", "Arcely", "tigo");
+	Usuario* x7 = new Usuario("Valeria", "Valeria", "tigo");
+	MATRIX->add("SONY", "p", x6);
 	MATRIX->add("SONY", "p", x2);
+	MATRIX->add("SONY", "p", x7);
 	Usuario* x3 = new Usuario("Denver", "ar", "ar");
+	Usuario* x4 = new Usuario("nuevaCara", "ar", "ar");
+	Usuario* x5 = new Usuario("tigo", "tigo", "tigo");
 	MATRIX->add("INTEL", "SOLOLA", x3);
+	MATRIX->add("INTEL", "SOLOLA", x4);
+	MATRIX->add("INTEL", "SOLOLA", x5);
+
 	system("pause");
 }
 

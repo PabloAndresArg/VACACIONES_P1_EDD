@@ -28,8 +28,11 @@ int main()
     
     system("color a");
     intro_de_pelicula_antigua(); 
-    cargarPrueba(); 
+    //cargarPrueba(); 
     iniciar();
+    
+    /*ArbolBin a; // LOS NUMEROS TIENE PRIORIDAD OSEA SON MENORES QUE LAS LETRAS 
+    cout << a.compararAlfabeticamente("a", "9") << endl;*/
 
     system("pause");
 }

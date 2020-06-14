@@ -1,9 +1,5 @@
 digraph ARBOL_201800464 { rankdir=TB;
- label = " v "charset = latin1; style = filled;bgcolor = white;color = lightgrey; 
+ label = "Usuario: p "charset = latin1; style = filled;bgcolor = white;color = lightgrey; 
  node[fillcolor = black , fontcolor = white , color = chartreuse1 ,style = filled,  shape = record];
-vzryqaq14b1j92v[label = " <C0>|ID:  vzryqaq14b1j92v\nNombre:  Muebles|<C1>" ];   
- vzryqaq14b1j92v:C0->vriax453zzt1ydj [arrowhead = none color = black];   
- vriax453zzt1ydj[label = " <C0>|ID:  vriax453zzt1ydj\nNombre:  de_val|<C1>" ];   
- vzryqaq14b1j92v:C1->wv024jiva287jdv [arrowhead = none color = black];   
- wv024jiva287jdv[label = " <C0>|ID:  wv024jiva287jdv\nNombre:  de_valeria|<C1>" ];   
+uere4ui66u1xvqd[label = " <C0>|ID:  uere4ui66u1xvqd\nNombre:  de_pablo|<C1>" ];   
  }

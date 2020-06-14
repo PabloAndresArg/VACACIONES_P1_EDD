@@ -308,7 +308,7 @@ void ArbolBin:: getGraphvizRepUsuarios(string nombreUsuario) {
     if (this->getRoot() != NULL) {
         this->Graph = "";
         this->indice = 0;
-        this->Graph += "digraph ARBOL_201800464 { rankdir=TB;\n label = \" "+ nombreUsuario +" \"charset = latin1; style = filled;bgcolor = white;color = lightgrey; \n ";
+        this->Graph += "digraph ARBOL_201800464 { rankdir=TB;\n label = \"Usuario: "+ nombreUsuario +" \"charset = latin1; style = filled;bgcolor = white;color = lightgrey; \n ";
         this->Graph += "node[fillcolor = black , fontcolor = white , color = chartreuse1 ,style = filled,  shape = record];\n";
         getGraphviz(this->raiz);
         Rep* llama = new Rep();
