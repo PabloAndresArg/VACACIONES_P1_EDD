@@ -10,7 +10,6 @@ private:
 	string Graph;
 	int indice;
 	Navl* raiz;
-//	bool yaId;
 	void mostrar_activos(Navl*);
 	CatalogoLsimple* recolectaProRecursivo(Navl* ,CatalogoLsimple* CATALOGO , string nombreUser, string empresa, string departamento);
 public:
@@ -18,8 +17,7 @@ public:
 	ArbolBin() {
 		    this->raiz = NULL;
 			this->Graph = "";
-			this->indice = 0;
-			//this->yaId = false; 
+			this->indice = 0; // solo si necesitara hacer recorridos
 	}
 	inline Navl* getRoot() { return this->raiz; };
 	void add(Navl*);// le reservo memoria de un nodo antes de meterlo al arbol 
@@ -39,7 +37,7 @@ public:
 	//+++++++++++++++++++++++++ GRAFICAR MI ARBOL ALV 
 	void getGraphviz();
 	void getGraphviz(Navl*); // recolecto en preorder       raiz izq derecha 
-	void getGraphvizRepUsuarios(string nombreUsuario);
+	string getGraphvizRepUsuarios(string nombreUsuario , int indice);
 
 	//++++++++++++++++++++++++++ BUSCAR 
 	Navl* buscar(string);

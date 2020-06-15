@@ -205,7 +205,13 @@ public:
 							w << "VAL_" << &*aux2 << "[label=\"" << aux2->getDepartamento() << "\", group = " << to_string(aux2->getPos_x()) << ",pos = \"" << to_string(aux2->getPos_x()) << "," << to_string((-1) * (aux2->getPos_y())) << "\" ];\n";
 						}
 						else {
-							w << "VAL_" << &*aux2 << "[ label = \"" << aux2->getUsuario()->getNomUser() << "\" ,dir=both ,fillcolor = chartreuse1, group = " << to_string(aux2->getPos_x()) << ",pos = \"" << to_string(aux2->getPos_x()) << "," << to_string((-1) * (aux2->getPos_y())) << "\" ];\n";
+							if (aux2->getBehind() != NULL) {
+								w << "VAL_" << &*aux2 << "[ label = \"" << aux2->getUsuario()->getNomUser() << "\" ,dir=both , group = " << to_string(aux2->getPos_x()) << ",pos = \"" << to_string(aux2->getPos_x()) << "," << to_string((-1) * (aux2->getPos_y())) << "\" , fillcolor = black, fontcolor = white, color = dodgerblue1 ];\n";
+							}
+							else {
+								w << "VAL_" << &*aux2 << "[ label = \"" << aux2->getUsuario()->getNomUser() << "\" ,dir=both ,fillcolor = chartreuse1, group = " << to_string(aux2->getPos_x()) << ",pos = \"" << to_string(aux2->getPos_x()) << "," << to_string((-1) * (aux2->getPos_y())) << "\" ];\n";
+							}
+							
 						}
 						aux2 = aux2->getDer();
 					}
@@ -268,6 +274,60 @@ public:
 			cout << "----- ARBOL GENERADO :D ------ " << endl;
 			cout<< endl;
 			system("pause");
+		}
+		else {
+			cout << "NO GENERA NADA PORQUE LA LISTA ESTA VACIA " << endl;
+			cout << endl;
+		}
+	}
+
+	void graficaEmpresa(string cadenaGraph) {
+		ofstream w;
+		w.open("REPORTES\\empresa201800464_rep.txt", ios::out);//si no existe lo crea  y si ya lo reemplaza
+		if (w.fail()) {
+			cout << "NO SE PUDO ABRIR EL ARCHIVO" << endl;
+
+			system("pause");
+			exit(1);
+		}
+		if (cadenaGraph.compare("") != 0) {
+			w << cadenaGraph;
+			w.close();
+			char genera[] = "dot -Tjpg REPORTES\\empresa201800464_rep.txt -o REPORTES\\empresa201800464_rep.jpg";// usando el prueba par mientrasr
+			system(genera);
+			char ejecuta[] = "REPORTES\\empresa201800464_rep.jpg";
+			system(ejecuta);
+			cout << "************************* " << endl;
+			cout << "-----REPORTE OK  ------ " << endl;
+			cout << "************************* " << endl;
+			cout << endl;
+		}
+		else {
+			cout << "NO GENERA NADA PORQUE LA LISTA ESTA VACIA " << endl;
+			cout << endl;
+		}
+	}
+
+	void graficaDepartamento(string cadenaGraph) {
+		ofstream w;
+		w.open("REPORTES\\dep201800464_rep.txt", ios::out);//si no existe lo crea  y si ya lo reemplaza
+		if (w.fail()) {
+			cout << "NO SE PUDO ABRIR EL ARCHIVO" << endl;
+
+			system("pause");
+			exit(1);
+		}
+		if (cadenaGraph.compare("") != 0) {
+			w << cadenaGraph;
+			w.close();
+			char genera[] = "dot -Tjpg REPORTES\\dep201800464_rep.txt -o REPORTES\\dep201800464_rep.jpg";// usando el prueba par mientrasr
+			system(genera);
+			char ejecuta[] = "REPORTES\\dep201800464_rep.jpg";
+			system(ejecuta);
+			cout << "************************* " << endl;
+			cout << "-----REPORTE OK  ------ " << endl;
+			cout << "************************* " << endl;
+			cout << endl;
 		}
 		else {
 			cout << "NO GENERA NADA PORQUE LA LISTA ESTA VACIA " << endl;

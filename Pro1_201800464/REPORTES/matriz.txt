@@ -3,53 +3,31 @@ node[pin = true , shape = box, fontcolor = black  , fillcolor = gray  , width=0.
 charset = latin1;
  style = filled ;
 nodesep = 1.0;
-VAL_007D5C00->VAL_007E6038 [ dir=both ,color = white]; 
-VAL_007D5C00->VAL_007E60C0 [  dir=both,  color = white]; 
-VAL_007D5C00[label = "ROOT", group = -1,pos = "-1,1" ];
-VAL_007E6038->VAL_007E7B18 [ dir=both, color = white]; 
-VAL_007E6038->VAL_007E7E48 [ dir=both, color = white]; 
-VAL_007E6038[label="p", group = 0,pos = "0,1" ];
-VAL_007E7B18->VAL_007E7650 [ dir=both, color = white]; 
-VAL_007E7B18->VAL_007E7518 [ dir=both, color = white]; 
-VAL_007E7B18[label="v", group = 1,pos = "1,1" ];
-VAL_007E7650->VAL_007E7BA0 [ dir=both, color = white]; 
-VAL_007E7650->VAL_007E7F58 [ dir=both, color = white]; 
-VAL_007E7650[label="dep", group = 2,pos = "2,1" ];
-VAL_007E7BA0->VAL_007E7980 [ dir=both, color = white]; 
-VAL_007E7BA0[label="SOLOLA", group = 3,pos = "3,1" ];
-VAL_007E60C0->VAL_007E7E48 [ dir=both ,color = white]; 
-VAL_007E60C0->VAL_007E7DC0 [  dir=both,  color = white]; 
-VAL_007E60C0[label="p" , group = -1,pos = "-1,0" ];
-VAL_007E7E48->VAL_007E7C28 [ dir=both, color = white]; 
-VAL_007E7E48[ label = "a" ,dir=both ,fillcolor = chartreuse1, group = 0,pos = "0,0" ];
-VAL_007E7DC0->VAL_007E7518 [ dir=both ,color = white]; 
-VAL_007E7DC0->VAL_007E8398 [  dir=both,  color = white]; 
-VAL_007E7DC0[label="v" , group = -1,pos = "-1,-1" ];
-VAL_007E7518[ label = "v" ,dir=both ,fillcolor = chartreuse1, group = 1,pos = "1,-1" ];
-VAL_007E8398->VAL_007E7F58 [ dir=both ,color = white]; 
-VAL_007E8398->VAL_007E75C8 [  dir=both,  color = white]; 
-VAL_007E8398[label="emp" , group = -1,pos = "-1,-2" ];
-VAL_007E7F58[ label = "ar" ,dir=both ,fillcolor = chartreuse1, group = 2,pos = "2,-2" ];
-VAL_007E75C8->VAL_007E7C28 [ dir=both ,color = white]; 
-VAL_007E75C8->VAL_007E76D8 [  dir=both,  color = white]; 
-VAL_007E75C8[label="SONY" , group = -1,pos = "-1,-3" ];
-VAL_007E7C28->VAL_007E7980 [ dir=both, color = white]; 
-VAL_007E7C28[ label = "Berlin" ,dir=both ,fillcolor = chartreuse1, group = 3,pos = "3,0" ];
-VAL_007E7980->VAL_007E7D38 [ dir=both, color = white]; 
-VAL_007E7980[ label = "Tokio" ,dir=both ,fillcolor = chartreuse1, group = 3,pos = "3,-3" ];
-VAL_007E76D8->VAL_007E7D38 [ dir=both ,color = white]; 
-VAL_007E76D8[label="INTEL" , group = -1,pos = "-1,-4" ];
-VAL_007E7D38[ label = "Denver" ,dir=both ,fillcolor = chartreuse1, group = 4,pos = "4,-3" ];
-{rank = same; VAL_007D5C00 VAL_007E6038 VAL_007E7B18 VAL_007E7650 VAL_007E7BA0 };
+VAL_007E1728->VAL_007EA140 [ dir=both ,color = white]; 
+VAL_007E1728->VAL_007E9BA8 [  dir=both,  color = white]; 
+VAL_007E1728[label = "ROOT", group = -1,pos = "-1,1" ];
+VAL_007EA140->VAL_007E8BE8 [ dir=both, color = white]; 
+VAL_007EA140->VAL_007E2298 [ dir=both, color = white]; 
+VAL_007EA140[label="JALAPA", group = 0,pos = "0,1" ];
+VAL_007E8BE8->VAL_007E1D58 [ dir=both, color = white]; 
+VAL_007E8BE8[label="JUTIAPA", group = 1,pos = "1,1" ];
+VAL_007E9BA8->VAL_007E2298 [ dir=both ,color = white]; 
+VAL_007E9BA8->VAL_007E91A8 [  dir=both,  color = white]; 
+VAL_007E9BA8[label="SONY" , group = -1,pos = "-1,0" ];
+VAL_007E2298->VAL_007E1D58 [ dir=both, color = white]; 
+VAL_007E2298->VAL_007E3A88 [ dir=both, color = white]; 
+VAL_007E2298[ label = "pablo" ,dir=both ,fillcolor = chartreuse1, group = 0,pos = "0,0" ];
+VAL_007E1D58->VAL_007E9120 [ dir=both, color = white]; 
+VAL_007E1D58[ label = "arcely" ,dir=both , group = 0,pos = "0,-1" , fillcolor = black, fontcolor = white, color = dodgerblue1 ];
+VAL_007E91A8->VAL_007E3A88 [ dir=both ,color = white]; 
+VAL_007E91A8[label="MAX" , group = -1,pos = "-1,-1" ];
+VAL_007E3A88->VAL_007E9120 [ dir=both, color = white]; 
+VAL_007E3A88[ label = "valeria" ,dir=both ,fillcolor = chartreuse1, group = 1,pos = "1,0" ];
+VAL_007E9120[ label = "andres" ,dir=both ,fillcolor = chartreuse1, group = 1,pos = "1,-1" ];
+{rank = same; VAL_007E1728 VAL_007EA140 VAL_007E8BE8 };
 
-{rank = same; VAL_007E60C0 VAL_007E7E48 };
+{rank = same; VAL_007E9BA8 VAL_007E2298 VAL_007E1D58 };
 
-{rank = same; VAL_007E7DC0 VAL_007E7518 };
-
-{rank = same; VAL_007E8398 VAL_007E7F58 };
-
-{rank = same; VAL_007E75C8 VAL_007E7C28 VAL_007E7980 };
-
-{rank = same; VAL_007E76D8 VAL_007E7D38 };
+{rank = same; VAL_007E91A8 VAL_007E3A88 VAL_007E9120 };
 
 }

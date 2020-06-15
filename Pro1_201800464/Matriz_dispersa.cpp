@@ -536,6 +536,10 @@ void Matriz_dispersa::eliminarInterno(string empresa , string departamento , str
 
 
 void Matriz_dispersa :: reporteEmpresa(string empresa_fila) {
+	int cant = 0; 
+	string grafo = "";
+	grafo += "digraph ARBOL_Empresa { rankdir=TB;\n label = \"Empresa: " + empresa_fila + " \"charset = latin1; style = filled;bgcolor = white;color = lightgrey; \n ";
+	grafo += "node[fillcolor = black , fontcolor = white , color = chartreuse1 ,style = filled,  shape = record];\n";
 	nMatrix* FILA_ = existeFIla(empresa_fila);
 	nMatrix * aux3D = NULL;
 	if (FILA_ != NULL) {
@@ -546,13 +550,15 @@ void Matriz_dispersa :: reporteEmpresa(string empresa_fila) {
 				aux3D = FILA_;
 				while (aux3D != NULL) {
 					cout << "Usuario: " << aux3D->getUsuario()->getNomUser() << endl;
-					aux3D->getUsuario()->getArbol_activos()->getGraphvizRepUsuarios(aux3D->getUsuario()->getNomUser());
+					grafo += aux3D->getUsuario()->getArbol_activos()->getGraphvizRepUsuarios(aux3D->getUsuario()->getNomUser() , cant);
+					cant++;
 					aux3D = aux3D->getBehind();
 				}
 			}
 			else {
 				cout << "Usuario: " << FILA_->getUsuario()->getNomUser()<<endl;
-				FILA_->getUsuario()->getArbol_activos()->getGraphvizRepUsuarios(FILA_->getUsuario()->getNomUser());
+				grafo += FILA_->getUsuario()->getArbol_activos()->getGraphvizRepUsuarios(FILA_->getUsuario()->getNomUser() , cant);
+				cant++;
 			}
 		FILA_ = FILA_->getDer();
 		}
@@ -561,9 +567,17 @@ void Matriz_dispersa :: reporteEmpresa(string empresa_fila) {
 	else {
 		cout << "NO SE ENCONTRO ESA EMPRESA" << endl; 
 	}
+	grafo += "}"; 
+	Rep* llama = new Rep();
+	llama->graficaEmpresa(grafo);
 }
 
 void Matriz_dispersa :: reporteDepartamento(string departamento_colum) {
+	int cant = 0;
+	string grafo = "";
+	grafo += "digraph ARBOL_Empresa { rankdir=TB;\n label = \"Departamento: " + departamento_colum + " \"charset = latin1; style = filled;bgcolor = white;color = lightgrey; \n ";
+	grafo += "node[fillcolor = black , fontcolor = white , color = chartreuse1 ,style = filled,  shape = record];\n";
+	
 	nMatrix* COL_ = existeColumna(departamento_colum);
 	nMatrix* aux3D = NULL;
 	if (COL_ != NULL) {
@@ -574,13 +588,15 @@ void Matriz_dispersa :: reporteDepartamento(string departamento_colum) {
 				aux3D = COL_;
 				while (aux3D != NULL) {
 					cout << "Usuario: " << aux3D->getUsuario()->getNomUser() << endl;
-					aux3D->getUsuario()->getArbol_activos()->getGraphvizRepUsuarios(aux3D->getUsuario()->getNomUser());
+					grafo += aux3D->getUsuario()->getArbol_activos()->getGraphvizRepUsuarios(aux3D->getUsuario()->getNomUser() , cant);
+					cant++;
 					aux3D = aux3D->getBehind();
 				}
 			}
 			else {
 				cout << "Usuario: " << COL_->getUsuario()->getNomUser() << endl;
-				COL_->getUsuario()->getArbol_activos()->getGraphvizRepUsuarios(COL_->getUsuario()->getNomUser());
+				grafo += COL_->getUsuario()->getArbol_activos()->getGraphvizRepUsuarios(COL_->getUsuario()->getNomUser(),cant);
+				cant++;
 			}
 			COL_ = COL_->getDown();
 		}
@@ -588,6 +604,10 @@ void Matriz_dispersa :: reporteDepartamento(string departamento_colum) {
 	else {
 		cout << "NO SE ENCONTRO ESE DEPARTAMENTO" << endl;
 	}
+	grafo += "}";
+	// llamar a reporte 
+	Rep* llama = new Rep();
+	llama->graficaEmpresa(grafo);
 }
 
 

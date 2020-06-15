@@ -291,7 +291,6 @@ Navl* ArbolBin::eliminarRecursivo(Navl* raiz, string id) {
 void  ArbolBin::getGraphviz() {
     if (this->getRoot() != NULL) {
         this->Graph = "";
-        this->indice = 0;
         this->Graph += "digraph ARBOL_201800464 { rankdir=TB;\n label = \" ARBOL AVL \"charset = latin1; style = filled;bgcolor = white;color = lightgrey; \n ";
         this->Graph += "node[fillcolor = black , fontcolor = white , color = chartreuse1 ,style = filled,  shape = record];\n";
         getGraphviz(this->raiz);
@@ -304,24 +303,31 @@ void  ArbolBin::getGraphviz() {
 
     
 }
-void ArbolBin:: getGraphvizRepUsuarios(string nombreUsuario) {
+string ArbolBin:: getGraphvizRepUsuarios(string nombreUsuario , int ind) {
+
     if (this->getRoot() != NULL) {
         this->Graph = "";
-        this->indice = 0;
-        this->Graph += "digraph ARBOL_201800464 { rankdir=TB;\n label = \"Usuario: "+ nombreUsuario +" \"charset = latin1; style = filled;bgcolor = white;color = lightgrey; \n ";
+        this->Graph += "subgraph cluster_"+to_string(ind)+" { rankdir=TB;\n label = \"Usuario: "+ nombreUsuario +" \"charset = latin1; style = filled;bgcolor = white;color = lightgrey; \n ";
         this->Graph += "node[fillcolor = black , fontcolor = white , color = chartreuse1 ,style = filled,  shape = record];\n";
         getGraphviz(this->raiz);
-        Rep* llama = new Rep();
-        llama->graficaArbol(Graph);
+        this->Graph += "}";
+        return Graph;
     }
     else {
         cout << "arbol vacio :( " << endl;
+        return "";
     }
 }
 
-void ArbolBin::getGraphviz(Navl* R_actual) {
-    this->Graph += "" + R_actual->acti->id_activ + "[label = \" <C0>|" +"ID:  "+ R_actual->acti->id_activ +"\\nNombre:  "+R_actual->acti->nombre+"|<C1>" + "\" ];   \n ";
 
+void ArbolBin::getGraphviz(Navl* R_actual) {
+    if (R_actual->acti->dispo) {
+     this->Graph += "" + R_actual->acti->id_activ + "[label = \" <C0>|" + "ID:  " + R_actual->acti->id_activ + "\\nNombre:  " + R_actual->acti->nombre + "|<C1>" + "\" ];   \n ";
+    }
+    else {
+        this->Graph += "" + R_actual->acti->id_activ + "[label = \" <C0>|" + "ID:  " + R_actual->acti->id_activ + "\\nNombre:  " + R_actual->acti->nombre + "|<C1>" + "\" , color = red];   \n ";
+    }
+    
     if (R_actual->iz != NULL) {
         this->Graph += R_actual->acti->id_activ + ":C0->" + R_actual->iz->acti->id_activ + " [arrowhead = none color = black];   \n ";
         getGraphviz(R_actual->iz);

@@ -1,7 +1,7 @@
 digraph G {
 rankdir = LR;style = filled; charset = latin1;bgcolor = black; color = aliceblue;
 node[fillcolor = black, fontcolor = white, color = dodgerblue1, style = filled, shape = component];
-subgraph cluster_0{label = "POSICION [ p-p ]";VAL_007E7E48[label = "a" ] ;VAL_007E7E48->VAL_007E5FB0 [ arrowhead = vee ]; 
-VAL_007E5FB0[label = "p" ] ;VAL_007E5FB0->VAL_007E7E48 [ arrowhead = vee ]; 
+subgraph cluster_0{label = "POSICION [ SONY-JUTIAPA ]";VAL_007E1D58[label = "arcely" ] ;VAL_007E1D58->VAL_007E8B60 [ arrowhead = vee ]; 
+VAL_007E8B60[label = "andrea" ] ;VAL_007E8B60->VAL_007E1D58 [ arrowhead = vee ]; 
 }
 }

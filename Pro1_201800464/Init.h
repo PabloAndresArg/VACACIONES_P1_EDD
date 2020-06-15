@@ -39,12 +39,13 @@ CatalogoLsimple* CATALOGO = new CatalogoLsimple();
 
 
 void cargarPrueba() {
-	
+	/*
 	CIRCULAR->add_transaccion("id_activo","p", "p","p","2018-20-05","30 dias"); 
 	CIRCULAR->add_transaccion("id_act555", "p", "p", "p", "2018-20-05", "30 dias");
 	CIRCULAR->add_transaccion("id_act120", "p", "p", "p", "2018-20-05", "30 dias");
 	CIRCULAR->add_transaccion("id_act130", "v", "v", "v", "2020-20-05", "22 dias");
 	CIRCULAR->add_transaccion("id_act138", "ar", "emp", "dep", "2020-20-05", "21 dias");
+	*/
 	
 	Usuario* pablo = new Usuario("p","p", "p");
 	pablo->getArbol_activos()->add_Activo("de_pablo","nel",true);
@@ -54,6 +55,10 @@ void cargarPrueba() {
 	valeria->getArbol_activos()->add_Activo("de_val", "nel", true);
 	valeria->getArbol_activos()->add_Activo("de_valeria", "jeje", true);
 	valeria->getArbol_activos()->add_Activo("Muebles", "pa_tares_mueblerias_val", true);
+	valeria->getArbol_activos()->add_Activo("pizza", "hola", false);
+	valeria->getArbol_activos()->add_Activo("hamburguesas", "hola", false);
+	valeria->getArbol_activos()->add_Activo("silla", "hola", true);
+	valeria->getArbol_activos()->add_Activo("oso", "hola", true);
 	MATRIX->add("v", "v", valeria);
 	Usuario* andres = new Usuario("a", "a", "a");
 	andres->getArbol_activos()->add_Activo("de_andres", "nel", true);
@@ -64,14 +69,21 @@ void cargarPrueba() {
 	MATRIX->add("SONY", "SOLOLA", x);
 	Usuario* x2 = new Usuario("Berlin", "ar", "ar");
 	Usuario* x6 = new Usuario("Arcely", "Arcely", "tigo");
+	x6->getArbol_activos()->add_Activo("BOCINA", "nel", true);
+	x6->getArbol_activos()->add_Activo("MESA", "nel", true);
+	x6->getArbol_activos()->add_Activo("PLAY5", "nel", false);
+	x6->getArbol_activos()->add_Activo("PORTON", "nel", true);
 	Usuario* x7 = new Usuario("Valeria", "Valeria", "tigo");
 	MATRIX->add("SONY", "p", x6);
 	MATRIX->add("SONY", "p", x2);
 	MATRIX->add("SONY", "p", x7);
 	Usuario* x3 = new Usuario("Denver", "ar", "ar");
+	x3->getArbol_activos()->add_Activo("denv", "nel", true);
+	x3->getArbol_activos()->add_Activo("Tele", "nel", false);
+	x3->getArbol_activos()->add_Activo("play3", "nel", false);
 	Usuario* x4 = new Usuario("nuevaCara", "ar", "ar");
 	Usuario* x5 = new Usuario("tigo", "tigo", "tigo");
-	MATRIX->add("INTEL", "SOLOLA", x3);
+	MATRIX->add("v", "SOLOLA", x3);
 	MATRIX->add("INTEL", "SOLOLA", x4);
 	MATRIX->add("INTEL", "SOLOLA", x5);
 
@@ -369,15 +381,24 @@ void eliminar__Activo() {
 		cin >> id_a;
 		Navl* busq = NODO_ACTUAL->getUsuario()->getArbol_activos()->buscar(id_a);
 		if (busq != NULL) {
-			cout << "" << endl;
-			cout << "Activo a eliminar: " << endl;
-			cout << "******************************************************** " << endl;
-			cout << "ID: " << busq->acti->id_activ << endl;
-			cout << "Nombre: " << busq->acti->nombre << endl;;
-			cout << "descripcion: " << busq->acti->descripcion << endl;
-			cout << "******************************************************** " << endl;
-			cout << "" << endl;
-			NODO_ACTUAL->getUsuario()->getArbol_activos()->eliminar(id_a);
+			if (busq->acti->dispo) {
+				cout << "" << endl;
+				cout << "Activo a eliminar: " << endl;
+				cout << "******************************************************** " << endl;
+				cout << "ID: " << busq->acti->id_activ << endl;
+				cout << "Nombre: " << busq->acti->nombre << endl;;
+				cout << "descripcion: " << busq->acti->descripcion << endl;
+				cout << "******************************************************** " << endl;
+				cout << "" << endl;
+				NODO_ACTUAL->getUsuario()->getArbol_activos()->eliminar(id_a);
+			
+			}
+			else {
+				cout << "*******************************************************************" << endl;
+				cout << "** Lo siento no se puede Eliminar si el activo esta siendo rentado" << endl;
+				cout << "*******************************************************************" << endl;
+			}
+
 		}
 	}
 	system("pause");
@@ -399,16 +420,24 @@ void modificar__Activo() {
 	string nueva_des; cout << "Ingrese la Nueva descripcion" << endl; getline(cin, nueva_des);
 	Navl* busq = NODO_ACTUAL->getUsuario()->getArbol_activos()->buscar(id_a);
 	if (busq != NULL) {
-		busq->acti->descripcion = nueva_des;
-		busq->acti->nombre = nuevo_nom;
-		cout << "" << endl;
-		cout << "Datos Actualizados: " << endl;
-		cout << "********************************************************" << endl;
-		cout << "** ID: " << busq->acti->id_activ << endl;
-		cout << "** Nombre: " << busq->acti->nombre << endl;;
-		cout << "** descripcion: " << busq->acti->descripcion << endl;
-		cout << "********************************************************" << endl;
-		cout << "" << endl;
+		if (busq->acti->dispo) {
+			busq->acti->descripcion = nueva_des;
+			busq->acti->nombre = nuevo_nom;
+			cout << "" << endl;
+			cout << "Datos Actualizados: " << endl;
+			cout << "********************************************************" << endl;
+			cout << "** ID: " << busq->acti->id_activ << endl;
+			cout << "** Nombre: " << busq->acti->nombre << endl;;
+			cout << "** descripcion: " << busq->acti->descripcion << endl;
+			cout << "********************************************************" << endl;
+			cout << "" << endl;
+		}
+		else {
+			cout << "*******************************************************************" << endl;
+			cout << "** Lo siento no se puede modificar si el activo esta siendo rentado" << endl;
+			cout << "*******************************************************************" << endl;
+		}
+
 	}
 	cout << endl;
 	system("pause");

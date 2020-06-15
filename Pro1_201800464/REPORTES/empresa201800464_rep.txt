@@ -1,0 +1,26 @@
+digraph ARBOL_Empresa { rankdir=TB;
+ label = "Departamento: JALAPA "charset = latin1; style = filled;bgcolor = white;color = lightgrey; 
+ node[fillcolor = black , fontcolor = white , color = chartreuse1 ,style = filled,  shape = record];
+subgraph cluster_0 { rankdir=TB;
+ label = "Usuario: pablo "charset = latin1; style = filled;bgcolor = white;color = lightgrey; 
+ node[fillcolor = black , fontcolor = white , color = chartreuse1 ,style = filled,  shape = record];
+v4w8b0s8rrq1eqx[label = " <C0>|ID:  v4w8b0s8rrq1eqx\nNombre:  unTaco|<C1>" ];   
+ v4w8b0s8rrq1eqx:C0->ey5ssy0056qw9dx [arrowhead = none color = black];   
+ ey5ssy0056qw9dx[label = " <C0>|ID:  ey5ssy0056qw9dx\nNombre:  suma|<C1>" ];   
+ v4w8b0s8rrq1eqx:C1->z36y9uay7t90j0b [arrowhead = none color = black];   
+ z36y9uay7t90j0b[label = " <C0>|ID:  z36y9uay7t90j0b\nNombre:  unPez|<C1>" , color = red];   
+ z36y9uay7t90j0b:C0->vssydd8aqd5a32i [arrowhead = none color = black];   
+ vssydd8aqd5a32i[label = " <C0>|ID:  vssydd8aqd5a32i\nNombre:  rabbit|<C1>" , color = red];   
+ }subgraph cluster_1 { rankdir=TB;
+ label = "Usuario: valeria "charset = latin1; style = filled;bgcolor = white;color = lightgrey; 
+ node[fillcolor = black , fontcolor = white , color = chartreuse1 ,style = filled,  shape = record];
+ve2ztdxvq91ywuy[label = " <C0>|ID:  ve2ztdxvq91ywuy\nNombre:  compu|<C1>" ];   
+ ve2ztdxvq91ywuy:C0->jj9bt8ee3wweabj [arrowhead = none color = black];   
+ jj9bt8ee3wweabj[label = " <C0>|ID:  jj9bt8ee3wweabj\nNombre:  L3|<C1>" ];   
+ ve2ztdxvq91ywuy:C1->veiua158dydr0xj [arrowhead = none color = black];   
+ veiua158dydr0xj[label = " <C0>|ID:  veiua158dydr0xj\nNombre:  khee|<C1>" ];   
+ veiua158dydr0xj:C0->veit42i8jwxr8tq [arrowhead = none color = black];   
+ veit42i8jwxr8tq[label = " <C0>|ID:  veit42i8jwxr8tq\nNombre:  play5|<C1>" , color = red];   
+ veiua158dydr0xj:C1->yabjdywjrtq7rwi [arrowhead = none color = black];   
+ yabjdywjrtq7rwi[label = " <C0>|ID:  yabjdywjrtq7rwi\nNombre:  tele|<C1>" ];   
+ }}
