@@ -92,10 +92,13 @@ void CatalogoLsimple::devolverProducto(string id_) {
 
 void CatalogoLsimple::mostrarMisClientes() {
 	if (this->getCabeza() != NULL) {
+		cout << "" << endl;
 		NodoProducto* nav = this->cab;
 		while (nav != NULL) {
-			cout << "||| Empresa del cliente: " << nav->producto->empresa << " Departamento donde se encuentra: " << nav->producto->departamento << endl; 
-			cout << "||| Nombre del cliente: "<< nav->producto->usuario <<" ID: " << nav->producto->id_activo << " Nombre: " << nav->producto->nombre << " Descripcion: " << nav->producto->descripcion << " Tiempo: " << nav->producto->timepoRenta << endl;
+			cout << "-------------------------------------------------------------------------------------------------------------" << endl;
+			cout << "--- Nombre del cliente:"<< nav->producto->usuario <<"Empresa del cliente: " << nav->producto->empresa << " Departamento donde se encuentra: " << nav->producto->departamento << endl;
+			cout << "--- ID: " << nav->producto->id_activo << " Nombre: " << nav->producto->nombre << " Descripcion: " << nav->producto->descripcion << " Tiempo: " << nav->producto->timepoRenta << endl;
+			cout << "-------------------------------------------------------------------------------------------------------------" << endl;
 			cout << endl; 
 			nav = nav->next;
 		}

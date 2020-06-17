@@ -554,9 +554,10 @@ void ArbolBin ::  mostrar_activos(Navl* actual) {
     if (actual->iz != NULL) {
         mostrar_activos(actual->iz);
     }
-
-    cout <<"ID: "<<actual->acti->id_activ << "  NOMBRE: "<<actual->acti->nombre << " Descripcion: "<< actual->acti->descripcion << endl;
-
+    if (actual->acti->dispo) {
+        cout << "ID: " << actual->acti->id_activ << "  NOMBRE: " << actual->acti->nombre << " Descripcion: " << actual->acti->descripcion << endl;
+    }
+   
     if (actual->de != NULL) {
         mostrar_activos(actual->de);
     }
